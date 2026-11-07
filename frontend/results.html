@@ -3,14 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Search Results - Article Search</title>
-  <link rel="stylesheet" href="styles.css">
-  <script src="script.js" defer></script>
+  <title>"Africville" — Black History Hub Search</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="js/script.js" defer></script>
 </head>
 <body class="results-page">
+  <a class="skip-link" href="#main">Skip to main content</a>
 
   <!-- Hidden SVG Gooey Filter -->
-  <svg xmlns="http://www.w3.org/2000/svg" version="1.1" style="display: block; height: 0; width: 0; position: absolute;">
+  <svg xmlns="http://www.w3.org/2000/svg" version="1.1" aria-hidden="true" focusable="false" style="display: block; height: 0; width: 0; position: absolute;">
     <defs>
       <filter id="goo">
         <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur"></feGaussianBlur>
@@ -22,22 +23,25 @@
 
   <!-- Top App Bar -->
   <header class="top-nav">
-    <button id="sidebar-toggle-btn" class="icon-btn" aria-label="Open Sidebar">☰</button>
-    <a href="index.html" class="brand-title" style="text-decoration: none;">FiveFold</a>
+    <button id="sidebar-toggle-btn" class="icon-btn nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="side-nav">☰</button>
+    <a href="index.html" class="brand-title">Black History Hub</a>
+    <nav class="top-nav-links" aria-label="Main">
+      <a href="index.html" class="top-nav-link">Search</a>
+      <a href="institutions.html" class="top-nav-link">Institutions</a>
+      <a href="about.html" class="top-nav-link">About</a>
+    </nav>
   </header>
 
-  <!-- Slide-Out Horizontal Side Navigation -->
-  <aside id="side-nav" class="side-nav" aria-label="Main Navigation">
+  <!-- Slide-Out Side Navigation (mobile) -->
+  <aside id="side-nav" class="side-nav" aria-label="Site menu" inert>
     <div class="side-nav-header">
       <span class="brand-title">Menu</span>
-      <button id="sidebar-close-btn" class="icon-btn" aria-label="Close Sidebar">✕</button>
+      <button id="sidebar-close-btn" class="icon-btn" aria-label="Close menu">✕</button>
     </div>
-    <nav class="side-nav-menu">
-      <a href="index.html" class="nav-link">Search Home</a>
-      <a href="#placeholder" class="nav-link">Placeholder Link 1</a>
-      <a href="#placeholder" class="nav-link">Placeholder Link 2</a>
-      <a href="#placeholder" class="nav-link">Placeholder Link 3</a>
-      <a href="#placeholder" class="nav-link">Placeholder Link 4</a>
+    <nav class="side-nav-menu" aria-label="Main">
+      <a href="index.html" class="nav-link">Search</a>
+      <a href="institutions.html" class="nav-link">Institutions</a>
+      <a href="about.html" class="nav-link">About</a>
     </nav>
   </aside>
 
@@ -45,37 +49,40 @@
   <div id="backdrop" class="backdrop"></div>
 
   <!-- Main Search Results View -->
-  <main class="results-main">
+  <main id="main" class="results-main">
+    <h1 class="visually-hidden">Search results for "Africville"</h1>
 
     <!-- Top Hero Search Section with Radial Pattern Background -->
-    <section class="results-hero-section">
+    <section class="results-hero-section" aria-label="Search">
       <div class="search-wrapper">
-        <form id="search-form" class="search-box">
-          <input 
-            type="text" 
-            id="search-input" 
-            class="search-input" 
-            placeholder="Search articles by title, topic, or keyword..."
-            value="test"
+        <form id="search-form" class="search-box" role="search" action="results.html">
+          <label for="search-input" class="visually-hidden">Search records</label>
+          <input
+            type="search"
+            id="search-input"
+            name="q"
+            class="search-input"
+            placeholder="Search records by person, place, community or subject..."
+            value="Africville"
             autocomplete="off"
           >
           <!-- Gooey Uiverse Button -->
           <button type="submit" class="c-button c-button--gooey">
             Search
-            <div class="c-button__blobs">
-              <div></div>
-              <div></div>
-              <div></div>
-            </div>
+            <span class="c-button__blobs" aria-hidden="true">
+              <span></span>
+              <span></span>
+              <span></span>
+            </span>
           </button>
         </form>
 
-        <!-- Attached Filter Tags Dropdown Menu -->
+        <!-- Filter by resource type (values match record.resource_type) -->
         <div class="menu">
           <div class="item">
             <div class="link" tabindex="0" role="button" aria-haspopup="true" aria-expanded="false">
-              <span id="tag-dropdown-label">Filter by Tags</span>
-              <svg viewBox="0 0 360 360" xml:space="preserve">
+              <span id="tag-dropdown-label">Filter by Type</span>
+              <svg viewBox="0 0 360 360" xml:space="preserve" aria-hidden="true" focusable="false">
                 <g id="SVGRepo_iconCarrier">
                   <path
                     d="M325.607,79.393c-5.857-5.857-15.355-5.858-21.213,0.001l-139.39,139.393L25.607,79.393 c-5.857-5.857-15.355-5.858-21.213,0.001c-5.858,5.858-5.858,15.355,0,21.213l150.004,150c2.813,2.813,6.628,4.393,10.606,4.393 s7.794-1.581,10.606-4.394l149.996-150C331.465,94.749,331.465,85.251,325.607,79.393z"
@@ -83,52 +90,97 @@
                 </g>
               </svg>
             </div>
-            
+
             <!-- Checkbox Items -->
-            <div class="submenu" role="menu">
+            <div class="submenu">
               <div class="submenu-item">
                 <label class="tag-label">
                   <span class="checkBox">
-                    <input type="checkbox" name="tag" value="Placeholder1" class="tag-checkbox">
+                    <input type="checkbox" name="type" value="journal_article" class="tag-checkbox">
                     <span class="transition fill-box"></span>
                   </span>
-                  <span>Placeholder1</span>
+                  <span>Journal article</span>
                 </label>
               </div>
               <div class="submenu-item">
                 <label class="tag-label">
                   <span class="checkBox">
-                    <input type="checkbox" name="tag" value="Placeholder2" class="tag-checkbox">
+                    <input type="checkbox" name="type" value="person_profile" class="tag-checkbox">
                     <span class="transition fill-box"></span>
                   </span>
-                  <span>Placeholder2</span>
+                  <span>Person profile</span>
                 </label>
               </div>
               <div class="submenu-item">
                 <label class="tag-label">
                   <span class="checkBox">
-                    <input type="checkbox" name="tag" value="Placeholder3" class="tag-checkbox">
+                    <input type="checkbox" name="type" value="archival_document" class="tag-checkbox">
                     <span class="transition fill-box"></span>
                   </span>
-                  <span>Placeholder3</span>
+                  <span>Archival document</span>
                 </label>
               </div>
               <div class="submenu-item">
                 <label class="tag-label">
                   <span class="checkBox">
-                    <input type="checkbox" name="tag" value="Placeholder4" class="tag-checkbox">
+                    <input type="checkbox" name="type" value="register" class="tag-checkbox">
                     <span class="transition fill-box"></span>
                   </span>
-                  <span>Placeholder4</span>
+                  <span>Register</span>
                 </label>
               </div>
               <div class="submenu-item">
                 <label class="tag-label">
                   <span class="checkBox">
-                    <input type="checkbox" name="tag" value="Placeholder5" class="tag-checkbox">
+                    <input type="checkbox" name="type" value="research_guide" class="tag-checkbox">
                     <span class="transition fill-box"></span>
                   </span>
-                  <span>Placeholder5</span>
+                  <span>Research guide</span>
+                </label>
+              </div>
+              <div class="submenu-item">
+                <label class="tag-label">
+                  <span class="checkBox">
+                    <input type="checkbox" name="type" value="book" class="tag-checkbox">
+                    <span class="transition fill-box"></span>
+                  </span>
+                  <span>Book</span>
+                </label>
+              </div>
+              <div class="submenu-item">
+                <label class="tag-label">
+                  <span class="checkBox">
+                    <input type="checkbox" name="type" value="correspondence" class="tag-checkbox">
+                    <span class="transition fill-box"></span>
+                  </span>
+                  <span>Correspondence</span>
+                </label>
+              </div>
+              <div class="submenu-item">
+                <label class="tag-label">
+                  <span class="checkBox">
+                    <input type="checkbox" name="type" value="map" class="tag-checkbox">
+                    <span class="transition fill-box"></span>
+                  </span>
+                  <span>Map</span>
+                </label>
+              </div>
+              <div class="submenu-item">
+                <label class="tag-label">
+                  <span class="checkBox">
+                    <input type="checkbox" name="type" value="photograph" class="tag-checkbox">
+                    <span class="transition fill-box"></span>
+                  </span>
+                  <span>Photograph</span>
+                </label>
+              </div>
+              <div class="submenu-item">
+                <label class="tag-label">
+                  <span class="checkBox">
+                    <input type="checkbox" name="type" value="other" class="tag-checkbox">
+                    <span class="transition fill-box"></span>
+                  </span>
+                  <span>Other</span>
                 </label>
               </div>
             </div>
@@ -141,14 +193,16 @@
     <div class="section-divider" role="separator" aria-hidden="true"></div>
 
     <!-- Results Section with Lower Cube Pattern Background -->
-    <section class="lower-pattern-container results-container">
-      <div class="pattern-bg">
+    <section class="lower-pattern-container results-container" aria-label="Results">
+      <div class="pattern-bg" aria-hidden="true">
         <svg
           preserveAspectRatio="xMidYMid slice"
           height="100%"
           width="100%"
           class="cube-svg"
           viewBox="0 0 120 104"
+          aria-hidden="true"
+          focusable="false"
         >
           <defs>
             <linearGradient y2="100%" x2="100%" y1="0%" x1="0%" id="cube-dark">
@@ -175,234 +229,128 @@
       <div class="results-content-wrapper">
         <!-- Results Summary Bar -->
         <div class="results-meta-bar">
-          <div class="results-count-text">
-            Showing results for <span class="highlight-query">"test"</span>
-          </div>
-          <span class="results-badge">6 Articles Found</span>
+          <p class="results-count-text">
+            Showing results for <span class="highlight-query">"Africville"</span>
+          </p>
+          <span id="results-count" class="results-badge" aria-live="polite">4 records from 3 institutions</span>
+        </div>
+
+        <!-- Empty state (shown by JS when a search has no matches) -->
+        <div id="results-empty" class="results-empty" hidden>
+          <h2 class="results-empty-title">No records found for "<span class="results-empty-query">Africville</span>"</h2>
+          <ul class="results-empty-tips">
+            <li>Check the spelling.</li>
+            <li>Try a broader term, such as a place or community name.</li>
+            <li><a href="institutions.html">Browse the institutions</a> whose records are included.</li>
+          </ul>
         </div>
 
         <!-- Horizontal List Container -->
         <div id="search-results-list" class="horizontal-results-list card-stack">
-
-          <!-- Result Item 1 -->
-          <div class="card horizontal-card" tabindex="0">
-            <div class="card-image-wrapper">
-              <img src="Resources/placeholder.jpg" alt="Article thumbnail" class="card-thumb">
-            </div>
+          <article class="card horizontal-card">
+            <svg class="card-type-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z"/><path d="M4 19V5M19 19v2H6"/></svg>
             <div class="card-content">
               <div class="card-top">
-                <span class="card-title">01.</span>
-                <span class="card-category">Placeholder Type</span>
+                <span class="card-title">Book</span>
+                <span class="card-category">Online &amp; in person</span>
               </div>
               <div class="card-body">
-                <h4 class="card-heading">PlaceholderHeading</h4>
-                <p class="card-snippet">Placeholder Snippet. Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore, consectetur sed ab fuga iusto voluptatibus aut dolorem error officiis quidem, porro id perspiciatis obcaecati, aperiam laudantium praesentium? Voluptatem, voluptates veritatis!</p>
+                <h3 class="card-heading"><a class="card-link" href="record.html?id=BOOK-002">A Love Letter to Africville</a></h3>
+                <p class="card-date">February 2021</p>
+                <p class="card-snippet">A 96-page book by Amanda Carvery-Taylor, whose father grew up in Africville. It gathers former residents&#x27; memories and photographs to show the community&#x27;s family life, childhood, nightlife and Elders&#x27; lessons, not only its hardships.</p>
+                <ul class="card-tags" aria-label="People and places">
+                  <li><a class="card-tag" href="results.html?q=Amanda+Carvery-Taylor">Amanda Carvery-Taylor</a></li>
+                  <li><a class="card-tag" href="results.html?q=Africville">Africville</a></li>
+                  <li><a class="card-tag" href="results.html?q=Halifax">Halifax</a></li>
+                </ul>
               </div>
               <div class="card-bottom">
-                <div class="card-tags">
-                  <span class="card-tag">#Placeholder</span>
-                  <span class="card-tag">#Placeholder</span>
-                  <span class="card-tag">#Placeholder</span>
-                </div>
-                <span class="card-action">View Article &rarr;</span>
+                <span class="card-holder">Published by <strong>Fernwood Publishing</strong></span>
+                <span class="card-action" aria-hidden="true">View record &rarr;</span>
               </div>
             </div>
-          </div>
-
-          <!-- Result Item 2 -->
-          <div class="card horizontal-card" tabindex="0">
-            <div class="card-image-wrapper">
-              <img src="Resources/placeholder.jpg" alt="Article thumbnail" class="card-thumb">
-            </div>
+          </article>
+          <article class="card horizontal-card">
+            <svg class="card-type-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 4h14v16H5z"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>
             <div class="card-content">
               <div class="card-top">
-                <span class="card-title">02.</span>
-                <span class="card-category">Placeholder Type</span>
+                <span class="card-title">Journal article</span>
+                <span class="card-category">Online</span>
               </div>
               <div class="card-body">
-                <h4 class="card-heading">PlaceholderHeading</h4>
-                <p class="card-snippet">Placeholder Snippet. Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore, consectetur sed ab fuga iusto voluptatibus aut dolorem error officiis quidem, porro id perspiciatis obcaecati, aperiam laudantium praesentium? Voluptatem, voluptates veritatis!</p>
+                <h3 class="card-heading"><a class="card-link" href="record.html?id=JRN-007">Africville and the Dynamics of State Power in Postwar Canada</a></h3>
+                <p class="card-date">2010-06-06</p>
+                <p class="card-snippet">Uses the relocation of Africville&#x27;s residents during Halifax&#x27;s mid-1960s urban renewal program to examine how postwar state power actually worked. Argues that the case reveals more than racism alone, including the ideas of the good life built into the welfare state.</p>
+                <ul class="card-tags" aria-label="People and places">
+                  <li><a class="card-tag" href="results.html?q=Tina+Loo">Tina Loo</a></li>
+                  <li><a class="card-tag" href="results.html?q=Africville">Africville</a></li>
+                  <li><a class="card-tag" href="results.html?q=Halifax">Halifax</a></li>
+                </ul>
               </div>
               <div class="card-bottom">
-                <div class="card-tags">
-                  <span class="card-tag">#Placeholder</span>
-                  <span class="card-tag">#Placeholder</span>
-                  <span class="card-tag">#Placeholder</span>
-                </div>
-                <span class="card-action">View Article &rarr;</span>
+                <span class="card-holder">Published by <strong>Acadiensis (journal, UNB Libraries)</strong></span>
+                <span class="card-action" aria-hidden="true">View record &rarr;</span>
               </div>
             </div>
-          </div>
-
-          <!-- Result Item 3 -->
-          <div class="card horizontal-card" tabindex="0">
-            <div class="card-image-wrapper">
-              <img src="Resources/placeholder.jpg" alt="Article thumbnail" class="card-thumb">
-            </div>
+          </article>
+          <article class="card horizontal-card">
+            <svg class="card-type-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 4h14v16H5z"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>
             <div class="card-content">
               <div class="card-top">
-                <span class="card-title">03.</span>
-                <span class="card-category">Placeholder Type</span>
+                <span class="card-title">Journal article</span>
+                <span class="card-category">Online</span>
               </div>
               <div class="card-body">
-                <h4 class="card-heading">PlaceholderHeading</h4>
-                <p class="card-snippet">Placeholder Snippet. Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore, consectetur sed ab fuga iusto voluptatibus aut dolorem error officiis quidem, porro id perspiciatis obcaecati, aperiam laudantium praesentium? Voluptatem, voluptates veritatis!</p>
+                <h3 class="card-heading"><a class="card-link" href="record.html?id=JRN-008">The View from Jacob Street: Reframing Urban Renewal in Postwar Halifax</a></h3>
+                <p class="card-date">2019-12-20</p>
+                <p class="card-snippet">Looks at Halifax redevelopment between Gordon Stephenson&#x27;s 1957 study and the 1964 start of the Africville relocation, focusing on the scale of displacement and how race and class shaped who was moved. Places Africville within the city&#x27;s wider urban-renewal program.</p>
+                <ul class="card-tags" aria-label="People and places">
+                  <li><a class="card-tag" href="results.html?q=Tina+Loo">Tina Loo</a></li>
+                  <li><a class="card-tag" href="results.html?q=Gordon+Stephenson">Gordon Stephenson</a></li>
+                  <li><a class="card-tag" href="results.html?q=Jacob+Street">Jacob Street</a></li>
+                </ul>
               </div>
               <div class="card-bottom">
-                <div class="card-tags">
-                  <span class="card-tag">#Placeholder</span>
-                  <span class="card-tag">#Placeholder</span>
-                  <span class="card-tag">#Placeholder</span>
-                </div>
-                <span class="card-action">View Article &rarr;</span>
+                <span class="card-holder">Published by <strong>Acadiensis (journal, UNB Libraries)</strong></span>
+                <span class="card-action" aria-hidden="true">View record &rarr;</span>
               </div>
             </div>
-          </div>
-
-          <!-- Result Item 4 -->
-          <div class="card horizontal-card" tabindex="0">
-            <div class="card-image-wrapper">
-              <img src="Resources/placeholder.jpg" alt="Article thumbnail" class="card-thumb">
-            </div>
+          </article>
+          <article class="card horizontal-card">
+            <svg class="card-type-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>
             <div class="card-content">
               <div class="card-top">
-                <span class="card-title">04.</span>
-                <span class="card-category">Placeholder Type</span>
+                <span class="card-title">Research guide</span>
+                <span class="card-category">Online &amp; in person</span>
               </div>
               <div class="card-body">
-                <h4 class="card-heading">PlaceholderHeading</h4>
-                <p class="card-snippet">Placeholder Snippet. Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore, consectetur sed ab fuga iusto voluptatibus aut dolorem error officiis quidem, porro id perspiciatis obcaecati, aperiam laudantium praesentium? Voluptatem, voluptates veritatis!</p>
+                <h3 class="card-heading"><a class="card-link" href="record.html?id=SRC-009">Remembering Africville: Source Guide</a></h3>
+                <p class="card-snippet">A Halifax Municipal Archives guide to city records about Africville, such as council minutes, relocation compensation case files, building permits, photographs and maps, with archival reference numbers. Many of the listed records are digitized; some can be seen only in person or once personal information has been redacted.</p>
+                <ul class="card-tags" aria-label="People and places">
+                  <li><a class="card-tag" href="results.html?q=Africville">Africville</a></li>
+                  <li><a class="card-tag" href="results.html?q=Halifax">Halifax</a></li>
+                  <li><a class="card-tag" href="results.html?q=Irvine+Carvery">Irvine Carvery</a></li>
+                </ul>
               </div>
               <div class="card-bottom">
-                <div class="card-tags">
-                  <span class="card-tag">#Placeholder</span>
-                  <span class="card-tag">#Placeholder</span>
-                  <span class="card-tag">#Placeholder</span>
-                </div>
-                <span class="card-action">View Article &rarr;</span>
+                <span class="card-holder">Published by <strong>Halifax Municipal Archives</strong></span>
+                <span class="card-action" aria-hidden="true">View record &rarr;</span>
               </div>
             </div>
-          </div>
-
-          <!-- Result Item 5 -->
-          <div class="card horizontal-card" tabindex="0">
-            <div class="card-image-wrapper">
-              <img src="Resources/placeholder.jpg" alt="Article thumbnail" class="card-thumb">
-            </div>
-            <div class="card-content">
-              <div class="card-top">
-                <span class="card-title">05.</span>
-                <span class="card-category">Placeholder Type</span>
-              </div>
-              <div class="card-body">
-                <h4 class="card-heading">PlaceholderHeading</h4>
-                <p class="card-snippet">Placeholder Snippet. Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore, consectetur sed ab fuga iusto voluptatibus aut dolorem error officiis quidem, porro id perspiciatis obcaecati, aperiam laudantium praesentium? Voluptatem, voluptates veritatis!</p>
-              </div>
-              <div class="card-bottom">
-                <div class="card-tags">
-                  <span class="card-tag">#Placeholder</span>
-                  <span class="card-tag">#Placeholder</span>
-                  <span class="card-tag">#Placeholder</span>
-                </div>
-                <span class="card-action">View Article &rarr;</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Result Item 6 -->
-          <div class="card horizontal-card" tabindex="0">
-            <div class="card-image-wrapper">
-              <img src="Resources/placeholder.jpg" alt="Article thumbnail" class="card-thumb">
-            </div>
-            <div class="card-content">
-              <div class="card-top">
-                <span class="card-title">06.</span>
-                <span class="card-category">Placeholder Type</span>
-              </div>
-              <div class="card-body">
-                <h4 class="card-heading">PlaceholderHeading</h4>
-                <p class="card-snippet">Placeholder Snippet. Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore, consectetur sed ab fuga iusto voluptatibus aut dolorem error officiis quidem, porro id perspiciatis obcaecati, aperiam laudantium praesentium? Voluptatem, voluptates veritatis!</p>
-              </div>
-              <div class="card-bottom">
-                <div class="card-tags">
-                  <span class="card-tag">#Placeholder</span>
-                  <span class="card-tag">#Placeholder</span>
-                  <span class="card-tag">#Placeholder</span>
-                </div>
-                <span class="card-action">View Article &rarr;</span>
-              </div>
-            </div>
-          </div>
-
+          </article>
         </div>
       </div>
     </section>
   </main>
 
-  <!-- Large Pop-Up Article Modal Container (Identical to Search Page) -->
-  <div id="modal-backdrop" class="modal-backdrop" aria-hidden="true">
-    <div id="article-modal" class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modal-title">
-      
-      <!-- Close Button -->
-      <button id="modal-close-btn" class="modal-close-btn" aria-label="Close details">✕</button>
-
-      <!-- Top Thumbnail Banner (Dimmed and Centered) -->
-      <div class="modal-hero-image-wrapper">
-        <img id="modal-thumbnail" src="Resources/placeholder.jpg" alt="Article thumbnail" class="modal-hero-thumb">
-        <div class="modal-hero-overlay"></div>
-        <div class="modal-hero-meta">
-          <span id="modal-index" class="card-title">01.</span>
-          <span id="modal-category" class="card-category">Article Details</span>
-        </div>
-      </div>
-
-      <!-- Modal Body Content -->
-      <div class="modal-body-content">
-        <h2 id="modal-title" class="modal-heading">Placeholder Title</h2>
-        
-        <div id="modal-tags" class="card-tags">
-          <span class="card-tag">#PlaceholderTag</span>
-          <span class="card-tag">#PlaceholderTag</span>
-        </div>
-
-        <!-- External Source Link Button -->
-        <div class="modal-actions">
-          <a id="modal-source-btn" href="#" target="_blank" rel="noopener noreferrer" class="c-button modal-source-link">
-            Visit Source Website &rarr;
-          </a>
-        </div>
-
-        <!-- Embedded Recommended Article Section -->
-        <div class="modal-recommendation-section">
-          <h4 class="modal-rec-title">Recommended Article</h4>
-          
-          <div class="card modal-rec-card" tabindex="0">
-            <div class="card-image-wrapper">
-              <img src="Resources/placeholder.jpg" alt="Article thumbnail" class="card-thumb">
-            </div>
-            <div class="card-content">
-              <div class="card-top">
-                <span class="card-title">01.</span>
-                <span class="card-category">Recommended</span>
-              </div>
-              <div class="card-body">
-                <h4 class="card-heading">Recommended Article Title</h4>
-              </div>
-              <div class="card-bottom">
-                <div class="card-tags">
-                  <span class="card-tag">#Recommended</span>
-                  <span class="card-tag">#Related</span>
-                </div>
-                <span class="card-action">Read &rarr;</span>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-    </div>
-  </div>
+  <footer class="site-footer">
+    <p class="site-footer-name">Black History Hub</p>
+    <p>Built for the Black Cultural Centre for Nova Scotia · HubHacks 2026</p>
+    <nav class="site-footer-links" aria-label="Footer">
+      <a href="institutions.html">Institutions</a>
+      <a href="about.html">About</a>
+    </nav>
+  </footer>
 
 </body>
 </html>
