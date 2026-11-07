@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Institutions — Black History Hub</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="js/script.js" defer></script>
+</head>
+<body class="results-page institutions-page">
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <!-- Hidden SVG Gooey Filter -->
+  <svg xmlns="http://www.w3.org/2000/svg" version="1.1" aria-hidden="true" focusable="false" style="display: block; height: 0; width: 0; position: absolute;">
+    <defs>
+      <filter id="goo">
+        <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur"></feGaussianBlur>
+        <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="goo"></feColorMatrix>
+        <feBlend in="SourceGraphic" in2="goo"></feBlend>
+      </filter>
+    </defs>
+  </svg>
+
+  <!-- Top App Bar -->
+  <header class="top-nav">
+    <button id="sidebar-toggle-btn" class="icon-btn nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="side-nav">☰</button>
+    <a href="index.html" class="brand-title">Black History Hub</a>
+    <nav class="top-nav-links" aria-label="Main">
+      <a href="index.html" class="top-nav-link">Search</a>
+      <a href="institutions.html" class="top-nav-link" aria-current="page">Institutions</a>
+      <a href="about.html" class="top-nav-link">About</a>
+    </nav>
+  </header>
+
+  <!-- Slide-Out Side Navigation (mobile) -->
+  <aside id="side-nav" class="side-nav" aria-label="Site menu" inert>
+    <div class="side-nav-header">
+      <span class="brand-title">Menu</span>
+      <button id="sidebar-close-btn" class="icon-btn" aria-label="Close menu">✕</button>
+    </div>
+    <nav class="side-nav-menu" aria-label="Main">
+      <a href="index.html" class="nav-link">Search</a>
+      <a href="institutions.html" class="nav-link" aria-current="page">Institutions</a>
+      <a href="about.html" class="nav-link">About</a>
+    </nav>
+  </aside>
+
+  <!-- Background overlay when side menu is active -->
+  <div id="backdrop" class="backdrop"></div>
+
+  <main id="main" class="results-main">
+    <!-- Page Hero (same radial pattern as the results page) -->
+    <section class="results-hero-section page-hero" aria-labelledby="page-title">
+      <div class="search-wrapper">
+        <h1 id="page-title" class="hero-title">Partner Institutions</h1>
+        <p class="hero-tagline">The archives, libraries and museums whose records you can search here.</p>
+      </div>
+    </section>
+
+    <!-- Pronounced Divider -->
+    <div class="section-divider" role="separator" aria-hidden="true"></div>
+
+    <!-- Institution Cards -->
+    <section class="lower-pattern-container results-container" aria-label="Institutions">
+      <div class="pattern-bg" aria-hidden="true">
+        <svg
+          preserveAspectRatio="xMidYMid slice"
+          height="100%"
+          width="100%"
+          class="cube-svg"
+          viewBox="0 0 120 104"
+          aria-hidden="true"
+          focusable="false"
+        >
+          <defs>
+            <linearGradient y2="100%" x2="100%" y1="0%" x1="0%" id="cube-dark">
+              <stop stop-color="#191512" offset="0%"></stop>
+              <stop stop-color="#342821" offset="100%"></stop>
+            </linearGradient>
+            <linearGradient y2="0%" x2="100%" y1="100%" x1="0%" id="cube-mid">
+              <stop stop-color="#5a4132" offset="0%"></stop>
+              <stop stop-color="#241a14" offset="100%"></stop>
+            </linearGradient>
+            <linearGradient y2="100%" x2="0%" y1="0%" x1="100%" id="cube-light">
+              <stop stop-color="#b87948" offset="0%"></stop>
+              <stop stop-color="#d99f70" offset="100%"></stop>
+            </linearGradient>
+          </defs>
+          <g>
+            <polygon fill="url(#cube-dark)" points="60,0 120,34 60,68 0,34"></polygon>
+            <polygon fill="url(#cube-mid)" points="0,34 60,68 60,104 0,70"></polygon>
+            <polygon fill="url(#cube-light)" points="60,68 120,34 120,70 60,104"></polygon>
+          </g>
+        </svg>
+      </div>
+
+      <div class="lower-content-wrapper">
+        <div class="results-meta-bar">
+          <p class="results-count-text">21 institutions · 41 records</p>
+          <span class="results-badge">Sorted by number of records</span>
+        </div>
+        <div class="content-grid institution-grid">
+            <article class="card institution-card">
+              <svg class="card-type-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 21h18"/><path d="M5 21V10l7-5 7 5v11"/><path d="M9 21v-6h6v6"/></svg>
+              <div class="card-content">
+                <div class="card-top">
+                  <span class="card-title">Archive</span>
+                </div>
+                <div class="card-body">
+                  <h2 class="card-heading">Nova Scotia Archives</h2>
+                  <p class="card-snippet institution-desc">Nova Scotia&#x27;s provincial archives, which preserves government and private records and publishes online exhibits such as African Nova Scotians in the Age of Slavery and Abolition.</p>
+                  <p class="institution-counts"><span>Holds <strong>6 records</strong></span><span>Describes <strong>7 records</strong></span></p>
+                  <ul class="institution-links">
+                    <li><a href="https://archives.novascotia.ca/" target="_blank" rel="noopener noreferrer">Visit website <span class="ext-icon" aria-hidden="true">↗</span><span class="visually-hidden"> (opens in a new tab)</span></a></li>
+                    <li><a href="https://ns-archives.accesstomemory.net/nova-scotia-archives" target="_blank" rel="noopener noreferrer">Search their catalogue <span class="ext-icon" aria-hidden="true">↗</span><span class="visually-hidden"> (opens in a new tab)</span></a></li>
+                    <li><a href="https://archives.novascotia.ca/publication-use-copies/" target="_blank" rel="noopener noreferrer">Rights policy <span class="ext-icon" aria-hidden="true">↗</span><span class="visually-hidden"> (opens in a new tab)</span></a></li>
+                  </ul>
+                </div>
+                <div class="card-bottom">
+                  <a class="card-action" href="results.html?institution=inst_nsa">View records<span class="visually-hidden"> from Nova Scotia Archives</span> &rarr;</a>
+                </div>
+              </div>
+            </article>
+            <article class="card institution-card">
+              <svg class="card-type-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 21h18"/><path d="M5 21V10l7-5 7 5v11"/><path d="M9 21v-6h6v6"/></svg>
+              <div class="card-content">
+                <div class="card-top">
+                  <span class="card-title">Publisher</span>
+                </div>
+                <div class="card-body">
+                  <h2 class="card-heading">Acadiensis (journal, UNB Libraries)</h2>
+                  <p class="card-snippet institution-desc">Scholarly journal of Atlantic Canadian history, hosted online by UNB Libraries; back issues also appear on Érudit.</p>
+                  <p class="institution-counts"><span>Holds <strong>0 records</strong></span><span>Describes <strong>9 records</strong></span></p>
+                  <ul class="institution-links">
+                    <li><a href="https://journals.lib.unb.ca/index.php/Acadiensis" target="_blank" rel="noopener noreferrer">Visit website <span class="ext-icon" aria-hidden="true">↗</span><span class="visually-hidden"> (opens in a new tab)</span></a></li>
+                    <li><a href="https://journals.lib.unb.ca/index.php/Acadiensis/issue/archive" target="_blank" rel="noopener noreferrer">Search their catalogue <span class="ext-icon" aria-hidden="true">↗</span><span class="visually-hidden"> (opens in a new tab)</span></a></li>
+                  </ul>
+                </div>
+                <div class="card-bottom">
+                  <a class="card-action" href="results.html?institution=inst_acadiensis">View records<span class="visually-hidden"> from Acadiensis (journal, UNB Libraries)</span> &rarr;</a>
+                </div>
+              </div>
+            </article>
+            <article class="card institution-card">
+              <svg class="card-type-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 21h18"/><path d="M5 21V10l7-5 7 5v11"/><path d="M9 21v-6h6v6"/></svg>
+              <div class="card-content">
+                <div class="card-top">
+                  <span class="card-title">Government</span>
+                </div>
+                <div class="card-body">
+                  <h2 class="card-heading">Parks Canada</h2>
+                  <p class="card-snippet institution-desc">The federal agency that supports the Historic Sites and Monuments Board of Canada and publishes profiles of national historic persons, places and events.</p>
+                  <p class="institution-counts"><span>Holds <strong>0 records</strong></span><span>Describes <strong>7 records</strong></span></p>
+                  <ul class="institution-links">
+                    <li><a href="https://parks.canada.ca/" target="_blank" rel="noopener noreferrer">Visit website <span class="ext-icon" aria-hidden="true">↗</span><span class="visually-hidden"> (opens in a new tab)</span></a></li>
+                    <li><a href="https://parks.canada.ca/culture/designation/personnage-person" target="_blank" rel="noopener noreferrer">Search their catalogue <span class="ext-icon" aria-hidden="true">↗</span><span class="visually-hidden"> (opens in a new tab)</span></a></li>
+                    <li><a href="https://parks.canada.ca/termes-terms" target="_blank" rel="noopener noreferrer">Rights policy <span class="ext-icon" aria-hidden="true">↗</span><span class="visually-hidden"> (opens in a new tab)</span></a></li>
+                  </ul>
+                </div>
+                <div class="card-bottom">
+                  <a class="card-action" href="results.html?institution=inst_parks">View records<span class="visually-hidden"> from Parks Canada</span> &rarr;</a>
+                </div>
+              </div>
+            </article>
+            <article class="card institution-card">
+              <svg class="card-type-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 21h18"/><path d="M5 21V10l7-5 7 5v11"/><path d="M9 21v-6h6v6"/></svg>
+              <div class="card-content">
+                <div class="card-top">
+                  <span class="card-title">Publisher</span>
+                </div>
+                <div class="card-body">
+                  <h2 class="card-heading">The Ontario Historical Society</h2>
+                  <p class="card-date">34 Parkview Ave., Willowdale, Ontario M2N 3Y2, Canada</p>
+                  <p class="card-snippet institution-desc">Society that publishes the peer-reviewed journal Ontario History; issues from Autumn 2005 on are open access on Érudit, apart from the latest 12 months.</p>
+                  <p class="institution-counts"><span>Holds <strong>0 records</strong></span><span>Describes <strong>3 records</strong></span></p>
+                  <ul class="institution-links">
+                    <li><a href="https://ontariohistoricalsociety.ca/" target="_blank" rel="noopener noreferrer">Visit website <span class="ext-icon" aria-hidden="true">↗</span><span class="visually-hidden"> (opens in a new tab)</span></a></li>
+                    <li><a href="https://www.erudit.org/en/journals/onhistory/" target="_blank" rel="noopener noreferrer">Search their catalogue <span class="ext-icon" aria-hidden="true">↗</span><span class="visually-hidden"> (opens in a new tab)</span></a></li>
+                    <li><a href="https://apropos.erudit.org/en/users/policy-on-use/" target="_blank" rel="noopener noreferrer">Rights policy <span class="ext-icon" aria-hidden="true">↗</span><span class="visually-hidden"> (opens in a new tab)</span></a></li>
+                  </ul>
+                </div>
+                <div class="card-bottom">
+                  <a class="card-action" href="results.html?institution=inst_ohs">View records<span class="visually-hidden"> from The Ontario Historical Society</span> &rarr;</a>
+                </div>
+              </div>
+            </article>
+            <article class="card institution-card">
+              <svg class="card-type-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 21h18"/><path d="M5 21V10l7-5 7 5v11"/><path d="M9 21v-6h6v6"/></svg>
+              <div class="card-content">
+                <div class="card-top">
+                  <span class="card-title">Library</span>
+                </div>
+                <div class="card-body">
+                  <h2 class="card-heading">Canadiana (Canadian Research Knowledge Network)</h2>
+                  <p class="card-snippet institution-desc">Online digital library of Canadian documentary heritage (books, serials, newspapers) run by the Canadian Research Knowledge Network, with scans contributed by partner libraries and archives.</p>
+                  <p class="institution-counts"><span>Holds <strong>0 records</strong></span><span>Describes <strong>2 records</strong></span></p>
+                  <ul class="institution-links">
+                    <li><a href="https://www.canadiana.ca" target="_blank" rel="noopener noreferrer">Visit website <span class="ext-icon" aria-hidden="true">↗</span><span class="visually-hidden"> (opens in a new tab)</span></a></li>
+                    <li><a href="https://www.canadiana.ca/search" target="_blank" rel="noopener noreferrer">Search their catalogue <span class="ext-icon" aria-hidden="true">↗</span><span class="visually-hidden"> (opens in a new tab)</span></a></li>
+                    <li><a href="http://www.canadiana.ca/terms" target="_blank" rel="noopener noreferrer">Rights policy <span class="ext-icon" aria-hidden="true">↗</span><span class="visually-hidden"> (opens in a new tab)</span></a></li>
+                  </ul>
+                </div>
+                <div class="card-bottom">
+                  <a class="card-action" href="results.html?institution=inst_canadiana">View records<span class="visually-hidden"> from Canadiana (Canadian Research Knowledge Network)</span> &rarr;</a>
+                </div>
+              </div>
+            </article>
+            <article class="card institution-card">
+              <svg class="card-type-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 21h18"/><path d="M5 21V10l7-5 7 5v11"/><path d="M9 21v-6h6v6"/></svg>
+              <div class="card-content">
+                <div class="card-top">
+                  <span class="card-title">Archive</span>
+                </div>
+                <div class="card-body">
+                  <h2 class="card-heading">City of Vancouver Archives</h2>
+                  <p class="card-date">Vancouver, British Columbia</p>
+                  <p class="card-snippet institution-desc">The City of Vancouver&#x27;s archives, with civic records and private photograph collections about Vancouver.</p>
+                  <p class="institution-counts"><span>Holds <strong>1 record</strong></span><span>Describes <strong>1 record</strong></span></p>
+                  <ul class="institution-links">
+                    <li><a href="https://searcharchives.vancouver.ca/" target="_blank" rel="noopener noreferrer">Search their catalogue <span class="ext-icon" aria-hidden="true">↗</span><span class="visually-hidden"> (opens in a new tab)</span></a></li>
+                    <li><a href="https://vancouver.ca/your-government/archives-reproduction-of-materials-policy.aspx" target="_blank" rel="noopener noreferrer">Rights policy <span class="ext-icon" aria-hidden="true">↗</span><span class="visually-hidden"> (opens in a new tab)</span></a></li>
+                  </ul>
+                </div>
+                <div class="card-bottom">
+                  <a class="card-action" href="results.html?institution=inst_cova">View records<span class="visually-hidden"> from City of Vancouver Archives</span> &rarr;</a>
+                </div>
+              </div>
+            </article>
+            <article class="card institution-card">
+              <svg class="card-type-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 21h18"/><path d="M5 21V10l7-5 7 5v11"/><path d="M9 21v-6h6v6"/></svg>
+              <div class="card-content">
+                <div class="card-top">
+                  <span class="card-title">Publisher</span>
+                </div>
+                <div class="card-body">
+                  <h2 class="card-heading">Fernwood Publishing</h2>
+                  <p class="card-date">Halifax, Nova Scotia and Winnipeg, Manitoba</p>
+                  <p class="card-snippet institution-desc">Independent Canadian publisher of critical scholarly, literary and general-interest books, including the Roseway list.</p>
+                  <p class="institution-counts"><span>Holds <strong>0 records</strong></span><span>Describes <strong>2 records</strong></span></p>
+                  <ul class="institution-links">
+                    <li><a href="https://fernwoodpublishing.ca/" target="_blank" rel="noopener noreferrer">Visit website <span class="ext-icon" aria-hidden="true">↗</span><span class="visually-hidden"> (opens in a new tab)</span></a></li>
+                    <li><a href="https://fernwoodpublishing.ca/books/roseway" target="_blank" rel="noopener noreferrer">Search their catalogue <span class="ext-icon" aria-hidden="true">↗</span><span class="visually-hidden"> (opens in a new tab)</span></a></li>
+                  </ul>
+                </div>
+                <div class="card-bottom">
+                  <a class="card-action" href="results.html?institution=inst_fernwood">View records<span class="visually-hidden"> from Fernwood Publishing</span> &rarr;</a>
+                </div>
+              </div>
+            </article>
+            <article class="card institution-card">
+              <svg class="card-type-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 21h18"/><path d="M5 21V10l7-5 7 5v11"/><path d="M9 21v-6h6v6"/></svg>
+              <div class="card-content">
+                <div class="card-top">
+                  <span class="card-title">Archive</span>
+                </div>
+                <div class="card-body">
+                  <h2 class="card-heading">Library and Archives Canada</h2>
+                  <p class="card-date">Ottawa, Ontario</p>
+                  <p class="card-snippet institution-desc">Canada&#x27;s national library and archives, which publishes research guides and name databases (including the Book of Negroes, 1783) and holds microfilm of many Loyalist-era records.</p>
+                  <p class="institution-counts"><span>Holds <strong>0 records</strong></span><span>Describes <strong>2 records</strong></span></p>
+                  <ul class="institution-links">
+                    <li><a href="https://www.canada.ca/en/library-archives.html" target="_blank" rel="noopener noreferrer">Visit website <span class="ext-icon" aria-hidden="true">↗</span><span class="visually-hidden"> (opens in a new tab)</span></a></li>
+                    <li><a href="https://www.canada.ca/en/library-archives/terms-conditions.html" target="_blank" rel="noopener noreferrer">Rights policy <span class="ext-icon" aria-hidden="true">↗</span><span class="visually-hidden"> (opens in a new tab)</span></a></li>
+                  </ul>
+                </div>
+                <div class="card-bottom">
+                  <a class="card-action" href="results.html?institution=inst_lac">View records<span class="visually-hidden"> from Library and Archives Canada</span> &rarr;</a>
+                </div>
+              </div>
+            </article>
+            <article class="card institution-card">
+              <svg class="card-type-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 21h18"/><path d="M5 21V10l7-5 7 5v11"/><path d="M9 21v-6h6v6"/></svg>
+              <div class="card-content">
+                <div class="card-top">
+                  <span class="card-title">Archive</span>
+                </div>
+                <div class="card-body">
+                  <h2 class="card-heading">The National Archives (UK)</h2>
+                  <p class="card-date">Kew, Richmond, TW9 4DU, United Kingdom</p>
+                  <p class="card-snippet institution-desc">The UK government&#x27;s national archive at Kew. It holds the British copy of the 1783 Book of Negroes in the Carleton papers (PRO 30/55/100).</p>
+                  <p class="institution-counts"><span>Holds <strong>2 records</strong></span><span>Describes <strong>0 records</strong></span></p>
+                  <ul class="institution-links">
+                    <li><a href="https://www.nationalarchives.gov.uk/" target="_blank" rel="noopener noreferrer">Visit website <span class="ext-icon" aria-hidden="true">↗</span><span class="visually-hidden"> (opens in a new tab)</span></a></li>
+                    <li><a href="https://discovery.nationalarchives.gov.uk/" target="_blank" rel="noopener noreferrer">Search their catalogue <span class="ext-icon" aria-hidden="true">↗</span><span class="visually-hidden"> (opens in a new tab)</span></a></li>
+                    <li><a href="https://www.nationalarchives.gov.uk/legal/copyright/" target="_blank" rel="noopener noreferrer">Rights policy <span class="ext-icon" aria-hidden="true">↗</span><span class="visually-hidden"> (opens in a new tab)</span></a></li>
+                  </ul>
+                </div>
+                <div class="card-bottom">
+                  <a class="card-action" href="results.html?institution=inst_tna">View records<span class="visually-hidden"> from The National Archives (UK)</span> &rarr;</a>
+                </div>
+              </div>
+            </article>
+            <article class="card institution-card">
+              <svg class="card-type-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 21h18"/><path d="M5 21V10l7-5 7 5v11"/><path d="M9 21v-6h6v6"/></svg>
+              <div class="card-content">
+                <div class="card-top">
+                  <span class="card-title">Library</span>
+                </div>
+                <div class="card-body">
+                  <h2 class="card-heading">Toronto Public Library</h2>
+                  <p class="card-date">Toronto, Ontario</p>
+                  <p class="card-snippet institution-desc">Public library system whose Digital Archive and Baldwin Collection of Canadiana include early Toronto manuscripts and images.</p>
+                  <p class="institution-counts"><span>Holds <strong>1 record</strong></span><span>Describes <strong>1 record</strong></span></p>
+                  <ul class="institution-links">
+                    <li><a href="https://tpl.ca" target="_blank" rel="noopener noreferrer">Visit website <span class="ext-icon" aria-hidden="true">↗</span><span class="visually-hidden"> (opens in a new tab)</span></a></li>
+                    <li><a href="https://digitalarchive.tpl.ca" target="_blank" rel="noopener noreferrer">Search their catalogue <span class="ext-icon" aria-hidden="true">↗</span><span class="visually-hidden"> (opens in a new tab)</span></a></li>
+                    <li><a href="https://tpl.ca/digital-archive/licences/" target="_blank" rel="noopener noreferrer">Rights policy <span class="ext-icon" aria-hidden="true">↗</span><span class="visually-hidden"> (opens in a new tab)</span></a></li>
+                  </ul>
+                </div>
+                <div class="card-bottom">
+                  <a class="card-action" href="results.html?institution=inst_tpl">View records<span class="visually-hidden"> from Toronto Public Library</span> &rarr;</a>
+                </div>
+              </div>
+            </article>
+            <article class="card institution-card">
+              <svg class="card-type-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 21h18"/><path d="M5 21V10l7-5 7 5v11"/><path d="M9 21v-6h6v6"/></svg>
+              <div class="card-content">
+                <div class="card-top">
+                  <span class="card-title">Library</span>
+                </div>
+                <div class="card-body">
+                  <h2 class="card-heading">Acadia University, Vaughan Memorial Library</h2>
+                  <p class="card-date">Wolfville, Nova Scotia</p>
+                  <p class="card-snippet institution-desc">Acadia University&#x27;s library, whose copy of the 1885 African Baptist Association minutes was digitized for Canadiana.</p>
+                  <p class="institution-counts"><span>Holds <strong>1 record</strong></span><span>Describes <strong>0 records</strong></span></p>
+                </div>
+                <div class="card-bottom">
+                  <a class="card-action" href="results.html?institution=inst_acadia-vml">View records<span class="visually-hidden"> from Acadia University, Vaughan Memorial Library</span> &rarr;</a>
+                </div>
+              </div>
+            </article>
+            <article class="card institution-card">
+              <svg class="card-type-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 21h18"/><path d="M5 21V10l7-5 7 5v11"/><path d="M9 21v-6h6v6"/></svg>
+              <div class="card-content">
+                <div class="card-top">
+                  <span class="card-title">Archive</span>
+                </div>
+                <div class="card-body">
+                  <h2 class="card-heading">Archives of Ontario</h2>
+                  <p class="card-date">134 Ian Macdonald Blvd., Toronto, Ontario</p>
+                  <p class="card-snippet institution-desc">Provincial archives of Ontario, holding government and private records, including major fonds on Black communities in Ontario (e.g. Alvin D. McCurdy, Mary Ann Shadd Cary).</p>
+                  <p class="institution-counts"><span>Holds <strong>0 records</strong></span><span>Describes <strong>1 record</strong></span></p>
+                  <ul class="institution-links">
+                    <li><a href="https://www.archives.gov.on.ca" target="_blank" rel="noopener noreferrer">Visit website <span class="ext-icon" aria-hidden="true">↗</span><span class="visually-hidden"> (opens in a new tab)</span></a></li>
+                    <li><a href="https://aims.archives.gov.on.ca/scripts/mwimain.dll?logon&amp;application=union_view&amp;language=144&amp;file=%5Bao_assets%5Dhtml%2Fhome.html" target="_blank" rel="noopener noreferrer">Search their catalogue <span class="ext-icon" aria-hidden="true">↗</span><span class="visually-hidden"> (opens in a new tab)</span></a></li>
+                    <li><a href="https://www.archives.gov.on.ca/copyright-and-your-research/" target="_blank" rel="noopener noreferrer">Rights policy <span class="ext-icon" aria-hidden="true">↗</span><span class="visually-hidden"> (opens in a new tab)</span></a></li>
+                  </ul>
+                </div>
+                <div class="card-bottom">
+                  <a class="card-action" href="results.html?institution=inst_ao">View records<span class="visually-hidden"> from Archives of Ontario</span> &rarr;</a>
+                </div>
+              </div>
+            </article>
+            <article class="card institution-card">
+              <svg class="card-type-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 21h18"/><path d="M5 21V10l7-5 7 5v11"/><path d="M9 21v-6h6v6"/></svg>
+              <div class="card-content">
+                <div class="card-top">
+                  <span class="card-title">Archive</span>
+                </div>
+                <div class="card-body">
+                  <h2 class="card-heading">Bibliothèque et Archives nationales du Québec</h2>
+                  <p class="card-date">Montréal, Quebec (Vieux-Montréal archives centre)</p>
+                  <p class="card-snippet institution-desc">Quebec&#x27;s national library and archives, holding New France judicial records, including the 1734 Angélique trial file.</p>
+                  <p class="institution-counts"><span>Holds <strong>1 record</strong></span><span>Describes <strong>0 records</strong></span></p>
+                </div>
+                <div class="card-bottom">
+                  <a class="card-action" href="results.html?institution=inst_banq">View records<span class="visually-hidden"> from Bibliothèque et Archives nationales du Québec</span> &rarr;</a>
+                </div>
+              </div>
+            </article>
+            <article class="card institution-card">
+              <svg class="card-type-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 21h18"/><path d="M5 21V10l7-5 7 5v11"/><path d="M9 21v-6h6v6"/></svg>
+              <div class="card-content">
+                <div class="card-top">
+                  <span class="card-title">Museum</span>
+                </div>
+                <div class="card-body">
+                  <h2 class="card-heading">Canadian Museum for Human Rights</h2>
+                  <p class="card-snippet institution-desc">National museum about human rights; publishes curator-written stories on Canadian human rights history.</p>
+                  <p class="institution-counts"><span>Holds <strong>0 records</strong></span><span>Describes <strong>1 record</strong></span></p>
+                  <ul class="institution-links">
+                    <li><a href="https://humanrights.ca" target="_blank" rel="noopener noreferrer">Visit website <span class="ext-icon" aria-hidden="true">↗</span><span class="visually-hidden"> (opens in a new tab)</span></a></li>
+                    <li><a href="https://humanrights.ca/legal-notice" target="_blank" rel="noopener noreferrer">Rights policy <span class="ext-icon" aria-hidden="true">↗</span><span class="visually-hidden"> (opens in a new tab)</span></a></li>
+                  </ul>
+                </div>
+                <div class="card-bottom">
+                  <a class="card-action" href="results.html?institution=inst_cmhr">View records<span class="visually-hidden"> from Canadian Museum for Human Rights</span> &rarr;</a>
+                </div>
+              </div>
+            </article>
+            <article class="card institution-card">
+              <svg class="card-type-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 21h18"/><path d="M5 21V10l7-5 7 5v11"/><path d="M9 21v-6h6v6"/></svg>
+              <div class="card-content">
+                <div class="card-top">
+                  <span class="card-title">Museum</span>
+                </div>
+                <div class="card-body">
+                  <h2 class="card-heading">Fredericton Region Museum</h2>
+                  <p class="card-date">Fredericton, New Brunswick</p>
+                  <p class="card-snippet institution-desc">Regional history museum in Fredericton that created the online exhibit Our Black Heritage: Early Black Settlers of York-Sunbury Counties (New Brunswick) 1783-Present.</p>
+                  <p class="institution-counts"><span>Holds <strong>0 records</strong></span><span>Describes <strong>1 record</strong></span></p>
+                  <ul class="institution-links">
+                    <li><a href="https://www.frederictonregionmuseum.com/" target="_blank" rel="noopener noreferrer">Visit website <span class="ext-icon" aria-hidden="true">↗</span><span class="visually-hidden"> (opens in a new tab)</span></a></li>
+                  </ul>
+                </div>
+                <div class="card-bottom">
+                  <a class="card-action" href="results.html?institution=inst_frm">View records<span class="visually-hidden"> from Fredericton Region Museum</span> &rarr;</a>
+                </div>
+              </div>
+            </article>
+            <article class="card institution-card">
+              <svg class="card-type-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 21h18"/><path d="M5 21V10l7-5 7 5v11"/><path d="M9 21v-6h6v6"/></svg>
+              <div class="card-content">
+                <div class="card-top">
+                  <span class="card-title">Government</span>
+                </div>
+                <div class="card-body">
+                  <h2 class="card-heading">Government of Saskatchewan – Heritage Property Search</h2>
+                  <p class="card-date">Regina, Saskatchewan</p>
+                  <p class="card-snippet institution-desc">The Saskatchewan government&#x27;s online documents for designated heritage properties in the province.</p>
+                  <p class="institution-counts"><span>Holds <strong>0 records</strong></span><span>Describes <strong>1 record</strong></span></p>
+                  <ul class="institution-links">
+                    <li><a href="https://gisappl.saskatchewan.ca/WebDocs/HeritagePropertySearch/" target="_blank" rel="noopener noreferrer">Search their catalogue <span class="ext-icon" aria-hidden="true">↗</span><span class="visually-hidden"> (opens in a new tab)</span></a></li>
+                  </ul>
+                </div>
+                <div class="card-bottom">
+                  <a class="card-action" href="results.html?institution=inst_sk_heritage">View records<span class="visually-hidden"> from Government of Saskatchewan – Heritage Property Search</span> &rarr;</a>
+                </div>
+              </div>
+            </article>
+            <article class="card institution-card">
+              <svg class="card-type-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 21h18"/><path d="M5 21V10l7-5 7 5v11"/><path d="M9 21v-6h6v6"/></svg>
+              <div class="card-content">
+                <div class="card-top">
+                  <span class="card-title">Other</span>
+                </div>
+                <div class="card-body">
+                  <h2 class="card-heading">Great Unsolved Mysteries in Canadian History (Les grands mystères de l&#x27;histoire canadienne)</h2>
+                  <p class="card-snippet institution-desc">Bilingual educational history project that publishes transcribed primary documents, with archival references, for case studies such as the 1734 Angélique trial.</p>
+                  <p class="institution-counts"><span>Holds <strong>0 records</strong></span><span>Describes <strong>1 record</strong></span></p>
+                  <ul class="institution-links">
+                    <li><a href="https://canadianmysteries.ca" target="_blank" rel="noopener noreferrer">Visit website <span class="ext-icon" aria-hidden="true">↗</span><span class="visually-hidden"> (opens in a new tab)</span></a></li>
+                  </ul>
+                </div>
+                <div class="card-bottom">
+                  <a class="card-action" href="results.html?institution=inst_gumich">View records<span class="visually-hidden"> from Great Unsolved Mysteries in Canadian History (Les grands mystères de l&#x27;histoire canadienne)</span> &rarr;</a>
+                </div>
+              </div>
+            </article>
+            <article class="card institution-card">
+              <svg class="card-type-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 21h18"/><path d="M5 21V10l7-5 7 5v11"/><path d="M9 21v-6h6v6"/></svg>
+              <div class="card-content">
+                <div class="card-top">
+                  <span class="card-title">Archive</span>
+                </div>
+                <div class="card-body">
+                  <h2 class="card-heading">Halifax Municipal Archives</h2>
+                  <p class="card-snippet institution-desc">Repository for the historical municipal government records of Halifax, Dartmouth, Bedford and the former County of Halifax, plus community records from the region.</p>
+                  <p class="institution-counts"><span>Holds <strong>0 records</strong></span><span>Describes <strong>1 record</strong></span></p>
+                  <ul class="institution-links">
+                    <li><a href="https://www.halifax.ca/about-halifax/municipal-archives" target="_blank" rel="noopener noreferrer">Visit website <span class="ext-icon" aria-hidden="true">↗</span><span class="visually-hidden"> (opens in a new tab)</span></a></li>
+                  </ul>
+                </div>
+                <div class="card-bottom">
+                  <a class="card-action" href="results.html?institution=inst_hma">View records<span class="visually-hidden"> from Halifax Municipal Archives</span> &rarr;</a>
+                </div>
+              </div>
+            </article>
+            <article class="card institution-card">
+              <svg class="card-type-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 21h18"/><path d="M5 21V10l7-5 7 5v11"/><path d="M9 21v-6h6v6"/></svg>
+              <div class="card-content">
+                <div class="card-top">
+                  <span class="card-title">Museum</span>
+                </div>
+                <div class="card-body">
+                  <h2 class="card-heading">MEM - Centre des mémoires montréalaises</h2>
+                  <p class="card-date">Montréal, Quebec</p>
+                  <p class="card-snippet institution-desc">City of Montréal memory centre whose French-language online encyclopedia (Encyclopédie du MEM) covers Montreal history and communities.</p>
+                  <p class="institution-counts"><span>Holds <strong>0 records</strong></span><span>Describes <strong>1 record</strong></span></p>
+                  <ul class="institution-links">
+                    <li><a href="https://ville.montreal.qc.ca/memoiresdesmontrealais/" target="_blank" rel="noopener noreferrer">Visit website <span class="ext-icon" aria-hidden="true">↗</span><span class="visually-hidden"> (opens in a new tab)</span></a></li>
+                  </ul>
+                </div>
+                <div class="card-bottom">
+                  <a class="card-action" href="results.html?institution=inst_mem">View records<span class="visually-hidden"> from MEM - Centre des mémoires montréalaises</span> &rarr;</a>
+                </div>
+              </div>
+            </article>
+            <article class="card institution-card">
+              <svg class="card-type-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 21h18"/><path d="M5 21V10l7-5 7 5v11"/><path d="M9 21v-6h6v6"/></svg>
+              <div class="card-content">
+                <div class="card-top">
+                  <span class="card-title">Archive</span>
+                </div>
+                <div class="card-body">
+                  <h2 class="card-heading">Provincial Archives of New Brunswick</h2>
+                  <p class="card-date">Bonar Law-Bennett Building, 23 Dineen Drive, University of New Brunswick campus, Fredericton, New Brunswick</p>
+                  <p class="card-snippet institution-desc">New Brunswick&#x27;s provincial archives, which collect, preserve and give access to records of the province&#x27;s history and people.</p>
+                  <p class="institution-counts"><span>Holds <strong>1 record</strong></span><span>Describes <strong>0 records</strong></span></p>
+                  <ul class="institution-links">
+                    <li><a href="https://archives.gnb.ca/" target="_blank" rel="noopener noreferrer">Visit website <span class="ext-icon" aria-hidden="true">↗</span><span class="visually-hidden"> (opens in a new tab)</span></a></li>
+                    <li><a href="https://archives.gnb.ca/fr-ca/collections/rechercher" target="_blank" rel="noopener noreferrer">Search their catalogue <span class="ext-icon" aria-hidden="true">↗</span><span class="visually-hidden"> (opens in a new tab)</span></a></li>
+                  </ul>
+                </div>
+                <div class="card-bottom">
+                  <a class="card-action" href="results.html?institution=inst_panb">View records<span class="visually-hidden"> from Provincial Archives of New Brunswick</span> &rarr;</a>
+                </div>
+              </div>
+            </article>
+            <article class="card institution-card">
+              <svg class="card-type-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 21h18"/><path d="M5 21V10l7-5 7 5v11"/><path d="M9 21v-6h6v6"/></svg>
+              <div class="card-content">
+                <div class="card-top">
+                  <span class="card-title">Archive</span>
+                </div>
+                <div class="card-body">
+                  <h2 class="card-heading">City of Toronto Archives</h2>
+                  <p class="card-date">Toronto, Ontario</p>
+                  <p class="card-snippet institution-desc">Municipal archives of the City of Toronto. No record in this dataset yet; cited in the holder note for SRC-016.</p>
+                  <p class="institution-counts"><span>Holds <strong>0 records</strong></span><span>Describes <strong>0 records</strong></span></p>
+                  <ul class="institution-links">
+                    <li><a href="https://www.toronto.ca/city-government/accountability-operations-customer-service/access-city-information-or-records/city-of-toronto-archives/" target="_blank" rel="noopener noreferrer">Visit website <span class="ext-icon" aria-hidden="true">↗</span><span class="visually-hidden"> (opens in a new tab)</span></a></li>
+                  </ul>
+                </div>
+                <div class="card-bottom">
+                  <span class="card-holder">No records of its own yet</span>
+                </div>
+              </div>
+            </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p class="site-footer-name">Black History Hub</p>
+    <p>Built for the Black Cultural Centre for Nova Scotia · HubHacks 2026</p>
+    <nav class="site-footer-links" aria-label="Footer">
+      <a href="institutions.html">Institutions</a>
+      <a href="about.html">About</a>
+    </nav>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About — Black History Hub</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="js/script.js" defer></script>
+</head>
+<body class="results-page about-page">
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <!-- Hidden SVG Gooey Filter -->
+  <svg xmlns="http://www.w3.org/2000/svg" version="1.1" aria-hidden="true" focusable="false" style="display: block; height: 0; width: 0; position: absolute;">
+    <defs>
+      <filter id="goo">
+        <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur"></feGaussianBlur>
+        <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="goo"></feColorMatrix>
+        <feBlend in="SourceGraphic" in2="goo"></feBlend>
+      </filter>
+    </defs>
+  </svg>
+
+  <!-- Top App Bar -->
+  <header class="top-nav">
+    <button id="sidebar-toggle-btn" class="icon-btn nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="side-nav">☰</button>
+    <a href="index.html" class="brand-title">Black History Hub</a>
+    <nav class="top-nav-links" aria-label="Main">
+      <a href="index.html" class="top-nav-link">Search</a>
+      <a href="institutions.html" class="top-nav-link">Institutions</a>
+      <a href="about.html" class="top-nav-link" aria-current="page">About</a>
+    </nav>
+  </header>
+
+  <!-- Slide-Out Side Navigation (mobile) -->
+  <aside id="side-nav" class="side-nav" aria-label="Site menu" inert>
+    <div class="side-nav-header">
+      <span class="brand-title">Menu</span>
+      <button id="sidebar-close-btn" class="icon-btn" aria-label="Close menu">✕</button>
+    </div>
+    <nav class="side-nav-menu" aria-label="Main">
+      <a href="index.html" class="nav-link">Search</a>
+      <a href="institutions.html" class="nav-link">Institutions</a>
+      <a href="about.html" class="nav-link" aria-current="page">About</a>
+    </nav>
+  </aside>
+
+  <!-- Background overlay when side menu is active -->
+  <div id="backdrop" class="backdrop"></div>
+
+  <main id="main" class="results-main">
+    <!-- Page Hero (same radial pattern as the results page) -->
+    <section class="results-hero-section page-hero" aria-labelledby="page-title">
+      <div class="search-wrapper">
+        <h1 id="page-title" class="hero-title">About Black History Hub</h1>
+        <p class="hero-tagline">A proof of concept built for the Black Cultural Centre for Nova Scotia at HubHacks 2026.</p>
+      </div>
+    </section>
+
+    <!-- Pronounced Divider -->
+    <div class="section-divider" role="separator" aria-hidden="true"></div>
+
+    <section class="lower-pattern-container results-container" aria-label="About">
+      <div class="pattern-bg" aria-hidden="true">
+        <svg
+          preserveAspectRatio="xMidYMid slice"
+          height="100%"
+          width="100%"
+          class="cube-svg"
+          viewBox="0 0 120 104"
+          aria-hidden="true"
+          focusable="false"
+        >
+          <defs>
+            <linearGradient y2="100%" x2="100%" y1="0%" x1="0%" id="cube-dark">
+              <stop stop-color="#191512" offset="0%"></stop>
+              <stop stop-color="#342821" offset="100%"></stop>
+            </linearGradient>
+            <linearGradient y2="0%" x2="100%" y1="100%" x1="0%" id="cube-mid">
+              <stop stop-color="#5a4132" offset="0%"></stop>
+              <stop stop-color="#241a14" offset="100%"></stop>
+            </linearGradient>
+            <linearGradient y2="100%" x2="0%" y1="0%" x1="100%" id="cube-light">
+              <stop stop-color="#b87948" offset="0%"></stop>
+              <stop stop-color="#d99f70" offset="100%"></stop>
+            </linearGradient>
+          </defs>
+          <g>
+            <polygon fill="url(#cube-dark)" points="60,0 120,34 60,68 0,34"></polygon>
+            <polygon fill="url(#cube-mid)" points="0,34 60,68 60,104 0,70"></polygon>
+            <polygon fill="url(#cube-light)" points="60,68 120,34 120,70 60,104"></polygon>
+          </g>
+        </svg>
+      </div>
+
+      <div class="results-content-wrapper about-wrapper">
+
+        <section class="column-section about-section" aria-labelledby="about-problem">
+          <h2 id="about-problem" class="column-title">The problem</h2>
+          <p>Records of Black history in Canada are spread across museums, archives, libraries, universities, governments and community organizations. Each one has its own catalogue, terms and access rules, so people often need to know which institution to search before they can even start. Related records held in different places are hard to connect.</p>
+        </section>
+
+        <section class="column-section about-section" aria-labelledby="about-what">
+          <h2 id="about-what" class="column-title">What this does (and doesn't)</h2>
+          <p>Black History Hub is a discovery layer. You can search descriptions of records from many institutions in one place, and each result sends you to the institution that holds or describes it.</p>
+          <p>It does <strong>not</strong> host, copy or replace any collection. The original institution stays the authority on its records, and every result links back to its own page.</p>
+        </section>
+
+        <section class="column-section about-section" aria-labelledby="about-how">
+          <h2 id="about-how" class="column-title">How it works</h2>
+          <ol class="how-steps">
+            <li class="how-step">
+              <span class="how-step-num" aria-hidden="true">1</span>
+              <h3 class="how-step-title">Collect</h3>
+              <p>We gather descriptive information (metadata) about records from each institution and check the links by hand.</p>
+            </li>
+            <li class="how-step">
+              <span class="how-step-num" aria-hidden="true">2</span>
+              <h3 class="how-step-title">Organize</h3>
+              <p>Each description is mapped into one shared structure: title, dates, people, places, subjects, type, holder and source.</p>
+            </li>
+            <li class="how-step">
+              <span class="how-step-num" aria-hidden="true">3</span>
+              <h3 class="how-step-title">Search &amp; link back</h3>
+              <p>You search everything at once, and each result links to the institution's own record.</p>
+            </li>
+          </ol>
+        </section>
+
+        <section class="column-section about-section" aria-labelledby="about-principles">
+          <h2 id="about-principles" class="column-title">Our principles</h2>
+          <ul class="about-list">
+            <li><strong>Holder and source are kept separate.</strong> The institution that holds an original is not always the one that describes it, and every record says which is which.</li>
+            <li><strong>Provenance on every record:</strong> where the information came from, when it was added and how it was collected.</li>
+            <li><strong>Verification dates:</strong> each record shows when its details and link were last checked.</li>
+            <li><strong>Rights and access restrictions are respected.</strong> We store descriptions and links, not copies of images or documents.</li>
+            <li><strong>No invented information.</strong> Any AI-assisted search will only cite real records in the hub. If something can't be verified, we don't present it as fact.</li>
+          </ul>
+        </section>
+
+        <section class="column-section about-section" aria-labelledby="about-coverage">
+          <h2 id="about-coverage" class="column-title">Coverage &amp; limits</h2>
+          <dl class="about-stats">
+            <div><dt>Records</dt><dd>41</dd></div>
+            <div><dt>Institutions</dt><dd>21</dd></div>
+            <div><dt>Verified</dt><dd>35</dd></div>
+          </dl>
+          <p>The 41 records are described by 16 institutions; the rest of the 21 hold originals or are cited in our notes. Just over half relate to Nova Scotia, and the others cover Quebec, Ontario, New Brunswick, Manitoba, Saskatchewan, Alberta and British Columbia. There are no records yet for Prince Edward Island, Newfoundland and Labrador, or the territories.</p>
+          <p>This is a proof of concept. If you don't find something here, that doesn't mean it doesn't exist. Try the catalogues of the <a href="institutions.html">institutions</a> directly.</p>
+        </section>
+
+        <section class="column-section about-section" aria-labelledby="about-community">
+          <h2 id="about-community" class="column-title">Community</h2>
+          <p>Built for the Black Cultural Centre for Nova Scotia (BCCNS) at HubHacks 2026.</p>
+          <p><strong>Team: Fivefold</strong> <span class="placeholder-text">Owen, Julio, Nish, Jay and Om</span></p>
+          
+          <!-- TODO: replace with a real contact (email or form link) -->
+          <p>Know an institution or collection that should be included? <span class="placeholder-text">[Contact details to come]</span></p>
+        </section>
+
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p class="site-footer-name">Black History Hub</p>
+    <p>Built for the Black Cultural Centre for Nova Scotia · HubHacks 2026</p>
+    <nav class="site-footer-links" aria-label="Footer">
+      <a href="institutions.html">Institutions</a>
+      <a href="about.html">About</a>
+    </nav>
+  </footer>
+
+</body>
+</html>

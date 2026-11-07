@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Black History Hub</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="js/script.js" defer></script>
+</head>
+<body class="home-page">
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <!-- Hidden SVG Gooey Filter -->
+  <svg xmlns="http://www.w3.org/2000/svg" version="1.1" aria-hidden="true" focusable="false" style="display: block; height: 0; width: 0; position: absolute;">
+    <defs>
+      <filter id="goo">
+        <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur"></feGaussianBlur>
+        <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="goo"></feColorMatrix>
+        <feBlend in="SourceGraphic" in2="goo"></feBlend>
+      </filter>
+    </defs>
+  </svg>
+
+  <!-- Header: links on desktop, menu button on mobile. Sits over the hero on Home. -->
+  <header class="top-nav top-nav--overlay">
+    <button id="sidebar-toggle-btn" class="icon-btn nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="side-nav">☰</button>
+    <a href="index.html" class="brand-title">Black History Hub</a>
+    <nav class="top-nav-links" aria-label="Main">
+      <a href="index.html" class="top-nav-link" aria-current="page">Search</a>
+      <a href="institutions.html" class="top-nav-link">Institutions</a>
+      <a href="about.html" class="top-nav-link">About</a>
+    </nav>
+  </header>
+
+  <!-- Slide-Out Side Navigation (mobile) -->
+  <aside id="side-nav" class="side-nav" aria-label="Site menu" inert>
+    <div class="side-nav-header">
+      <span class="brand-title">Menu</span>
+      <button id="sidebar-close-btn" class="icon-btn" aria-label="Close menu">✕</button>
+    </div>
+    <nav class="side-nav-menu" aria-label="Main">
+      <a href="index.html" class="nav-link" aria-current="page">Search</a>
+      <a href="institutions.html" class="nav-link">Institutions</a>
+      <a href="about.html" class="nav-link">About</a>
+    </nav>
+  </aside>
+
+  <!-- Background overlay when side menu is active -->
+  <div id="backdrop" class="backdrop"></div>
+
+  <!-- Main Hero Section with Carousel Extending to Screen Top -->
+  <main id="main">
+    <section class="search-hero-section">
+      <!-- Image Carousel Elements -->
+      <div class="carousel-container" id="carousel">
+        <img src="Resources/1.png" alt="Black-and-white group photo of a congregation, dressed formally, standing in front of a wooden church" class="carousel-slide active">
+        <img src="Resources/2.jpeg" alt="Black-and-white photo of three children by a railway boxcar, beside a sign reading 'Please boil this water before drinking and cooking'" class="carousel-slide">
+        <img src="Resources/3.jpeg" alt="Black-and-white photo taken through a window of small wooden houses and a white church by the water, with two men in suits walking up a path" class="carousel-slide">
+        <img src="Resources/4.jpg" alt="Early 20th-century photo of children sitting beside a dirt road leading to a farmhouse, with a man standing in the road" class="carousel-slide">
+      </div>
+      <div class="carousel-overlay" aria-hidden="true"></div>
+
+      <!-- Horizontally Centered Search Wrapper -->
+      <div class="search-wrapper">
+        <h1 class="hero-title">Black History Hub</h1>
+        <p class="hero-tagline">Search Black history records held across Canadian institutions.</p>
+
+        <form id="search-form" class="search-box" role="search" action="results.html">
+          <label for="search-input" class="visually-hidden">Search records</label>
+          <input
+            type="search"
+            id="search-input"
+            name="q"
+            class="search-input"
+            placeholder="Search records by person, place, community or subject..."
+            autocomplete="off"
+          >
+          <!-- Gooey Uiverse Button -->
+          <button type="submit" class="c-button c-button--gooey">
+            Search
+            <span class="c-button__blobs" aria-hidden="true">
+              <span></span>
+              <span></span>
+              <span></span>
+            </span>
+          </button>
+        </form>
+
+        <!-- Filter by resource type (values match record.resource_type) -->
+        <div class="menu">
+          <div class="item">
+            <div class="link" tabindex="0" role="button" aria-haspopup="true" aria-expanded="false">
+              <span id="tag-dropdown-label">Filter by Type</span>
+              <svg viewBox="0 0 360 360" xml:space="preserve" aria-hidden="true" focusable="false">
+                <g id="SVGRepo_iconCarrier">
+                  <path
+                    d="M325.607,79.393c-5.857-5.857-15.355-5.858-21.213,0.001l-139.39,139.393L25.607,79.393 c-5.857-5.857-15.355-5.858-21.213,0.001c-5.858,5.858-5.858,15.355,0,21.213l150.004,150c2.813,2.813,6.628,4.393,10.606,4.393 s7.794-1.581,10.606-4.394l149.996-150C331.465,94.749,331.465,85.251,325.607,79.393z"
+                  ></path>
+                </g>
+              </svg>
+            </div>
+
+            <!-- Checkbox Items -->
+            <div class="submenu">
+              <div class="submenu-item">
+                <label class="tag-label">
+                  <span class="checkBox">
+                    <input type="checkbox" name="type" value="journal_article" class="tag-checkbox">
+                    <span class="transition fill-box"></span>
+                  </span>
+                  <span>Journal article</span>
+                </label>
+              </div>
+              <div class="submenu-item">
+                <label class="tag-label">
+                  <span class="checkBox">
+                    <input type="checkbox" name="type" value="person_profile" class="tag-checkbox">
+                    <span class="transition fill-box"></span>
+                  </span>
+                  <span>Person profile</span>
+                </label>
+              </div>
+              <div class="submenu-item">
+                <label class="tag-label">
+                  <span class="checkBox">
+                    <input type="checkbox" name="type" value="archival_document" class="tag-checkbox">
+                    <span class="transition fill-box"></span>
+                  </span>
+                  <span>Archival document</span>
+                </label>
+              </div>
+              <div class="submenu-item">
+                <label class="tag-label">
+                  <span class="checkBox">
+                    <input type="checkbox" name="type" value="register" class="tag-checkbox">
+                    <span class="transition fill-box"></span>
+                  </span>
+                  <span>Register</span>
+                </label>
+              </div>
+              <div class="submenu-item">
+                <label class="tag-label">
+                  <span class="checkBox">
+                    <input type="checkbox" name="type" value="research_guide" class="tag-checkbox">
+                    <span class="transition fill-box"></span>
+                  </span>
+                  <span>Research guide</span>
+                </label>
+              </div>
+              <div class="submenu-item">
+                <label class="tag-label">
+                  <span class="checkBox">
+                    <input type="checkbox" name="type" value="book" class="tag-checkbox">
+                    <span class="transition fill-box"></span>
+                  </span>
+                  <span>Book</span>
+                </label>
+              </div>
+              <div class="submenu-item">
+                <label class="tag-label">
+                  <span class="checkBox">
+                    <input type="checkbox" name="type" value="correspondence" class="tag-checkbox">
+                    <span class="transition fill-box"></span>
+                  </span>
+                  <span>Correspondence</span>
+                </label>
+              </div>
+              <div class="submenu-item">
+                <label class="tag-label">
+                  <span class="checkBox">
+                    <input type="checkbox" name="type" value="map" class="tag-checkbox">
+                    <span class="transition fill-box"></span>
+                  </span>
+                  <span>Map</span>
+                </label>
+              </div>
+              <div class="submenu-item">
+                <label class="tag-label">
+                  <span class="checkBox">
+                    <input type="checkbox" name="type" value="photograph" class="tag-checkbox">
+                    <span class="transition fill-box"></span>
+                  </span>
+                  <span>Photograph</span>
+                </label>
+              </div>
+              <div class="submenu-item">
+                <label class="tag-label">
+                  <span class="checkBox">
+                    <input type="checkbox" name="type" value="other" class="tag-checkbox">
+                    <span class="transition fill-box"></span>
+                  </span>
+                  <span>Other</span>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Carousel pause/play -->
+      <button id="carousel-toggle" class="icon-btn carousel-toggle" aria-pressed="false" aria-label="Pause slideshow">❚❚</button>
+
+      <!-- Image Citations -->
+      <footer class="hero-citation-bar">
+        <span>Image Archives:</span>
+        <a href="https://archives.novascotia.ca/african-heritage/archival/" target="_blank" rel="noopener noreferrer">Nova Scotia Archives<span class="visually-hidden"> (opens in a new tab)</span></a>
+        <span aria-hidden="true">•</span>
+        <a href="https://www.historymuseum.ca/teachers-zone/african-nova-scotians-20th-century-canadian-legacies/african-nova-scotian-communities/north-preston-new-road-in-the-early-20th-century" target="_blank" rel="noopener noreferrer">Canadian Museum of History<span class="visually-hidden"> (opens in a new tab)</span></a>
+      </footer>
+    </section>
+
+    <!-- Pronounced Divider -->
+    <div class="section-divider" role="separator" aria-hidden="true"></div>
+
+    <!-- Lower Section: 3 Columns of Record Cards -->
+    <section class="lower-pattern-container" aria-label="Featured records">
+      <div class="pattern-bg" aria-hidden="true">
+        <svg
+          preserveAspectRatio="xMidYMid slice"
+          height="100%"
+          width="100%"
+          class="cube-svg"
+          viewBox="0 0 120 104"
+          aria-hidden="true"
+          focusable="false"
+        >
+          <defs>
+            <linearGradient y2="100%" x2="100%" y1="0%" x1="0%" id="cube-dark">
+              <stop stop-color="#191512" offset="0%"></stop>
+              <stop stop-color="#342821" offset="100%"></stop>
+            </linearGradient>
+            <linearGradient y2="0%" x2="100%" y1="100%" x1="0%" id="cube-mid">
+              <stop stop-color="#5a4132" offset="0%"></stop>
+              <stop stop-color="#241a14" offset="100%"></stop>
+            </linearGradient>
+            <linearGradient y2="100%" x2="0%" y1="0%" x1="100%" id="cube-light">
+              <stop stop-color="#b87948" offset="0%"></stop>
+              <stop stop-color="#d99f70" offset="100%"></stop>
+            </linearGradient>
+          </defs>
+          <g>
+            <polygon fill="url(#cube-dark)" points="60,0 120,34 60,68 0,34"></polygon>
+            <polygon fill="url(#cube-mid)" points="0,34 60,68 60,104 0,70"></polygon>
+            <polygon fill="url(#cube-light)" points="60,68 120,34 120,70 60,104"></polygon>
+          </g>
+        </svg>
+      </div>
+
+      <div class="lower-content-wrapper">
+        <div class="content-grid">
+
+          <!-- Column 1: Recently Searched (from localStorage later; sample cards for now) -->
+          <section id="col-recent" class="column-section" aria-labelledby="col-recent-title">
+            <h2 id="col-recent-title" class="column-title">Recently Searched</h2>
+            <p class="column-empty" hidden>Your recent searches will appear here.</p>
+            <div class="card-stack">
+              <article class="card">
+                <svg class="card-type-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>
+                <div class="card-content">
+                  <div class="card-top">
+                    <span class="card-title">Research guide</span>
+                    <span class="card-category">Online &amp; in person</span>
+                  </div>
+                  <div class="card-body">
+                    <h3 class="card-heading"><a class="card-link" href="record.html?id=SRC-009">Remembering Africville: Source Guide</a></h3>
+                    <p class="card-snippet">A Halifax Municipal Archives guide to city records about Africville, such as council minutes, relocation compensation case files, building permits, photographs and maps, with archival reference numbers. Many of the listed records are digitized; some can be seen only in person or once personal information has been redacted.</p>
+                    <ul class="card-tags" aria-label="People and places">
+                      <li><a class="card-tag" href="results.html?q=Africville">Africville</a></li>
+                      <li><a class="card-tag" href="results.html?q=Halifax">Halifax</a></li>
+                      <li><a class="card-tag" href="results.html?q=Irvine+Carvery">Irvine Carvery</a></li>
+                    </ul>
+                  </div>
+                  <div class="card-bottom">
+                    <span class="card-holder">Published by <strong>Halifax Municipal Archives</strong></span>
+                    <span class="card-action" aria-hidden="true">View record &rarr;</span>
+                  </div>
+                </div>
+              </article>
+              <article class="card">
+                <svg class="card-type-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>
+                <div class="card-content">
+                  <div class="card-top">
+                    <span class="card-title">Person profile</span>
+                    <span class="card-category">Online</span>
+                  </div>
+                  <div class="card-body">
+                    <h3 class="card-heading"><a class="card-link" href="record.html?id=BIO-001">Viola Desmond (1914-1965) National Historic Person</a></h3>
+                    <p class="card-date">1914-1965</p>
+                    <p class="card-snippet">Parks Canada&#x27;s profile of Viola Desmond, a Halifax beauty-culture entrepreneur. She was arrested in 1946 after refusing to leave the floor section of New Glasgow&#x27;s Roseland Theatre; the page also covers Nova Scotia&#x27;s 2010 apology and posthumous pardon.</p>
+                    <ul class="card-tags" aria-label="People and places">
+                      <li><a class="card-tag" href="results.html?q=Viola+Desmond">Viola Desmond</a></li>
+                      <li><a class="card-tag" href="results.html?q=Halifax">Halifax</a></li>
+                      <li><a class="card-tag" href="results.html?q=New+Glasgow">New Glasgow</a></li>
+                    </ul>
+                  </div>
+                  <div class="card-bottom">
+                    <span class="card-holder">Published by <strong>Parks Canada</strong></span>
+                    <span class="card-action" aria-hidden="true">View record &rarr;</span>
+                  </div>
+                </div>
+              </article>
+              <article class="card">
+                <svg class="card-type-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M8 6h12M8 12h12M8 18h12M4 6h.01M4 12h.01M4 18h.01"/></svg>
+                <div class="card-content">
+                  <div class="card-top">
+                    <span class="card-title">Register</span>
+                    <span class="card-category">Online</span>
+                  </div>
+                  <div class="card-body">
+                    <h3 class="card-heading"><a class="card-link" href="record.html?id=SRC-001a">Book of Negroes</a></h3>
+                    <p class="card-date">between 23 April and 30 November 1783</p>
+                    <p class="card-snippet">Nova Scotia Archives&#x27; online presentation of the British copy of the 1783 Book of Negroes, a register of about 3,000 Black refugees who sailed from New York to Nova Scotia between April and November 1783. You can page through digitized images of the register, which is held in the UK.</p>
+                    <ul class="card-tags" aria-label="People and places">
+                      <li><a class="card-tag" href="results.html?q=Black+Loyalists">Black Loyalists</a></li>
+                      <li><a class="card-tag" href="results.html?q=New+York">New York</a></li>
+                      <li><a class="card-tag" href="results.html?q=Nova+Scotia">Nova Scotia</a></li>
+                    </ul>
+                  </div>
+                  <div class="card-bottom">
+                    <span class="card-holder">Held by <strong>The National Archives (UK)</strong></span>
+                    <span class="card-action" aria-hidden="true">View record &rarr;</span>
+                  </div>
+                </div>
+              </article>
+              <article class="card">
+                <svg class="card-type-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 4h14v16H5z"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>
+                <div class="card-content">
+                  <div class="card-top">
+                    <span class="card-title">Journal article</span>
+                    <span class="card-category">Online</span>
+                  </div>
+                  <div class="card-body">
+                    <h3 class="card-heading"><a class="card-link" href="record.html?id=JRN-007">Africville and the Dynamics of State Power in Postwar Canada</a></h3>
+                    <p class="card-date">2010-06-06</p>
+                    <p class="card-snippet">Uses the relocation of Africville&#x27;s residents during Halifax&#x27;s mid-1960s urban renewal program to examine how postwar state power actually worked. Argues that the case reveals more than racism alone, including the ideas of the good life built into the welfare state.</p>
+                    <ul class="card-tags" aria-label="People and places">
+                      <li><a class="card-tag" href="results.html?q=Tina+Loo">Tina Loo</a></li>
+                      <li><a class="card-tag" href="results.html?q=Africville">Africville</a></li>
+                      <li><a class="card-tag" href="results.html?q=Halifax">Halifax</a></li>
+                    </ul>
+                  </div>
+                  <div class="card-bottom">
+                    <span class="card-holder">Published by <strong>Acadiensis (journal, UNB Libraries)</strong></span>
+                    <span class="card-action" aria-hidden="true">View record &rarr;</span>
+                  </div>
+                </div>
+              </article>
+              <article class="card">
+                <svg class="card-type-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M8 6h12M8 12h12M8 18h12M4 6h.01M4 12h.01M4 18h.01"/></svg>
+                <div class="card-content">
+                  <div class="card-top">
+                    <span class="card-title">Register</span>
+                    <span class="card-category">Online</span>
+                  </div>
+                  <div class="card-body">
+                    <h3 class="card-heading"><a class="card-link" href="record.html?id=SRC-012">No. 2 Construction Battalion: Nominal Roll</a></h3>
+                    <p class="card-date">28 March 1917</p>
+                    <p class="card-snippet">A digitized nominal roll of the officers, non-commissioned officers and men of the No. 2 Construction Battalion, a First World War unit headquartered first in Pictou and later in Truro, with a companion database searchable by surname and community. Regimental numbers from the roll can be used to look up soldiers&#x27; attestation papers at Library and Archives Canada.</p>
+                    <ul class="card-tags" aria-label="People and places">
+                      <li><a class="card-tag" href="results.html?q=Truro">Truro</a></li>
+                      <li><a class="card-tag" href="results.html?q=Pictou">Pictou</a></li>
+                      <li><a class="card-tag" href="results.html?q=Halifax">Halifax</a></li>
+                    </ul>
+                  </div>
+                  <div class="card-bottom">
+                    <span class="card-holder">Held by <strong>Nova Scotia Archives</strong> (not confirmed)</span>
+                    <span class="card-action" aria-hidden="true">View record &rarr;</span>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </section>
+
+          <!-- Column 2: Recommended (curated by the team) -->
+          <section id="col-recommended" class="column-section" aria-labelledby="col-recommended-title">
+            <h2 id="col-recommended-title" class="column-title">Recommended Records</h2>
+            <div class="card-stack">
+              <article class="card">
+                <svg class="card-type-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></svg>
+                <div class="card-content">
+                  <div class="card-top">
+                    <span class="card-title">Archival document</span>
+                    <span class="card-category">Online &amp; in person</span>
+                  </div>
+                  <div class="card-body">
+                    <h3 class="card-heading"><a class="card-link" href="record.html?id=SRC-021">Robert Lawson and 11 Others (Front)</a></h3>
+                    <p class="card-date">1785</p>
+                    <p class="card-snippet">Image and transcription of a 1785 land petition, labelled &quot;Blacks of Maugerville&quot;, from Robert Lawson and eleven other Black men in Maugerville, New Brunswick, addressed to Thomas Carleton. It appears in the Fredericton Region Museum&#x27;s online exhibit on early Black settlers of York-Sunbury counties; the original is credited to the Provincial Archives of New Brunswick.</p>
+                    <ul class="card-tags" aria-label="People and places">
+                      <li><a class="card-tag" href="results.html?q=Robert+Lawson">Robert Lawson</a></li>
+                      <li><a class="card-tag" href="results.html?q=Cuffee+Bird">Cuffee Bird</a></li>
+                      <li><a class="card-tag" href="results.html?q=Ob.+Hammond">Ob. Hammond</a></li>
+                    </ul>
+                  </div>
+                  <div class="card-bottom">
+                    <span class="card-holder">Held by <strong>Provincial Archives of New Brunswick</strong></span>
+                    <span class="card-action" aria-hidden="true">View record &rarr;</span>
+                  </div>
+                </div>
+              </article>
+              <article class="card">
+                <svg class="card-type-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>
+                <div class="card-content">
+                  <div class="card-top">
+                    <span class="card-title">Person profile</span>
+                    <span class="card-category">Online</span>
+                  </div>
+                  <div class="card-body">
+                    <h3 class="card-heading"><a class="card-link" href="record.html?id=BIO-003">Mary Ann Shadd National Historic Person (1823-1893)</a></h3>
+                    <p class="card-date">1823-1893</p>
+                    <p class="card-snippet">Parks Canada&#x27;s profile of Mary Ann Shadd, a Delaware-born advocate for Black refugees in 1850s Upper Canada. In 1853 she founded The Provincial Freeman, which promoted self-reliance and civil rights for Black people and women.</p>
+                    <ul class="card-tags" aria-label="People and places">
+                      <li><a class="card-tag" href="results.html?q=Mary+Ann+Shadd">Mary Ann Shadd</a></li>
+                      <li><a class="card-tag" href="results.html?q=Wilmington">Wilmington</a></li>
+                      <li><a class="card-tag" href="results.html?q=Upper+Canada">Upper Canada</a></li>
+                    </ul>
+                  </div>
+                  <div class="card-bottom">
+                    <span class="card-holder">Published by <strong>Parks Canada</strong></span>
+                    <span class="card-action" aria-hidden="true">View record &rarr;</span>
+                  </div>
+                </div>
+              </article>
+              <article class="card">
+                <svg class="card-type-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></svg>
+                <div class="card-content">
+                  <div class="card-top">
+                    <span class="card-title">Archival document</span>
+                    <span class="card-category">Online &amp; in person</span>
+                  </div>
+                  <div class="card-body">
+                    <h3 class="card-heading"><a class="card-link" href="record.html?id=SRC-013">Opinion juridique de Nicolas Guillet de Chaumont, conseiller et juge, deuxième interrogatoire sur la sellette, 4 juin 1734.</a></h3>
+                    <p class="card-date">4 juin 1734</p>
+                    <p class="card-snippet">Transcription of a judge&#x27;s legal opinion from the 1734 Montreal criminal trial of Marie-Josèphe-Angélique, an enslaved Black woman accused of arson, given at her second interrogation on the &quot;sellette&quot;. The page cites the original file at the &quot;Archives nationales du Québec, Centre de Montréal&quot; (now part of BAnQ; that link is our identification).</p>
+                    <ul class="card-tags" aria-label="People and places">
+                      <li><a class="card-tag" href="results.html?q=Marie-Josèphe-Angélique">Marie-Josèphe-Angélique</a></li>
+                      <li><a class="card-tag" href="results.html?q=Nicolas+Guillet+de+Chaumont">Nicolas Guillet de Chaumont</a></li>
+                      <li><a class="card-tag" href="results.html?q=Thérèse+de+Couagne">Thérèse de Couagne</a></li>
+                    </ul>
+                  </div>
+                  <div class="card-bottom">
+                    <span class="card-holder">Held by <strong>Bibliothèque et Archives nationales du Québec</strong></span>
+                    <span class="card-action" aria-hidden="true">View record &rarr;</span>
+                  </div>
+                </div>
+              </article>
+              <article class="card">
+                <svg class="card-type-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>
+                <div class="card-content">
+                  <div class="card-top">
+                    <span class="card-title">Person profile</span>
+                    <span class="card-category">Online</span>
+                  </div>
+                  <div class="card-body">
+                    <h3 class="card-heading"><a class="card-link" href="record.html?id=BIO-002">Portia May White (1911-1968) National Historic Person</a></h3>
+                    <p class="card-date">1911-1968</p>
+                    <p class="card-snippet">Parks Canada&#x27;s profile of Portia May White, a contralto from Nova Scotia&#x27;s Black community. She was the first African-Canadian woman to win international recognition as a concert singer, after 1940s debuts in Toronto and New York.</p>
+                    <ul class="card-tags" aria-label="People and places">
+                      <li><a class="card-tag" href="results.html?q=Portia+May+White">Portia May White</a></li>
+                      <li><a class="card-tag" href="results.html?q=Ernesto+Vinci">Ernesto Vinci</a></li>
+                      <li><a class="card-tag" href="results.html?q=Truro">Truro</a></li>
+                    </ul>
+                  </div>
+                  <div class="card-bottom">
+                    <span class="card-holder">Published by <strong>Parks Canada</strong></span>
+                    <span class="card-action" aria-hidden="true">View record &rarr;</span>
+                  </div>
+                </div>
+              </article>
+              <article class="card">
+                <svg class="card-type-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg>
+                <div class="card-content">
+                  <div class="card-top">
+                    <span class="card-title">Photograph</span>
+                    <span class="card-category">Access unknown</span>
+                  </div>
+                  <div class="card-body">
+                    <h3 class="card-heading"><a class="card-link" href="record.html?id=SRC-018">[Joe Fortes diving into water at English Bay]</a></h3>
+                    <p class="card-date">[ca. 1906]</p>
+                    <p class="card-snippet">Photograph dated about 1906 and attributed to Philip T. Timms, showing Joe Fortes diving into the water at English Bay, with bathers on shore, boys on a diving board and a building under construction behind. Open this City of Vancouver Archives description for the reference code and provenance before requesting a copy.</p>
+                    <ul class="card-tags" aria-label="People and places">
+                      <li><a class="card-tag" href="results.html?q=Joe+Fortes">Joe Fortes</a></li>
+                      <li><a class="card-tag" href="results.html?q=Philip+T.+Timms">Philip T. Timms</a></li>
+                      <li><a class="card-tag" href="results.html?q=English+Bay">English Bay</a></li>
+                    </ul>
+                  </div>
+                  <div class="card-bottom">
+                    <span class="card-holder">Held by <strong>City of Vancouver Archives</strong> (not confirmed)</span>
+                    <span class="card-action" aria-hidden="true">View record &rarr;</span>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </section>
+
+          <!-- Column 3: Popular (curated for the prototype; no usage data yet) -->
+          <section id="col-popular" class="column-section" aria-labelledby="col-popular-title">
+            <h2 id="col-popular-title" class="column-title">Popular Records</h2>
+            <div class="card-stack">
+              <article class="card">
+                <svg class="card-type-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>
+                <div class="card-content">
+                  <div class="card-top">
+                    <span class="card-title">Person profile</span>
+                    <span class="card-category">Online</span>
+                  </div>
+                  <div class="card-body">
+                    <h3 class="card-heading"><a class="card-link" href="record.html?id=SRC-005">Rose Fortune National Historic Person (circa 1774-1864)</a></h3>
+                    <p class="card-date">circa 1774-1864</p>
+                    <p class="card-snippet">Parks Canada&#x27;s national historic person profile of Rose Fortune, a Black Loyalist who settled in Annapolis Royal. There she ran a baggage-carting business and informally kept order on the waterfront.</p>
+                    <ul class="card-tags" aria-label="People and places">
+                      <li><a class="card-tag" href="results.html?q=Rose+Fortune">Rose Fortune</a></li>
+                      <li><a class="card-tag" href="results.html?q=Black+Loyalists">Black Loyalists</a></li>
+                      <li><a class="card-tag" href="results.html?q=Annapolis+Royal">Annapolis Royal</a></li>
+                    </ul>
+                  </div>
+                  <div class="card-bottom">
+                    <span class="card-holder">Published by <strong>Parks Canada</strong></span>
+                    <span class="card-action" aria-hidden="true">View record &rarr;</span>
+                  </div>
+                </div>
+              </article>
+              <article class="card">
+                <svg class="card-type-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z"/><path d="M4 19V5M19 19v2H6"/></svg>
+                <div class="card-content">
+                  <div class="card-top">
+                    <span class="card-title">Book</span>
+                    <span class="card-category">Online &amp; in person</span>
+                  </div>
+                  <div class="card-body">
+                    <h3 class="card-heading"><a class="card-link" href="record.html?id=BOOK-002">A Love Letter to Africville</a></h3>
+                    <p class="card-date">February 2021</p>
+                    <p class="card-snippet">A 96-page book by Amanda Carvery-Taylor, whose father grew up in Africville. It gathers former residents&#x27; memories and photographs to show the community&#x27;s family life, childhood, nightlife and Elders&#x27; lessons, not only its hardships.</p>
+                    <ul class="card-tags" aria-label="People and places">
+                      <li><a class="card-tag" href="results.html?q=Amanda+Carvery-Taylor">Amanda Carvery-Taylor</a></li>
+                      <li><a class="card-tag" href="results.html?q=Africville">Africville</a></li>
+                      <li><a class="card-tag" href="results.html?q=Halifax">Halifax</a></li>
+                    </ul>
+                  </div>
+                  <div class="card-bottom">
+                    <span class="card-holder">Published by <strong>Fernwood Publishing</strong></span>
+                    <span class="card-action" aria-hidden="true">View record &rarr;</span>
+                  </div>
+                </div>
+              </article>
+              <article class="card">
+                <svg class="card-type-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></svg>
+                <div class="card-content">
+                  <div class="card-top">
+                    <span class="card-title">Other</span>
+                    <span class="card-category">Online</span>
+                  </div>
+                  <div class="card-body">
+                    <h3 class="card-heading"><a class="card-link" href="record.html?id=SRC-008">Minutes of the thirty-second annual session of the African Baptist Association of Nova Scotia : held at Cornwallis, with the Pine Wood Church, Saturday, Monday and Tuesday, Sept. 5th, 7th and 8th, 1885</a></h3>
+                    <p class="card-date">1885</p>
+                    <p class="card-snippet">Digitized printed minutes of the 1885 annual session of the African Baptist Association of Nova Scotia, held at Cornwallis with the Pine Wood Church. The scan, provided through Canadiana, was made from a copy held at Acadia University&#x27;s Vaughan Memorial Library.</p>
+                    <ul class="card-tags" aria-label="People and places">
+                      <li><a class="card-tag" href="results.html?q=Cornwallis">Cornwallis</a></li>
+                    </ul>
+                  </div>
+                  <div class="card-bottom">
+                    <span class="card-holder">Held by <strong>Acadia University, Vaughan Memorial Library</strong></span>
+                    <span class="card-action" aria-hidden="true">View record &rarr;</span>
+                  </div>
+                </div>
+              </article>
+              <article class="card">
+                <svg class="card-type-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 6h16v12H4z"/><path d="M4 7l8 6 8-6"/></svg>
+                <div class="card-content">
+                  <div class="card-top">
+                    <span class="card-title">Correspondence</span>
+                    <span class="card-category">Online</span>
+                  </div>
+                  <div class="card-body">
+                    <h3 class="card-heading"><a class="card-link" href="record.html?id=SRC-016">Letter from people of colour residing in the City of Toronto to His Worship the Mayor of Toronto, 14 Oct</a></h3>
+                    <p class="card-date">14 Oct. 1841</p>
+                    <p class="card-snippet">Two-page letter dated 14 October 1841 from Toronto&#x27;s Black residents to the Mayor, kept among the early Toronto City Council papers. TPL&#x27;s Digital Archive shows the page images with a transcription.</p>
+                    <ul class="card-tags" aria-label="People and places">
+                      <li><a class="card-tag" href="results.html?q=Toronto">Toronto</a></li>
+                      <li><a class="card-tag" href="results.html?q=Black+community+of+Toronto">Black community of Toronto</a></li>
+                    </ul>
+                  </div>
+                  <div class="card-bottom">
+                    <span class="card-holder">Held by <strong>Toronto Public Library</strong> (not confirmed)</span>
+                    <span class="card-action" aria-hidden="true">View record &rarr;</span>
+                  </div>
+                </div>
+              </article>
+              <article class="card">
+                <svg class="card-type-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></svg>
+                <div class="card-content">
+                  <div class="card-top">
+                    <span class="card-title">Other</span>
+                    <span class="card-category">Online</span>
+                  </div>
+                  <div class="card-body">
+                    <h3 class="card-heading"><a class="card-link" href="record.html?id=SRC-019">Black sleeping car porters</a></h3>
+                    <p class="card-date">February 27, 2014</p>
+                    <p class="card-snippet">Curator&#x27;s story from the Canadian Museum for Human Rights on Black men who worked as sleeping car porters on Canadian railways, the racial discrimination they faced, and their unions. It notes that the Order of Sleeping Car Porters was established in Winnipeg in 1917. Its image credits point to Library and Archives Canada and Canadian Railroad Historical Association holdings.</p>
+                    <ul class="card-tags" aria-label="People and places">
+                      <li><a class="card-tag" href="results.html?q=Travis+Tomchuk">Travis Tomchuk</a></li>
+                      <li><a class="card-tag" href="results.html?q=Winnipeg">Winnipeg</a></li>
+                      <li><a class="card-tag" href="results.html?q=Toronto">Toronto</a></li>
+                    </ul>
+                  </div>
+                  <div class="card-bottom">
+                    <span class="card-holder">Published by <strong>Canadian Museum for Human Rights</strong></span>
+                    <span class="card-action" aria-hidden="true">View record &rarr;</span>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </section>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p class="site-footer-name">Black History Hub</p>
+    <p>Built for the Black Cultural Centre for Nova Scotia · HubHacks 2026</p>
+    <nav class="site-footer-links" aria-label="Footer">
+      <a href="institutions.html">Institutions</a>
+      <a href="about.html">About</a>
+    </nav>
+  </footer>
+
+</body>
+</html>
