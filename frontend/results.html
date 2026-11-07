@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Search Results - Article Search</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+</head>
+<body class="results-page">
+
+  <!-- Hidden SVG Gooey Filter -->
+  <svg xmlns="http://www.w3.org/2000/svg" version="1.1" style="display: block; height: 0; width: 0; position: absolute;">
+    <defs>
+      <filter id="goo">
+        <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur"></feGaussianBlur>
+        <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="goo"></feColorMatrix>
+        <feBlend in="SourceGraphic" in2="goo"></feBlend>
+      </filter>
+    </defs>
+  </svg>
+
+  <!-- Top App Bar -->
+  <header class="top-nav">
+    <button id="sidebar-toggle-btn" class="icon-btn" aria-label="Open Sidebar">☰</button>
+    <a href="index.html" class="brand-title" style="text-decoration: none;">DevPortal</a>
+  </header>
+
+  <!-- Slide-Out Horizontal Side Navigation -->
+  <aside id="side-nav" class="side-nav" aria-label="Main Navigation">
+    <div class="side-nav-header">
+      <span class="brand-title">Menu</span>
+      <button id="sidebar-close-btn" class="icon-btn" aria-label="Close Sidebar">✕</button>
+    </div>
+    <nav class="side-nav-menu">
+      <a href="index.html" class="nav-link">Search Home</a>
+      <a href="#placeholder" class="nav-link">Placeholder Link 1</a>
+      <a href="#placeholder" class="nav-link">Placeholder Link 2</a>
+      <a href="#placeholder" class="nav-link">Placeholder Link 3</a>
+      <a href="#placeholder" class="nav-link">Placeholder Link 4</a>
+    </nav>
+  </aside>
+
+  <!-- Background overlay when side menu is active -->
+  <div id="backdrop" class="backdrop"></div>
+
+  <!-- Main Search Results View -->
+  <main class="results-main">
+
+    <!-- Top Hero Search Section with Radial Pattern Background -->
+    <section class="results-hero-section">
+      <div class="search-wrapper">
+        <form id="search-form" class="search-box">
+          <input 
+            type="text" 
+            id="search-input" 
+            class="search-input" 
+            placeholder="Search articles by title, topic, or keyword..."
+            value="test"
+            autocomplete="off"
+          >
+          <!-- Gooey Uiverse Button -->
+          <button type="submit" class="c-button c-button--gooey">
+            Search
+            <div class="c-button__blobs">
+              <div></div>
+              <div></div>
+              <div></div>
+            </div>
+          </button>
+        </form>
+
+        <!-- Attached Filter Tags Dropdown Menu -->
+        <div class="menu">
+          <div class="item">
+            <div class="link" tabindex="0" role="button" aria-haspopup="true" aria-expanded="false">
+              <span id="tag-dropdown-label">Filter by Tags</span>
+              <svg viewBox="0 0 360 360" xml:space="preserve">
+                <g id="SVGRepo_iconCarrier">
+                  <path
+                    d="M325.607,79.393c-5.857-5.857-15.355-5.858-21.213,0.001l-139.39,139.393L25.607,79.393 c-5.857-5.857-15.355-5.858-21.213,0.001c-5.858,5.858-5.858,15.355,0,21.213l150.004,150c2.813,2.813,6.628,4.393,10.606,4.393 s7.794-1.581,10.606-4.394l149.996-150C331.465,94.749,331.465,85.251,325.607,79.393z"
+                  ></path>
+                </g>
+              </svg>
+            </div>
+            
+            <!-- Checkbox Items -->
+            <div class="submenu" role="menu">
+              <div class="submenu-item">
+                <label class="tag-label">
+                  <span class="checkBox">
+                    <input type="checkbox" name="tag" value="Placeholder1" class="tag-checkbox">
+                    <span class="transition fill-box"></span>
+                  </span>
+                  <span>Placeholder1</span>
+                </label>
+              </div>
+              <div class="submenu-item">
+                <label class="tag-label">
+                  <span class="checkBox">
+                    <input type="checkbox" name="tag" value="Placeholder2" class="tag-checkbox">
+                    <span class="transition fill-box"></span>
+                  </span>
+                  <span>Placeholder2</span>
+                </label>
+              </div>
+              <div class="submenu-item">
+                <label class="tag-label">
+                  <span class="checkBox">
+                    <input type="checkbox" name="tag" value="Placeholder3" class="tag-checkbox">
+                    <span class="transition fill-box"></span>
+                  </span>
+                  <span>Placeholder3</span>
+                </label>
+              </div>
+              <div class="submenu-item">
+                <label class="tag-label">
+                  <span class="checkBox">
+                    <input type="checkbox" name="tag" value="Placeholder4" class="tag-checkbox">
+                    <span class="transition fill-box"></span>
+                  </span>
+                  <span>Placeholder4</span>
+                </label>
+              </div>
+              <div class="submenu-item">
+                <label class="tag-label">
+                  <span class="checkBox">
+                    <input type="checkbox" name="tag" value="Placeholder5" class="tag-checkbox">
+                    <span class="transition fill-box"></span>
+                  </span>
+                  <span>Placeholder5</span>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pronounced Divider -->
+    <div class="section-divider" role="separator" aria-hidden="true"></div>
+
+    <!-- Results Section with Lower Cube Pattern Background -->
+    <section class="lower-pattern-container results-container">
+      <div class="pattern-bg">
+        <svg
+          preserveAspectRatio="xMidYMid slice"
+          height="100%"
+          width="100%"
+          class="cube-svg"
+          viewBox="0 0 120 104"
+        >
+          <defs>
+            <linearGradient y2="100%" x2="100%" y1="0%" x1="0%" id="cube-dark">
+              <stop stop-color="#191512" offset="0%"></stop>
+              <stop stop-color="#342821" offset="100%"></stop>
+            </linearGradient>
+            <linearGradient y2="0%" x2="100%" y1="100%" x1="0%" id="cube-mid">
+              <stop stop-color="#5a4132" offset="0%"></stop>
+              <stop stop-color="#241a14" offset="100%"></stop>
+            </linearGradient>
+            <linearGradient y2="100%" x2="0%" y1="0%" x1="100%" id="cube-light">
+              <stop stop-color="#b87948" offset="0%"></stop>
+              <stop stop-color="#d99f70" offset="100%"></stop>
+            </linearGradient>
+          </defs>
+          <g>
+            <polygon fill="url(#cube-dark)" points="60,0 120,34 60,68 0,34"></polygon>
+            <polygon fill="url(#cube-mid)" points="0,34 60,68 60,104 0,70"></polygon>
+            <polygon fill="url(#cube-light)" points="60,68 120,34 120,70 60,104"></polygon>
+          </g>
+        </svg>
+      </div>
+
+      <div class="results-content-wrapper">
+        <!-- Results Summary Bar -->
+        <div class="results-meta-bar">
+          <div class="results-count-text">
+            Showing results for <span class="highlight-query">"test"</span>
+          </div>
+          <span class="results-badge">6 Articles Found</span>
+        </div>
+
+        <!-- Horizontal List Container -->
+        <div id="search-results-list" class="horizontal-results-list card-stack">
+
+          <!-- Result Item 1 -->
+          <div class="card horizontal-card" tabindex="0">
+            <div class="card-image-wrapper">
+              <img src="Resources/placeholder.jpg" alt="Article thumbnail" class="card-thumb">
+            </div>
+            <div class="card-content">
+              <div class="card-top">
+                <span class="card-title">01.</span>
+                <span class="card-category">Placeholder Type</span>
+              </div>
+              <div class="card-body">
+                <h4 class="card-heading">PlaceholderHeading</h4>
+                <p class="card-snippet">Placeholder Snippet. Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore, consectetur sed ab fuga iusto voluptatibus aut dolorem error officiis quidem, porro id perspiciatis obcaecati, aperiam laudantium praesentium? Voluptatem, voluptates veritatis!</p>
+              </div>
+              <div class="card-bottom">
+                <div class="card-tags">
+                  <span class="card-tag">#Placeholder</span>
+                  <span class="card-tag">#Placeholder</span>
+                  <span class="card-tag">#Placeholder</span>
+                </div>
+                <span class="card-action">View Article &rarr;</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Result Item 2 -->
+          <div class="card horizontal-card" tabindex="0">
+            <div class="card-image-wrapper">
+              <img src="Resources/placeholder.jpg" alt="Article thumbnail" class="card-thumb">
+            </div>
+            <div class="card-content">
+              <div class="card-top">
+                <span class="card-title">02.</span>
+                <span class="card-category">Placeholder Type</span>
+              </div>
+              <div class="card-body">
+                <h4 class="card-heading">PlaceholderHeading</h4>
+                <p class="card-snippet">Placeholder Snippet. Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore, consectetur sed ab fuga iusto voluptatibus aut dolorem error officiis quidem, porro id perspiciatis obcaecati, aperiam laudantium praesentium? Voluptatem, voluptates veritatis!</p>
+              </div>
+              <div class="card-bottom">
+                <div class="card-tags">
+                  <span class="card-tag">#Placeholder</span>
+                  <span class="card-tag">#Placeholder</span>
+                  <span class="card-tag">#Placeholder</span>
+                </div>
+                <span class="card-action">View Article &rarr;</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Result Item 3 -->
+          <div class="card horizontal-card" tabindex="0">
+            <div class="card-image-wrapper">
+              <img src="Resources/placeholder.jpg" alt="Article thumbnail" class="card-thumb">
+            </div>
+            <div class="card-content">
+              <div class="card-top">
+                <span class="card-title">03.</span>
+                <span class="card-category">Placeholder Type</span>
+              </div>
+              <div class="card-body">
+                <h4 class="card-heading">PlaceholderHeading</h4>
+                <p class="card-snippet">Placeholder Snippet. Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore, consectetur sed ab fuga iusto voluptatibus aut dolorem error officiis quidem, porro id perspiciatis obcaecati, aperiam laudantium praesentium? Voluptatem, voluptates veritatis!</p>
+              </div>
+              <div class="card-bottom">
+                <div class="card-tags">
+                  <span class="card-tag">#Placeholder</span>
+                  <span class="card-tag">#Placeholder</span>
+                  <span class="card-tag">#Placeholder</span>
+                </div>
+                <span class="card-action">View Article &rarr;</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Result Item 4 -->
+          <div class="card horizontal-card" tabindex="0">
+            <div class="card-image-wrapper">
+              <img src="Resources/placeholder.jpg" alt="Article thumbnail" class="card-thumb">
+            </div>
+            <div class="card-content">
+              <div class="card-top">
+                <span class="card-title">04.</span>
+                <span class="card-category">Placeholder Type</span>
+              </div>
+              <div class="card-body">
+                <h4 class="card-heading">PlaceholderHeading</h4>
+                <p class="card-snippet">Placeholder Snippet. Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore, consectetur sed ab fuga iusto voluptatibus aut dolorem error officiis quidem, porro id perspiciatis obcaecati, aperiam laudantium praesentium? Voluptatem, voluptates veritatis!</p>
+              </div>
+              <div class="card-bottom">
+                <div class="card-tags">
+                  <span class="card-tag">#Placeholder</span>
+                  <span class="card-tag">#Placeholder</span>
+                  <span class="card-tag">#Placeholder</span>
+                </div>
+                <span class="card-action">View Article &rarr;</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Result Item 5 -->
+          <div class="card horizontal-card" tabindex="0">
+            <div class="card-image-wrapper">
+              <img src="Resources/placeholder.jpg" alt="Article thumbnail" class="card-thumb">
+            </div>
+            <div class="card-content">
+              <div class="card-top">
+                <span class="card-title">05.</span>
+                <span class="card-category">Placeholder Type</span>
+              </div>
+              <div class="card-body">
+                <h4 class="card-heading">PlaceholderHeading</h4>
+                <p class="card-snippet">Placeholder Snippet. Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore, consectetur sed ab fuga iusto voluptatibus aut dolorem error officiis quidem, porro id perspiciatis obcaecati, aperiam laudantium praesentium? Voluptatem, voluptates veritatis!</p>
+              </div>
+              <div class="card-bottom">
+                <div class="card-tags">
+                  <span class="card-tag">#Placeholder</span>
+                  <span class="card-tag">#Placeholder</span>
+                  <span class="card-tag">#Placeholder</span>
+                </div>
+                <span class="card-action">View Article &rarr;</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Result Item 6 -->
+          <div class="card horizontal-card" tabindex="0">
+            <div class="card-image-wrapper">
+              <img src="Resources/placeholder.jpg" alt="Article thumbnail" class="card-thumb">
+            </div>
+            <div class="card-content">
+              <div class="card-top">
+                <span class="card-title">06.</span>
+                <span class="card-category">Placeholder Type</span>
+              </div>
+              <div class="card-body">
+                <h4 class="card-heading">PlaceholderHeading</h4>
+                <p class="card-snippet">Placeholder Snippet. Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore, consectetur sed ab fuga iusto voluptatibus aut dolorem error officiis quidem, porro id perspiciatis obcaecati, aperiam laudantium praesentium? Voluptatem, voluptates veritatis!</p>
+              </div>
+              <div class="card-bottom">
+                <div class="card-tags">
+                  <span class="card-tag">#Placeholder</span>
+                  <span class="card-tag">#Placeholder</span>
+                  <span class="card-tag">#Placeholder</span>
+                </div>
+                <span class="card-action">View Article &rarr;</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Large Pop-Up Article Modal Container (Identical to Search Page) -->
+  <div id="modal-backdrop" class="modal-backdrop" aria-hidden="true">
+    <div id="article-modal" class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      
+      <!-- Close Button -->
+      <button id="modal-close-btn" class="modal-close-btn" aria-label="Close details">✕</button>
+
+      <!-- Top Thumbnail Banner (Dimmed and Centered) -->
+      <div class="modal-hero-image-wrapper">
+        <img id="modal-thumbnail" src="Resources/placeholder.jpg" alt="Article thumbnail" class="modal-hero-thumb">
+        <div class="modal-hero-overlay"></div>
+        <div class="modal-hero-meta">
+          <span id="modal-index" class="card-title">01.</span>
+          <span id="modal-category" class="card-category">Article Details</span>
+        </div>
+      </div>
+
+      <!-- Modal Body Content -->
+      <div class="modal-body-content">
+        <h2 id="modal-title" class="modal-heading">Placeholder Title</h2>
+        
+        <div id="modal-tags" class="card-tags">
+          <span class="card-tag">#PlaceholderTag</span>
+          <span class="card-tag">#PlaceholderTag</span>
+        </div>
+
+        <!-- External Source Link Button -->
+        <div class="modal-actions">
+          <a id="modal-source-btn" href="#" target="_blank" rel="noopener noreferrer" class="c-button modal-source-link">
+            Visit Source Website &rarr;
+          </a>
+        </div>
+
+        <!-- Embedded Recommended Article Section -->
+        <div class="modal-recommendation-section">
+          <h4 class="modal-rec-title">Recommended Article</h4>
+          
+          <div class="card modal-rec-card" tabindex="0">
+            <div class="card-image-wrapper">
+              <img src="Resources/placeholder.jpg" alt="Article thumbnail" class="card-thumb">
+            </div>
+            <div class="card-content">
+              <div class="card-top">
+                <span class="card-title">01.</span>
+                <span class="card-category">Recommended</span>
+              </div>
+              <div class="card-body">
+                <h4 class="card-heading">Recommended Article Title</h4>
+              </div>
+              <div class="card-bottom">
+                <div class="card-tags">
+                  <span class="card-tag">#Recommended</span>
+                  <span class="card-tag">#Related</span>
+                </div>
+                <span class="card-action">Read &rarr;</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</body>
+</html>
