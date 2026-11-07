@@ -12,6 +12,8 @@ sys.path.insert(0, str(BACKEND))
 _TMP = Path(tempfile.mkdtemp(prefix="hubhacks-test-"))
 os.environ["HUBHACKS_DB"] = str(_TMP / "test.db")
 os.environ["HUBHACKS_REBUILD_ON_START"] = "1"
+# The tests pin the 27-record verified dataset; the app itself defaults to the v2 tables file.
+os.environ.setdefault("HUBHACKS_DATASET", str(BACKEND / "tests" / "fixtures" / "verified_v1_27_records.json"))
 
 
 @pytest.fixture(scope="session")

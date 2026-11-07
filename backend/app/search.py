@@ -23,7 +23,8 @@ ENTITY_SEP = " | "
 STOPWORDS = {"a", "an", "the", "of", "and", "or", "in", "on", "at", "to", "for", "by",
              "with", "from", "about", "records", "record", "related", "any", "some"}
 # Weights for "connected records" (records sharing people, places, communities, subjects).
-SHARED_WEIGHT = {"person": 3.0, "community": 3.0, "event": 3.0, "subject": 1.5, "place": 1.0}
+SHARED_WEIGHT = {"person": 3.0, "community": 3.0, "event": 3.0, "organization": 3.0,
+                 "subject": 1.5, "place": 1.0}
 # Roles that say who made a record. Every other role (subject, recipient, location,
 # mentioned) says who or what the record is about.
 MADE_BY_ROLES = {"author", "contributor", "creator"}
@@ -565,7 +566,7 @@ def _facets(conn: sqlite3.Connection) -> dict:
         for k, v in sorted(decades.items(), key=lambda kv: (kv[0] == "undated", kv[0]))]
     # roles: how each entity appears in these results, so the frontend can tell
     # authors ("author") apart from the people the records are about ("subject").
-    for etype in ("person", "place", "community", "subject"):
+    for etype in ("person", "place", "community", "subject", "organization", "event"):
         facets[etype] = [
             {"value": r[0], "label": r[1], "count": r[2], "roles": sorted(r[3].split(","))}
             for r in conn.execute(
@@ -791,7 +792,7 @@ def connected_records(conn: sqlite3.Connection, record_id: str, exclude: set[str
                             "label": text, "weight": weight, "roles_here": sorted(p["roles_here"]),
                             "roles_there": sorted(p["roles_there"])})
     # Hide connections made only of broad places: two records that share nothing but
-    # "Nova Scotia" (today 18 of the 27 records) or "Halifax" say little about each other.
+    # a place linked to more than a quarter of all records (e.g. "Nova Scotia") say little about each other.
     broad = broad_places(conn)
     shared = {k: s for k, s in shared.items()
               if not all(x["link"] == "shared_place" and x["id"] in broad for x in s["shared"])}

@@ -11,6 +11,7 @@ from typing import Literal
 
 from fastapi import Depends, FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 
 from . import build, config, db, labels, search, vocab
 
@@ -51,6 +52,7 @@ def root():
     return {
         "name": app.title,
         "docs": "/docs",
+        "frontend": "/app/",
         "endpoints": ["/search", "/records/{id}", "/entities", "/entities/{id}", "/institutions",
                       "/institutions/{id}", "/suggest", "/stats", "/vocab", "/labels", "/health"],
     }
@@ -98,7 +100,7 @@ def record_detail(record_id: str, conn=Depends(get_conn)):
 
 @app.get("/entities", tags=["connections"])
 def entities(
-    type: Literal["person", "place", "community", "subject", "event"] | None = None,
+    type: Literal["person", "place", "community", "subject", "event", "organization"] | None = None,
     q: str | None = None,
     limit: int = Query(100, ge=1, le=500),
     conn=Depends(get_conn),
@@ -151,3 +153,9 @@ def display_labels():
     labels[field][code], e.g. labels.resource_type.journal_article.
     """
     return labels.LABELS
+
+
+# Serve the team's frontend (repo folder frontend/) at /app, so one command runs the
+# whole demo and the pages can call the API on the same origin. The API stays at /.
+if config.FRONTEND_DIR.is_dir():
+    app.mount("/app", StaticFiles(directory=config.FRONTEND_DIR, html=True), name="frontend")

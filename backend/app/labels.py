@@ -81,6 +81,7 @@ LABELS: dict[str, dict[str, str]] = {
         "community": "Community",
         "subject": "Subject",
         "event": "Event",
+        "organization": "Organization",
     },
     "role": {
         "subject": "Subject",
@@ -104,6 +105,7 @@ LABELS: dict[str, dict[str, str]] = {
         "document": "Date of the document",
         "period_discussed": "Period discussed",
         "publication": "Published",
+        "designation": "Designated",
     },
     # record_relation
     "relation_type": {

@@ -2,7 +2,7 @@
 
 Usage (from the backend folder):
     python -m app.build                 # default paths
-    python -m app.build --db my.db --dataset ../data-sets/file.json
+    python -m app.build --db my.db --dataset ../data/seed/file.json
 
 The database is a build artifact: the JSON dataset stays the master copy.
 """
@@ -14,7 +14,7 @@ import sqlite3
 from pathlib import Path
 
 from . import config, db
-from .ingest import verified_json
+from .ingest import table_json, verified_json
 
 
 def rebuild_search_index(conn: sqlite3.Connection) -> int:
@@ -74,7 +74,9 @@ def build_database(
     conn = db.connect(db_file)
     try:
         engine = db.apply_schema(conn, schema)
-        sources = [verified_json.load(conn, dataset)]
+        raw = json.loads(dataset.read_text(encoding="utf-8"))
+        adapter = table_json if table_json.is_table_shaped(raw) else verified_json
+        sources = [adapter.load(conn, dataset)]
         indexed = rebuild_search_index(conn)
         conn.commit()
         summary = {

@@ -7,8 +7,11 @@ from pathlib import Path
 BACKEND_DIR = Path(__file__).resolve().parent.parent
 REPO_DIR = BACKEND_DIR.parent
 SCHEMA_PATH = BACKEND_DIR / "schema.sql"
+FRONTEND_DIR = REPO_DIR / "frontend"
 
-_DEFAULT_DATASET = REPO_DIR / "data-sets" / "historical_resources_expanded_verified_2026-11-06.json"
+# Owen's v2 dataset on main (41 records, table-shaped). The older 27-record verified JSON
+# is kept as backend/tests/fixtures/verified_v1_27_records.json for the tests.
+_DEFAULT_DATASET = REPO_DIR / "data" / "seed" / "black_history_dataset_v2_2026-11-06.json"
 
 
 def db_path() -> Path:

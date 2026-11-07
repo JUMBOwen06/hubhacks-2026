@@ -85,7 +85,7 @@ CREATE INDEX IF NOT EXISTS idx_date_years  ON record_date(start_year, end_year);
 CREATE TABLE IF NOT EXISTS entity (
     id             TEXT PRIMARY KEY,
     entity_type    TEXT NOT NULL CHECK (entity_type IN
-                     ('person','place','community','subject','event')),
+                     ('person','place','community','subject','event','organization')),
     name_preferred TEXT NOT NULL,
     disambiguator  TEXT,                               -- tells apart people with the same name
     description    TEXT,

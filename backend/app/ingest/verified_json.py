@@ -1,6 +1,7 @@
 """Adapter: the research team's hand-verified JSON -> common schema (verified tier).
 
-Source file: data-sets/historical_resources_expanded_verified_2026-11-06.json
+Source format: the research team's v1 verified JSON (historical_resources_expanded_verified_2026-11-06.json,
+now the test fixture backend/tests/fixtures/verified_v1_27_records.json).
 
 Rules (from the team's data principles):
 - One `record` row per access point: each institution's description is its own row.

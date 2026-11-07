@@ -4,7 +4,7 @@ Claude Code reads this file at the start of every session. It holds everything n
 continue the project: who you are, the brief, decisions already made, the data, the
 schema, the backend as built, what's next, and the rules that keep the work trustworthy.
 
-Last updated: Saturday 2026-11-07, 18:45 Atlantic (America/Halifax).
+Last updated: Saturday 2026-11-07, 19:20 Atlantic (America/Halifax).
 
 ---
 
@@ -67,7 +67,7 @@ Keep replies concise enough to act on. Ask only questions that materially affect
 ### Git rules
 - Work on the **`backend`** branch. Never commit to `main` directly.
 - Commit or push **only when the user asks**.
-- If `README.md` or the `data-sets/` files show as modified, the only difference is line
+- If `README.md` or the `data/` files show as modified, the only difference is line
   endings (CRLF vs LF). Don't stage or "fix" them unless the team agrees. They don't show
   on Om's Windows machine (`core.autocrlf` is true).
 - Commit message footer is whatever the user asks for; keep messages short and specific.
@@ -184,10 +184,11 @@ https://claude.ai/artifact/CN1ixCK24cvPha9qt1i4iz.
 ```text
 hubhacks-2026/
   README.md                 team's planning README (scope, pages, principles)
-  main.py                   placeholder ("Hello world")
-  data-sets/
-    historical_resources_expanded_verified_2026-11-06.json   MASTER COPY of verified records
-    historical_resources_expanded_verified_2026-11-06.csv    same data, flat (one row per access point)
+  data/
+    seed/black_history_dataset_v2_2026-11-06.json   MASTER COPY (Owen, 41 records, table-shaped)
+    exports/csv/                                    same data, one CSV per table
+    load_dataset.py                                 Owen's standalone loader
+  frontend/                 the team's pages (Julio); served by the API at /app/
   docs/database_tables_and_columns.md   schema spec from the data architecture teammate
   backend/                  Python API (see section 8)
   .gitignore
@@ -201,7 +202,7 @@ py -m venv .venv
 .venv\Scripts\Activate.ps1
 pip install -r requirements.txt          # add requirements-dev.txt for tests
 uvicorn app.main:app --reload            # http://127.0.0.1:8000/docs
-pytest                                    # 51 tests
+pytest                                    # 55 tests
 python -m app.build                       # build the DB without the server
 ```
 - Env vars: `HUBHACKS_DB` (SQLite path, default `backend/data/hubhacks.db`),
@@ -213,12 +214,22 @@ python -m app.build                       # build the DB without the server
 - Tested on Python 3.10 (Linux) and on Om's Windows machine (Python 3.13.7, SQLite 3.50.4,
   FTS5 available, all tests passing, server started, 2026-11-06). The 2026-11-07 fixes
   were tested the same way before they were committed: 51 tests pass.
+- 2026-11-07 evening: `main` deleted `data-sets/` and added Owen's v2 dataset in `data/seed/`.
+  `backend` merged `main` in and now loads v2 by default (`app/ingest/table_json.py`; schema
+  allows entity_type `organization`); the old 27-record file is the test fixture
+  `backend/tests/fixtures/verified_v1_27_records.json`; the API serves `frontend/` at `/app/`.
+  v2 ids differ from v1: `SRC-001a`/`SRC-001b`, entity ids like `com_africville`, `per_tina-loo`.
 
 ---
 
 ## 6. The verified dataset (research team)
 
-`data-sets/historical_resources_expanded_verified_2026-11-06.json`: 26 records, 27
+Since 2026-11-07 the app loads Owen's v2 dataset (`data/seed/`, 41 records, already in the
+table shape). This section describes the older v1 file, now the test fixture
+`backend/tests/fixtures/verified_v1_27_records.json`; v2 keeps its 26 records (SRC-001 split
+into `SRC-001a` NSA and `SRC-001b` LAC) and adds SRC-008 to SRC-021.
+
+`historical_resources_expanded_verified_2026-11-06.json` (v1): 26 records, 27
 access links, checked on 2026-11-06 by hand. No bulk scraping, no full text, no images.
 
 | Source | Records | Kind |
@@ -465,7 +476,7 @@ Harmless warning: Starlette's TestClient deprecation notice about httpx.
    pushed to `backend`.
 2. **LAC Collection Search export adapter** (`app/ingest/lac_export.py`). The research team
    downloads exports (CSV or JSON) for searches such as "Black Loyalists" and "Africville"
-   and puts them in `data-sets/`. Inspect the real file first. Don't guess field names.
+   and puts them in `data/`. Inspect the real file first. Don't guess field names.
    Map into the schema with `collection_method='export'`, `verification_status='unverified'`,
    `added_by='lac-export'`, ids like `LAC-<their id>`. Skip rows whose `source_url`
    already exists. Register the adapter in `build.py`. Add tests. Then hand-check 20
@@ -475,7 +486,7 @@ Harmless warning: Starlette's TestClient deprecation notice about httpx.
    JSON format. The existing adapter loads them as-is.
 4. **CSV template for community organizations**: `templates/community_records_template.csv`
    (header only) + `app/ingest/csv_template.py` (imported tier, `unverified`). Test
-   fixtures must be clearly labelled test-only and live in `tests/`, never in `data-sets/`.
+   fixtures must be clearly labelled test-only and live in `tests/`, never in `data/`.
 5. **Link checker** (`python -m app.linkcheck`): fetch each `source_url`, set
    `link_last_checked`; mark `link_broken` only on real failures. Treat 403 or bot
    challenges (Érudit does this) as "blocked", not broken.
