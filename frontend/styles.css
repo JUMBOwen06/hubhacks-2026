@@ -43,7 +43,7 @@ body {
   padding: 0 1.5rem;
   gap: 1rem;
   position: relative;
-  z-index: 10;
+  z-index: 20;
 }
 
 .icon-btn {
@@ -114,7 +114,7 @@ body {
   border-color: var(--accent);
 }
 
-/* Modal Overlay Backdrop */
+/* Backdrop */
 .backdrop {
   position: fixed;
   inset: 0;
@@ -128,59 +128,58 @@ body {
 }
 
 /* 
-  Top Hero Section:
-  Lowered vertical placement + strictly centered horizontally
+  Top Hero Section with Background Carousel 
 */
 .search-hero-section {
   position: relative;
-  min-height: 65vh; /* Enlarges the total size of the top section */
+  min-height: 65vh;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start; /* Keeps the search bar anchored relative to the top */
+  justify-content: flex-start;
   align-items: center;
-  padding: 3.5rem 1.5rem 4rem 1.5rem; /* Locks the top offset in place */
-  overflow: visible;
-
-  --s: 90px;
-  --c1: #15110e;
-  --c2: #2a2019;
-
-  --_g: var(--c2) 4% 14%, var(--c1) 14% 24%, var(--c2) 22% 34%,
-    var(--c1) 34% 44%, var(--c2) 44% 56%, var(--c1) 56% 66%, var(--c2) 66% 76%,
-    var(--c1) 76% 86%, var(--c2) 86% 96%;
-  
-  background: 
-    radial-gradient(
-      100% 100% at 100% 0,
-      var(--c1) 4%,
-      var(--_g),
-      #000000a6 96%,
-      #0000
-    ),
-    radial-gradient(
-      100% 100% at 0 100%,
-      #0000,
-      #000000a6 4%,
-      var(--_g),
-      var(--c1) 96%
-    )
-    var(--c1);
-  background-size: var(--s) var(--s);
+  padding: 3.5rem 1.5rem 4rem 1.5rem;
+  overflow: hidden;
+  background-color: #12100e;
 }
 
-.search-hero-section::before {
-  content: "";
+/* Carousel Image Slides Container */
+.carousel-container {
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at center 75%, rgba(18, 16, 14, 0.4) 0%, rgba(18, 16, 14, 0.85) 100%);
-  pointer-events: none;
+  width: 100%;
+  height: 100%;
   z-index: 1;
+}
+
+.carousel-slide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  filter: grayscale(80%) sepia(20%) brightness(0.45);
+  transition: opacity 1.2s ease-in-out;
+}
+
+.carousel-slide.active {
+  opacity: 1;
+}
+
+/* Dark Warm Vignette overlay for search contrast */
+.carousel-overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(18, 16, 14, 0.5) 0%, rgba(18, 16, 14, 0.92) 100%),
+              linear-gradient(180deg, rgba(18, 16, 14, 0.4) 0%, rgba(18, 16, 14, 0.8) 100%);
+  z-index: 2;
+  pointer-events: none;
 }
 
 /* Centralized Flex Column Wrapper */
 .search-wrapper {
   position: relative;
-  z-index: 2;
+  z-index: 5;
   width: 100%;
   max-width: 720px;
   margin: 0 auto;
@@ -194,7 +193,7 @@ body {
   display: flex;
   width: 100%;
   gap: 0.5rem;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.55);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.65);
 }
 
 .search-input {
@@ -231,9 +230,7 @@ body {
   background-color: var(--accent-hover);
 }
 
-/* 
-  Attached Tag Filter Menu (Uiverse.io inspired, brown-themed)
-*/
+/* Attached Tag Filter Menu */
 .menu {
   font-size: 0.88rem;
   line-height: 1.4;
@@ -241,7 +238,7 @@ body {
   width: fit-content;
   display: flex;
   list-style: none;
-  align-self: flex-start; /* Aligns flush with the search bar left edge */
+  align-self: flex-start;
 }
 
 .menu .item {
@@ -275,7 +272,6 @@ body {
   transition: transform 0.3s ease;
 }
 
-/* Dropdown Submenu Container */
 .menu .item .submenu {
   display: flex;
   flex-direction: column;
@@ -296,7 +292,6 @@ body {
   padding: 0.5rem;
 }
 
-/* Reveal Submenu on Hover or Active Focus */
 .menu .item:hover .submenu,
 .menu .item:focus-within .submenu {
   opacity: 1;
@@ -317,7 +312,6 @@ body {
   transform: rotate(-180deg);
 }
 
-/* Individual Checkbox Tag Items */
 .submenu .submenu-item {
   width: 100%;
 }
@@ -339,7 +333,6 @@ body {
   color: var(--text-primary);
 }
 
-/* Custom Checkbox Styling */
 .tag-checkbox {
   appearance: none;
   -webkit-appearance: none;
@@ -367,6 +360,34 @@ body {
   border: solid #12100e;
   border-width: 0 2px 2px 0;
   transform: rotate(45deg);
+}
+
+/* Citations & Source Attribution Bar */
+.hero-citation-bar {
+  position: absolute;
+  bottom: 12px;
+  right: 1.5rem;
+  z-index: 5;
+  background: rgba(22, 18, 15, 0.75);
+  border: 1px solid var(--border-subtle);
+  border-radius: 4px;
+  padding: 4px 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  backdrop-filter: blur(4px);
+}
+
+.hero-citation-bar a {
+  color: var(--text-secondary);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.hero-citation-bar a:hover {
+  color: var(--accent);
 }
 
 /* Section Divider */

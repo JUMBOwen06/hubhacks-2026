@@ -11,7 +11,7 @@
   <!-- Top App Bar -->
   <header class="top-nav">
     <button id="sidebar-toggle-btn" class="icon-btn" aria-label="Open Sidebar">☰</button>
-    <div class="brand-title">DevPortal</div>
+    <div class="brand-title">FiveFold</div>
   </header>
 
   <!-- Slide-Out Horizontal Side Navigation -->
@@ -32,13 +32,20 @@
   <!-- Background overlay when side menu is active -->
   <div id="backdrop" class="backdrop"></div>
 
-  <!-- Main Hero Section -->
+  <!-- Main Hero Section with Carousel -->
   <main>
     <section class="search-hero-section">
-      <!-- Horizontally Centered Wrapper -->
+      <!-- Image Carousel Elements -->
+      <div class="carousel-container" id="carousel">
+        <img src="Resources/1.png" alt="Historical archival photograph" class="carousel-slide active">
+        <img src="Resources/2.jpeg" alt="Historical archival photograph" class="carousel-slide">
+        <img src="Resources/3.jpeg" alt="Historical archival photograph" class="carousel-slide">
+        <img src="Resources/4.jpg" alt="Historical archival photograph" class="carousel-slide">
+      </div>
+      <div class="carousel-overlay" aria-hidden="true"></div>
+
+      <!-- Horizontally Centered Search Wrapper -->
       <div class="search-wrapper">
-        
-        <!-- Search Input Bar -->
         <form id="search-form" class="search-box">
           <input 
             type="text" 
@@ -50,7 +57,7 @@
           <button type="submit" class="search-submit-btn">Search</button>
         </form>
 
-        <!-- Attached Filter Tags Dropdown Menu (Uiverse.io styled) -->
+        <!-- Attached Filter Tags Dropdown Menu -->
         <div class="menu">
           <div class="item">
             <div class="link" tabindex="0" role="button" aria-haspopup="true" aria-expanded="false">
@@ -69,38 +76,45 @@
               <div class="submenu-item">
                 <label class="tag-label">
                   <input type="checkbox" name="tag" value="frontend" class="tag-checkbox">
-                  <span>Development</span>
+                  <span>Placeholder</span>
                 </label>
               </div>
               <div class="submenu-item">
                 <label class="tag-label">
                   <input type="checkbox" name="tag" value="systems" class="tag-checkbox">
-                  <span>Systems & C</span>
+                  <span>Placeholder</span>
                 </label>
               </div>
               <div class="submenu-item">
                 <label class="tag-label">
                   <input type="checkbox" name="tag" value="architecture" class="tag-checkbox">
-                  <span>Architecture</span>
+                  <span>Placeholder</span>
                 </label>
               </div>
               <div class="submenu-item">
                 <label class="tag-label">
                   <input type="checkbox" name="tag" value="database" class="tag-checkbox">
-                  <span>Databases & SQL</span>
+                  <span>Placeholder</span>
                 </label>
               </div>
               <div class="submenu-item">
                 <label class="tag-label">
                   <input type="checkbox" name="tag" value="security" class="tag-checkbox">
-                  <span>Security & Auth</span>
+                  <span>Placeholder</span>
                 </label>
               </div>
             </div>
           </div>
         </div>
-
       </div>
+
+      <!-- Image Citations -->
+      <footer class="hero-citation-bar">
+        <span>Image Archives:</span>
+        <a href="https://archives.novascotia.ca/african-heritage/archival/" target="_blank" rel="noopener noreferrer">Nova Scotia Archives</a>
+        <span>•</span>
+        <a href="https://www.historymuseum.ca/teachers-zone/african-nova-scotians-20th-century-canadian-legacies/african-nova-scotian-communities/north-preston-new-road-in-the-early-20th-century" target="_blank" rel="noopener noreferrer">Canadian Museum of History</a>
+      </footer>
     </section>
 
     <!-- Pronounced Divider -->
@@ -227,7 +241,7 @@
     </section>
   </main>
 
-  <!-- Sidebar & Tag Badge Script -->
+  <!-- Sidebar, Tags & Carousel Scripts -->
   <script>
     const sideNav = document.getElementById('side-nav');
     const backdrop = document.getElementById('backdrop');
@@ -238,6 +252,7 @@
     const tagDropdownLabel = document.getElementById('tag-dropdown-label');
     const checkboxes = document.querySelectorAll('.tag-checkbox');
 
+    // Sidebar controls
     function openNav() {
       sideNav.classList.add('open');
       backdrop.classList.add('open');
@@ -252,26 +267,31 @@
     closeBtn.addEventListener('click', closeNav);
     backdrop.addEventListener('click', closeNav);
 
-    // Dynamic Tag Count updater
+    // Dynamic tag counter badge
     checkboxes.forEach(cb => {
       cb.addEventListener('change', () => {
         const checkedCount = document.querySelectorAll('.tag-checkbox:checked').length;
-        if (checkedCount === 0) {
-          tagDropdownLabel.textContent = 'Filter by Tags';
-        } else {
-          tagDropdownLabel.textContent = `Tags (${checkedCount} selected)`;
-        }
+        tagDropdownLabel.textContent = checkedCount === 0 ? 'Filter by Tags' : `Tags (${checkedCount} selected)`;
       });
     });
 
-    // Search submit listener packaging active search query + selected tag filters
+    // Carousel crossfade controller
+    const slides = document.querySelectorAll('.carousel-slide');
+    let currentSlide = 0;
+    const slideInterval = 6000; // 6 seconds per image
+
+    setInterval(() => {
+      slides[currentSlide].classList.remove('active');
+      currentSlide = (currentSlide + 1) % slides.length;
+      slides[currentSlide].classList.add('active');
+    }, slideInterval);
+
+    // Search submit listener
     searchForm.addEventListener('submit', (e) => {
       e.preventDefault();
       const query = searchInput.value.trim();
       const selectedTags = Array.from(document.querySelectorAll('.tag-checkbox:checked')).map(cb => cb.value);
-      
       console.log('Search dispatched:', { query, selectedTags });
-      // Ready for your team: fetch(`/api/search?q=${encodeURIComponent(query)}&tags=${selectedTags.join(',')}`)
     });
   </script>
 </body>
