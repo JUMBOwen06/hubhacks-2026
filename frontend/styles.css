@@ -1349,3 +1349,26 @@ body {
     padding: 1.25rem;
   }
 }
+
+/* Floating Menu Toggle Button for pages without top-nav */
+.home-toggle-btn {
+  position: absolute;
+  top: 1.25rem;
+  left: 1.5rem;
+  z-index: 40;
+  background-color: rgba(30, 25, 22, 0.75);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid var(--border-subtle);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+.home-toggle-btn:hover {
+  background-color: rgba(43, 36, 32, 0.95);
+  border-color: var(--accent);
+}
+
+/* Ensure the hero section touches the exact top of the viewport */
+.home-page .search-hero-section {
+  padding-top: 5rem; /* Leaves comfortable clearance under the floating toggle */
+}

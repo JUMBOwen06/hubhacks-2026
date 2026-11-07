@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="styles.css">
   <script src="script.js" defer></script>
 </head>
-<body>
+<body class="home-page">
 
   <!-- Hidden SVG Gooey Filter -->
   <svg xmlns="http://www.w3.org/2000/svg" version="1.1" style="display: block; height: 0; width: 0; position: absolute;">
@@ -20,11 +20,8 @@
     </defs>
   </svg>
 
-  <!-- Top App Bar -->
-  <header class="top-nav">
-    <button id="sidebar-toggle-btn" class="icon-btn" aria-label="Open Sidebar">☰</button>
-    <div class="brand-title">FiveFold</div>
-  </header>
+  <!-- Floating Menu Button (Replaces the top nav bar on Home) -->
+  <button id="sidebar-toggle-btn" class="icon-btn home-toggle-btn" aria-label="Open Sidebar">☰</button>
 
   <!-- Slide-Out Horizontal Side Navigation -->
   <aside id="side-nav" class="side-nav" aria-label="Main Navigation">
@@ -33,18 +30,18 @@
       <button id="sidebar-close-btn" class="icon-btn" aria-label="Close Sidebar">✕</button>
     </div>
     <nav class="side-nav-menu">
+      <a href="index.html" class="nav-link">Search Home</a>
       <a href="#placeholder" class="nav-link">Placeholder Link 1</a>
       <a href="#placeholder" class="nav-link">Placeholder Link 2</a>
       <a href="#placeholder" class="nav-link">Placeholder Link 3</a>
       <a href="#placeholder" class="nav-link">Placeholder Link 4</a>
-      <a href="#placeholder" class="nav-link">Placeholder Link 5</a>
     </nav>
   </aside>
 
   <!-- Background overlay when side menu is active -->
   <div id="backdrop" class="backdrop"></div>
 
-  <!-- Main Hero Section with Carousel -->
+  <!-- Main Hero Section with Carousel Extending to Screen Top -->
   <main>
     <section class="search-hero-section">
       <!-- Image Carousel Elements -->
@@ -194,7 +191,6 @@
           <div id="col-recent" class="column-section">
             <h3 class="column-title">Recently Searched Articles</h3>
             <div class="card-stack">
-
               <div class="card" tabindex="0">
                 <div class="card-image-wrapper">
                   <img src="Resources/placeholder.jpg" alt="Article thumbnail" class="card-thumb">
@@ -216,7 +212,6 @@
                   </div>
                 </div>
               </div>
-
               <div class="card" tabindex="0">
                 <div class="card-image-wrapper">
                   <img src="Resources/placeholder.jpg" alt="Article thumbnail" class="card-thumb">
@@ -238,7 +233,6 @@
                   </div>
                 </div>
               </div>
-
               <div class="card" tabindex="0">
                 <div class="card-image-wrapper">
                   <img src="Resources/placeholder.jpg" alt="Article thumbnail" class="card-thumb">
@@ -260,7 +254,6 @@
                   </div>
                 </div>
               </div>
-
               <div class="card" tabindex="0">
                 <div class="card-image-wrapper">
                   <img src="Resources/placeholder.jpg" alt="Article thumbnail" class="card-thumb">
@@ -282,7 +275,6 @@
                   </div>
                 </div>
               </div>
-
               <div class="card" tabindex="0">
                 <div class="card-image-wrapper">
                   <img src="Resources/placeholder.jpg" alt="Article thumbnail" class="card-thumb">
@@ -304,7 +296,6 @@
                   </div>
                 </div>
               </div>
-
             </div>
           </div>
 
@@ -312,7 +303,6 @@
           <div id="col-recommended" class="column-section">
             <h3 class="column-title">Recommended Articles</h3>
             <div class="card-stack">
-
               <div class="card" tabindex="0">
                 <div class="card-image-wrapper">
                   <img src="Resources/placeholder.jpg" alt="Article thumbnail" class="card-thumb">
@@ -334,7 +324,6 @@
                   </div>
                 </div>
               </div>
-
               <div class="card" tabindex="0">
                 <div class="card-image-wrapper">
                   <img src="Resources/placeholder.jpg" alt="Article thumbnail" class="card-thumb">
@@ -356,7 +345,6 @@
                   </div>
                 </div>
               </div>
-
               <div class="card" tabindex="0">
                 <div class="card-image-wrapper">
                   <img src="Resources/placeholder.jpg" alt="Article thumbnail" class="card-thumb">
@@ -378,7 +366,6 @@
                   </div>
                 </div>
               </div>
-
               <div class="card" tabindex="0">
                 <div class="card-image-wrapper">
                   <img src="Resources/placeholder.jpg" alt="Article thumbnail" class="card-thumb">
@@ -400,7 +387,6 @@
                   </div>
                 </div>
               </div>
-
               <div class="card" tabindex="0">
                 <div class="card-image-wrapper">
                   <img src="Resources/placeholder.jpg" alt="Article thumbnail" class="card-thumb">
@@ -422,7 +408,6 @@
                   </div>
                 </div>
               </div>
-
             </div>
           </div>
 
@@ -430,7 +415,6 @@
           <div id="col-popular" class="column-section">
             <h3 class="column-title">Popular Articles</h3>
             <div class="card-stack">
-
               <div class="card" tabindex="0">
                 <div class="card-image-wrapper">
                   <img src="Resources/placeholder.jpg" alt="Article thumbnail" class="card-thumb">
@@ -452,7 +436,6 @@
                   </div>
                 </div>
               </div>
-
               <div class="card" tabindex="0">
                 <div class="card-image-wrapper">
                   <img src="Resources/placeholder.jpg" alt="Article thumbnail" class="card-thumb">
@@ -474,7 +457,6 @@
                   </div>
                 </div>
               </div>
-
               <div class="card" tabindex="0">
                 <div class="card-image-wrapper">
                   <img src="Resources/placeholder.jpg" alt="Article thumbnail" class="card-thumb">
@@ -496,7 +478,6 @@
                   </div>
                 </div>
               </div>
-
               <div class="card" tabindex="0">
                 <div class="card-image-wrapper">
                   <img src="Resources/placeholder.jpg" alt="Article thumbnail" class="card-thumb">
@@ -518,7 +499,6 @@
                   </div>
                 </div>
               </div>
-
               <div class="card" tabindex="0">
                 <div class="card-image-wrapper">
                   <img src="Resources/placeholder.jpg" alt="Article thumbnail" class="card-thumb">
@@ -540,7 +520,6 @@
                   </div>
                 </div>
               </div>
-
             </div>
           </div>
 
@@ -552,11 +531,8 @@
   <!-- Large Pop-Up Article Modal Container -->
   <div id="modal-backdrop" class="modal-backdrop" aria-hidden="true">
     <div id="article-modal" class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modal-title">
-      
-      <!-- Close Button -->
       <button id="modal-close-btn" class="modal-close-btn" aria-label="Close details">✕</button>
 
-      <!-- Top Thumbnail Banner (Dimmed and Centered) -->
       <div class="modal-hero-image-wrapper">
         <img id="modal-thumbnail" src="Resources/placeholder.jpg" alt="Article thumbnail" class="modal-hero-thumb">
         <div class="modal-hero-overlay"></div>
@@ -566,26 +542,21 @@
         </div>
       </div>
 
-      <!-- Modal Body Content -->
       <div class="modal-body-content">
         <h2 id="modal-title" class="modal-heading">Placeholder Title</h2>
-        
         <div id="modal-tags" class="card-tags">
           <span class="card-tag">#PlaceholderTag</span>
           <span class="card-tag">#PlaceholderTag</span>
         </div>
 
-        <!-- External Source Link Button -->
         <div class="modal-actions">
           <a id="modal-source-btn" href="#" target="_blank" rel="noopener noreferrer" class="c-button modal-source-link">
             Visit Source Website &rarr;
           </a>
         </div>
 
-        <!-- Embedded Recommended Article Section -->
         <div class="modal-recommendation-section">
           <h4 class="modal-rec-title">Recommended Article</h4>
-          
           <div class="card modal-rec-card" tabindex="0">
             <div class="card-image-wrapper">
               <img src="Resources/placeholder.jpg" alt="Article thumbnail" class="card-thumb">
@@ -607,10 +578,8 @@
               </div>
             </div>
           </div>
-
         </div>
       </div>
-
     </div>
   </div>
 
