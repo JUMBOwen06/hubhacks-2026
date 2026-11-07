@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Article Search</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Top App Bar -->
+  <header class="top-nav">
+    <button id="sidebar-toggle-btn" class="icon-btn" aria-label="Open Sidebar">☰</button>
+    <div class="brand-title">DevPortal</div>
+  </header>
+
+  <!-- Slide-Out Horizontal Side Navigation -->
+  <aside id="side-nav" class="side-nav" aria-label="Main Navigation">
+    <div class="side-nav-header">
+      <span class="brand-title">Menu</span>
+      <button id="sidebar-close-btn" class="icon-btn" aria-label="Close Sidebar">✕</button>
+    </div>
+    <nav class="side-nav-menu">
+      <a href="#placeholder" class="nav-link">Placeholder Link 1</a>
+      <a href="#placeholder" class="nav-link">Placeholder Link 2</a>
+      <a href="#placeholder" class="nav-link">Placeholder Link 3</a>
+      <a href="#placeholder" class="nav-link">Placeholder Link 4</a>
+      <a href="#placeholder" class="nav-link">Placeholder Link 5</a>
+    </nav>
+  </aside>
+
+  <!-- Background overlay when side menu is active -->
+  <div id="backdrop" class="backdrop"></div>
+
+  <!-- Main Hero Section -->
+  <main>
+    <section class="search-hero-section">
+      <!-- Horizontally Centered Wrapper -->
+      <div class="search-wrapper">
+        
+        <!-- Search Input Bar -->
+        <form id="search-form" class="search-box">
+          <input 
+            type="text" 
+            id="search-input" 
+            class="search-input" 
+            placeholder="Search articles by title, topic, or keyword..."
+            autocomplete="off"
+          >
+          <button type="submit" class="search-submit-btn">Search</button>
+        </form>
+
+        <!-- Attached Filter Tags Dropdown Menu (Uiverse.io styled) -->
+        <div class="menu">
+          <div class="item">
+            <div class="link" tabindex="0" role="button" aria-haspopup="true" aria-expanded="false">
+              <span id="tag-dropdown-label">Filter by Tags</span>
+              <svg viewBox="0 0 360 360" xml:space="preserve">
+                <g id="SVGRepo_iconCarrier">
+                  <path
+                    d="M325.607,79.393c-5.857-5.857-15.355-5.858-21.213,0.001l-139.39,139.393L25.607,79.393 c-5.857-5.857-15.355-5.858-21.213,0.001c-5.858,5.858-5.858,15.355,0,21.213l150.004,150c2.813,2.813,6.628,4.393,10.606,4.393 s7.794-1.581,10.606-4.394l149.996-150C331.465,94.749,331.465,85.251,325.607,79.393z"
+                  ></path>
+                </g>
+              </svg>
+            </div>
+            
+            <!-- Checkbox Items -->
+            <div class="submenu" role="menu">
+              <div class="submenu-item">
+                <label class="tag-label">
+                  <input type="checkbox" name="tag" value="frontend" class="tag-checkbox">
+                  <span>Development</span>
+                </label>
+              </div>
+              <div class="submenu-item">
+                <label class="tag-label">
+                  <input type="checkbox" name="tag" value="systems" class="tag-checkbox">
+                  <span>Systems & C</span>
+                </label>
+              </div>
+              <div class="submenu-item">
+                <label class="tag-label">
+                  <input type="checkbox" name="tag" value="architecture" class="tag-checkbox">
+                  <span>Architecture</span>
+                </label>
+              </div>
+              <div class="submenu-item">
+                <label class="tag-label">
+                  <input type="checkbox" name="tag" value="database" class="tag-checkbox">
+                  <span>Databases & SQL</span>
+                </label>
+              </div>
+              <div class="submenu-item">
+                <label class="tag-label">
+                  <input type="checkbox" name="tag" value="security" class="tag-checkbox">
+                  <span>Security & Auth</span>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Pronounced Divider -->
+    <div class="section-divider" role="separator" aria-hidden="true"></div>
+
+    <!-- Lower Section: 3-Column Placeholders -->
+    <section class="lower-pattern-container">
+      <div class="pattern-bg">
+        <svg
+          preserveAspectRatio="xMidYMid slice"
+          height="100%"
+          width="100%"
+          class="cube-svg"
+          viewBox="0 0 120 104"
+        >
+          <defs>
+            <linearGradient y2="100%" x2="100%" y1="0%" x1="0%" id="cube-dark">
+              <stop stop-color="#191512" offset="0%"></stop>
+              <stop stop-color="#342821" offset="100%"></stop>
+            </linearGradient>
+            <linearGradient y2="0%" x2="100%" y1="100%" x1="0%" id="cube-mid">
+              <stop stop-color="#5a4132" offset="0%"></stop>
+              <stop stop-color="#241a14" offset="100%"></stop>
+            </linearGradient>
+            <linearGradient y2="100%" x2="0%" y1="0%" x1="100%" id="cube-light">
+              <stop stop-color="#b87948" offset="0%"></stop>
+              <stop stop-color="#d99f70" offset="100%"></stop>
+            </linearGradient>
+          </defs>
+          <g>
+            <polygon fill="url(#cube-dark)" points="60,0 120,34 60,68 0,34"></polygon>
+            <polygon fill="url(#cube-mid)" points="0,34 60,68 60,104 0,70"></polygon>
+            <polygon fill="url(#cube-light)" points="60,68 120,34 120,70 60,104"></polygon>
+          </g>
+        </svg>
+      </div>
+
+      <div class="lower-content-wrapper">
+        <div class="content-grid">
+          
+          <!-- Column 1: Recently Searched -->
+          <div id="col-recent" class="column-section">
+            <h3 class="column-title">Recently Searched Articles</h3>
+            <div class="card-stack">
+              <div class="placeholder-card">
+                <h4>[Recent #1] Article Placeholder</h4>
+                <p>Awaiting query log data...</p>
+              </div>
+              <div class="placeholder-card">
+                <h4>[Recent #2] Article Placeholder</h4>
+                <p>Awaiting query log data...</p>
+              </div>
+              <div class="placeholder-card">
+                <h4>[Recent #3] Article Placeholder</h4>
+                <p>Awaiting query log data...</p>
+              </div>
+              <div class="placeholder-card">
+                <h4>[Recent #4] Article Placeholder</h4>
+                <p>Awaiting query log data...</p>
+              </div>
+              <div class="placeholder-card">
+                <h4>[Recent #5] Article Placeholder</h4>
+                <p>Awaiting query log data...</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Column 2: Recommended -->
+          <div id="col-recommended" class="column-section">
+            <h3 class="column-title">Recommended Articles</h3>
+            <div class="card-stack">
+              <div class="placeholder-card">
+                <h4>[Recommended #1] Article Placeholder</h4>
+                <p>Awaiting recommendation model output...</p>
+              </div>
+              <div class="placeholder-card">
+                <h4>[Recommended #2] Article Placeholder</h4>
+                <p>Awaiting recommendation model output...</p>
+              </div>
+              <div class="placeholder-card">
+                <h4>[Recommended #3] Article Placeholder</h4>
+                <p>Awaiting recommendation model output...</p>
+              </div>
+              <div class="placeholder-card">
+                <h4>[Recommended #4] Article Placeholder</h4>
+                <p>Awaiting recommendation model output...</p>
+              </div>
+              <div class="placeholder-card">
+                <h4>[Recommended #5] Article Placeholder</h4>
+                <p>Awaiting recommendation model output...</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Column 3: Popular -->
+          <div id="col-popular" class="column-section">
+            <h3 class="column-title">Popular Articles</h3>
+            <div class="card-stack">
+              <div class="placeholder-card">
+                <h4>[Popular #1] Article Placeholder</h4>
+                <p>Awaiting trending view counter data...</p>
+              </div>
+              <div class="placeholder-card">
+                <h4>[Popular #2] Article Placeholder</h4>
+                <p>Awaiting trending view counter data...</p>
+              </div>
+              <div class="placeholder-card">
+                <h4>[Popular #3] Article Placeholder</h4>
+                <p>Awaiting trending view counter data...</p>
+              </div>
+              <div class="placeholder-card">
+                <h4>[Popular #4] Article Placeholder</h4>
+                <p>Awaiting trending view counter data...</p>
+              </div>
+              <div class="placeholder-card">
+                <h4>[Popular #5] Article Placeholder</h4>
+                <p>Awaiting trending view counter data...</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Sidebar & Tag Badge Script -->
+  <script>
+    const sideNav = document.getElementById('side-nav');
+    const backdrop = document.getElementById('backdrop');
+    const toggleBtn = document.getElementById('sidebar-toggle-btn');
+    const closeBtn = document.getElementById('sidebar-close-btn');
+    const searchForm = document.getElementById('search-form');
+    const searchInput = document.getElementById('search-input');
+    const tagDropdownLabel = document.getElementById('tag-dropdown-label');
+    const checkboxes = document.querySelectorAll('.tag-checkbox');
+
+    function openNav() {
+      sideNav.classList.add('open');
+      backdrop.classList.add('open');
+    }
+
+    function closeNav() {
+      sideNav.classList.remove('open');
+      backdrop.classList.remove('open');
+    }
+
+    toggleBtn.addEventListener('click', openNav);
+    closeBtn.addEventListener('click', closeNav);
+    backdrop.addEventListener('click', closeNav);
+
+    // Dynamic Tag Count updater
+    checkboxes.forEach(cb => {
+      cb.addEventListener('change', () => {
+        const checkedCount = document.querySelectorAll('.tag-checkbox:checked').length;
+        if (checkedCount === 0) {
+          tagDropdownLabel.textContent = 'Filter by Tags';
+        } else {
+          tagDropdownLabel.textContent = `Tags (${checkedCount} selected)`;
+        }
+      });
+    });
+
+    // Search submit listener packaging active search query + selected tag filters
+    searchForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const query = searchInput.value.trim();
+      const selectedTags = Array.from(document.querySelectorAll('.tag-checkbox:checked')).map(cb => cb.value);
+      
+      console.log('Search dispatched:', { query, selectedTags });
+      // Ready for your team: fetch(`/api/search?q=${encodeURIComponent(query)}&tags=${selectedTags.join(',')}`)
+    });
+  </script>
+</body>
+</html>
