@@ -32,3 +32,10 @@ def test_like_engine_matches_fts_results(like_conn, q, expected):
     r = search.search(like_conn, q)
     assert r["engine"] == "like"
     assert {x["id"] for x in r["results"]} == expected
+
+
+def test_like_engine_highlights_and_skips_filler(like_conn):
+    book = next(x for x in search.search(like_conn, "Africville")["results"] if x["id"] == "BOOK-002")
+    assert book["highlight"]["title"] == "A Love Letter to <mark>Africville</mark>"
+    assert "<mark>Africville</mark>" in book["highlight"]["description"]
+    assert search.search(like_conn, "and or")["total"] == 27

@@ -36,3 +36,18 @@ def test_suggest_stats_vocab(client):
     assert client.get("/suggest", params={"q": "Afr"}).json()[0]["label"] == "Africville"
     assert client.get("/stats").json()["records"] == 27
     assert client.get("/vocab").json()["status"].startswith("draft")
+
+
+def test_labels_endpoint(client):
+    labels = client.get("/labels").json()
+    assert labels["resource_type"]["journal_article"] == "Journal article"
+    assert labels["collection_method"]["manual"] == "Entered by hand"
+    assert "/labels" in client.get("/").json()["endpoints"]
+
+
+def test_search_highlights_and_undated_filter(client):
+    r = client.get("/search", params={"q": "Africville"}).json()
+    assert all("<mark>" in x["highlight"]["title"] + (x["highlight"]["description"] or "")
+               for x in r["results"])
+    undated = client.get("/search", params={"undated_only": "true", "limit": 100}).json()
+    assert undated["total"] == 7

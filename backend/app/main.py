@@ -12,7 +12,7 @@ from typing import Literal
 from fastapi import Depends, FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
 
-from . import build, config, db, search, vocab
+from . import build, config, db, labels, search, vocab
 
 
 @asynccontextmanager
@@ -52,7 +52,7 @@ def root():
         "name": app.title,
         "docs": "/docs",
         "endpoints": ["/search", "/records/{id}", "/entities", "/entities/{id}", "/institutions",
-                      "/institutions/{id}", "/suggest", "/stats", "/vocab", "/health"],
+                      "/institutions/{id}", "/suggest", "/stats", "/vocab", "/labels", "/health"],
     }
 
 
@@ -74,6 +74,7 @@ def search_records(
     year_from: int | None = Query(None, description="Historical date overlaps this year or later"),
     year_to: int | None = Query(None),
     include_undated: bool = Query(False, description="Keep undated records when filtering by year"),
+    undated_only: bool = Query(False, description="Only records with no historical date (the Undated decade facet)"),
     sort: Literal["relevance", "date", "title"] = "relevance",
     limit: int = Query(20, ge=1, le=100),
     offset: int = Query(0, ge=0),
@@ -82,7 +83,7 @@ def search_records(
     filters = search.Filters(
         institution=institution or [], resource_type=resource_type or [], digitized=digitized or [],
         access_mode=access_mode or [], collection_method=collection_method or [], entity=entity or [],
-        year_from=year_from, year_to=year_to, include_undated=include_undated,
+        year_from=year_from, year_to=year_to, include_undated=include_undated, undated_only=undated_only,
     )
     return search.search(conn, q, filters, sort=sort, limit=limit, offset=offset)
 
@@ -140,3 +141,13 @@ def stats(conn=Depends(get_conn)):
 def terminology():
     """The terminology bridge (draft for BCCNS review), shown for transparency."""
     return {"status": "draft for BCCNS and community review", "groups": vocab.GROUPS}
+
+
+@app.get("/labels", tags=["meta"])
+def display_labels():
+    """Display labels for every code the API returns, e.g. journal_article -> "Journal article".
+
+    Fetch once when the frontend starts and look codes up as
+    labels[field][code], e.g. labels.resource_type.journal_article.
+    """
+    return labels.LABELS

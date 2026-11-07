@@ -4,7 +4,7 @@ Claude Code reads this file at the start of every session. It holds everything n
 continue the project: who you are, the brief, decisions already made, the data, the
 schema, the backend as built, what's next, and the rules that keep the work trustworthy.
 
-Last updated: Friday 2026-11-06, 21:50 Atlantic (America/Halifax).
+Last updated: Saturday 2026-11-07, 18:45 Atlantic (America/Halifax).
 
 ---
 
@@ -201,7 +201,7 @@ py -m venv .venv
 .venv\Scripts\Activate.ps1
 pip install -r requirements.txt          # add requirements-dev.txt for tests
 uvicorn app.main:app --reload            # http://127.0.0.1:8000/docs
-pytest                                    # 31 tests
+pytest                                    # 51 tests
 python -m app.build                       # build the DB without the server
 ```
 - Env vars: `HUBHACKS_DB` (SQLite path, default `backend/data/hubhacks.db`),
@@ -211,7 +211,8 @@ python -m app.build                       # build the DB without the server
 - FTS5 check: `python -c "import sqlite3; sqlite3.connect(':memory:').execute('create virtual table t using fts5(a)'); print('FTS5 OK')"`.
   If it fails, search falls back to plain text matching automatically.
 - Tested on Python 3.10 (Linux) and on Om's Windows machine (Python 3.13.7, SQLite 3.50.4,
-  FTS5 available, all tests passing, server started, 2026-11-06).
+  FTS5 available, all tests passing, server started, 2026-11-06). The 2026-11-07 fixes
+  were tested the same way before they were committed: 51 tests pass.
 
 ---
 
@@ -322,9 +323,10 @@ backend/
   app/ingest/common.py   slugify, years_from_label, ensure_entity, link_entity
   app/ingest/verified_json.py   adapter for the team's JSON (verified tier)
   app/vocab.py           terminology bridge (DRAFT for BCCNS review)
+  app/labels.py          display labels for every code the API returns (/labels)
   app/search.py          search, filters, facets, why-matched, record/entity/institution queries
   app/main.py            FastAPI app (GET only, CORS open for local dev)
-  tests/                 31 pytest tests: build, search, API, no-FTS5 fallback
+  tests/                 51 pytest tests: build, search, API, labels, no-FTS5 fallback
   README.md              run steps, endpoint list, result card shape
 ```
 
@@ -382,23 +384,44 @@ The National Archives UK as a holder), 157 entities (31 people, 36 places, 9 com
   escaped slave(s); enslaved people / enslavement / slavery / slave(s); Black Canadian(s)
   / African Canadian(s); African Nova Scotian(s) / Black Nova Scotian(s); Upper Canada /
   Canada West / Ontario; Maroon Hill / Boydville; (Upper) Hammonds Plains / Hammond's
-  Plains; Mary Ann Shadd Cary / Mary Ann Shadd.
+  Plains; Mary Ann Shadd Cary / Mary Ann Shadd. Each distinct form is searched once:
+  `distinct_phrases` asks SQLite's own tokenizer, drops forms that stem the same ("freedom
+  seekers" = "freedom seeker") or contain another form ("mary ann shadd cary"), so BM25
+  doesn't count one use twice. Same records found; scores for group queries roughly halved.
+- A query of only filler words ("and or", "the") browses everything instead of prefix-
+  matching "oral"/"Orleans"; dropped words are in `interpreted.ignored`.
 - Filters: institution (source or holder), resource_type, digitized, access_mode,
   collection_method, entity (all must match), year_from/year_to (overlap with historical
-  dates only), include_undated. Sorts: relevance, date, title.
-- Every result has `why` (fields matched, people/places with roles, related terms used).
+  dates only), include_undated, undated_only (no historical date = the Undated facet).
+  Sorts: relevance, date, title. Paging happens in SQL (LIMIT/OFFSET, ties by index rowid);
+  every matching id goes to a temp `hits` table for the total and facets.
+- Every result has `why` (fields matched, people/places with roles, related terms used)
+  and `highlight` {title, description}: escaped HTML with `<mark>`; description is a
+  ~30-word excerpt or null when only people/places/subjects matched.
 - Facets on the result set: resource_type, digitized, access_mode, collection_method,
   institution, decade (incl. undated), top 15 people, places, communities, subjects.
+  Every item has `value`, `label`, `count`; decades add `year_from`/`year_to`/`undated_only`; entity
+  facets add `roles` (so authors and the people records are about can be shown apart).
+- `interpreted.terms` = each query part as the user typed it (not the group's first term).
 - No results: an honest message ("does not mean the material doesn't exist") plus
   spelling suggestions from entity names and titles.
 - Connected records: other records sharing entities, weighted person/community/event 3,
-  subject 1.5, place 1; curated same-resource partners shown separately.
+  subject 1.5, place 1; curated same-resource partners shown separately. Each shared
+  entity has `link` + `label` + `roles_here`/`roles_there`: `shared_subject`, `shared_place`,
+  `same_author` (made both records; weight 1) or `named_in_both` (weight 1). An author is
+  never shown as a shared subject (research rule: "shares a subject", never imply people
+  interacted). Each connected record has a `summary` string. Connections made only of
+  broad places (linked to > 25% of records: today Nova Scotia 18/27, Halifax 8/27;
+  `BROAD_PLACE_SHARE`) are hidden: 280 of 402 pairs, so JRN-004 and JRN-009 have none.
+- Entity pages: `appears_with` items carry `relation` (named_together, made_record_naming,
+  named_in_work_by, co_credited), `roles` and a ready `label` ("Author of 1 record naming
+  Viola Desmond"). `/entities` list items carry `roles`.
 - Fallback engine `like` (no FTS5): substring matching with the same weights and output.
 - FTS syntax errors (odd characters) automatically fall back to the `like` engine.
 
 ### API (all GET; interactive docs at `/docs`)
 `/search`, `/records/{id}`, `/entities?type=&q=`, `/entities/{id}`, `/institutions`,
-`/institutions/{id}`, `/suggest?q=`, `/stats`, `/vocab`, `/health`, `/`.
+`/institutions/{id}`, `/suggest?q=`, `/stats`, `/vocab`, `/labels`, `/health`, `/`.
 
 Search result card:
 ```text
@@ -425,6 +448,10 @@ Search response: `query, engine, total, limit, offset, results, facets, interpre
 | `book of negroes` | both access points, each showing the other in `also_available_from` |
 | `Viola Desmund` | 0 results, honest message, suggests Viola Desmond |
 | `/records/BIO-001` | first connected record is BOOK-001 |
+| `/records/JRN-007` | JRN-008 connected: "Shares a subject: Africville, ...; Same author: Tina Loo" (score 9) |
+| `/entities/person:viola-desmond` | Graham Reynolds: "Author of 1 record naming Viola Desmond" |
+| `Escaped Slave Ontario` | `interpreted.terms` = `["escaped slave", "ontario"]` |
+| every CHECK value in `schema.sql` | has a label in `app/labels.py` |
 
 Quirk: Porter stemming makes some typos match anyway ("Africvile" finds Africville).
 Harmless warning: Starlette's TestClient deprecation notice about httpx.
@@ -454,7 +481,11 @@ Harmless warning: Starlette's TestClient deprecation notice about httpx.
    challenges (Érudit does this) as "blocked", not broken.
 6. **Frontend support**: keep response shapes stable; add what the frontend developer
    needs (e.g. `/records?ids=`). Pages: Home/Search, Record Details, Sources/Institutions,
-   About/How it works, plus connection pages.
+   About/How it works, plus connection pages. Done 2026-11-07: `/labels`, facet labels and
+   decade years, roles on connections and entity facets, `interpreted.terms` as typed;
+   then highlights, `undated_only`, synonyms counted once, broad-place links hidden,
+   filler-only queries, paging in SQL. Left for scaling (present as next steps): CORS
+   origins by env var, build the DB once and swap it in atomically for several workers.
 7. **Stretch, only if core is done by Sat 2pm:** AI question-to-filters (server-side key in
    `.env`; validate output against allowed filter values; show the interpreted filters;
    never generate facts). Free-tier Gemini requests may be used to improve Google

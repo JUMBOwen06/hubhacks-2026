@@ -53,6 +53,7 @@ database at a local folder: `$env:HUBHACKS_DB="$env:TEMP\hubhacks.db"` (PowerShe
 | `/suggest?q=` | Autocomplete: people, places, communities, subjects, titles |
 | `/stats` | Counts for the About page and the pitch |
 | `/vocab` | The terminology bridge (draft), shown for transparency |
+| `/labels` | Display labels for every code the API returns (`journal_article` -> "Journal article"); fetch once |
 | `/health` | Record count and search engine in use |
 
 ### `/search` filters
@@ -61,8 +62,10 @@ All optional, and every list filter can repeat (`resource_type=book&resource_typ
 `institution` (source or holder id), `resource_type`, `digitized`, `access_mode`,
 `collection_method` (`manual` = verified tier, `export` = imported), `entity` (entity id;
 records must link to all), `year_from`, `year_to` (overlap with historical dates, not
-publication dates), `include_undated`, `sort` (`relevance`, `date`, `title`), `limit`, `offset`.
-Empty `q` = browse everything with filters.
+publication dates), `include_undated`, `undated_only` (only records with no historical date:
+the "Undated" decade facet), `sort` (`relevance`, `date`, `title`), `limit`, `offset`.
+Empty `q`, or a `q` made only of filler words such as "and" or "the", browses everything
+with filters.
 
 ### Result card (each item in `results`)
 ```text
@@ -72,10 +75,40 @@ digitized, access_mode, source_url, collection_method, verification_status, last
 entities {person|place|community|subject: [{id, name, roles}]},
 also_available_from [{record_id, institution, source_url}],   # same resource, other institution
 why {summary, fields, entities, related_terms},               # only when q is given
+highlight {title, description},                               # only when q is given
 score
 ```
 Show `source_url` as the "View at source" button. Show `content_note` before the
 description when present. `also_available_from` is the "one resource, several doors" link.
+Show codes such as `resource_type` and `digitized` through `/labels`.
+`highlight` is HTML, safe to insert as-is: the record text is escaped and the matched words
+are wrapped in `<mark>`. `highlight.title` is the whole title; `highlight.description` is
+about 30 words of the description around the first match, or `null` when the description
+itself didn't match (the record matched through its people, places or subjects).
+
+### Search response extras
+- `interpreted.terms`: one entry per query part, as the user typed it (`"ontario"`), and
+  `interpreted.related_terms`: the synonym groups searched, for an "also searched for" banner.
+  `interpreted.ignored`: filler words left out of the search (`["the", "of"]`).
+- Facets: every item has `value` (send it as the filter of the same name), `label` and `count`.
+  Decade items also have `year_from` and `year_to` (`null` for undated) and `undated_only`
+  (`true` only for "Undated": send `undated_only=true` instead of years). Person, place,
+  community and subject items also have `roles`, so authors (`author`) can be listed apart
+  from the people the records are about (`subject`).
+
+### Connections: never imply that people met or worked together
+- `/records/{id}` -> `connected`: `{id, title, resource_type, record_source, score, summary,
+  shared: [{id, name, type, link, label, weight, roles_here, roles_there}]}`. `link` is
+  `shared_subject` ("Shares a subject"), `shared_place` ("Shares a place"), `same_author`
+  ("Same author") or `named_in_both`. Show `summary`, e.g. "Shares a subject: Africville;
+  Same author: Tina Loo". Records that share only broad places (places linked to more than
+  a quarter of all records, today Nova Scotia and Halifax) are not listed, so `connected`
+  can be empty: show nothing, or "No connected records yet".
+- `/entities/{id}` -> `appears_with`: `{id, name, entity_type, shared_records, roles,
+  relation, label}`. `relation` is `named_together`, `made_record_naming`,
+  `named_in_work_by` or `co_credited`. Show `label`, e.g. "Author of 1 record naming
+  Viola Desmond", under a heading such as "Named in the same records".
+- `/entities` list items have `roles` too.
 
 ## How the data is handled
 
@@ -101,9 +134,12 @@ description when present. `also_available_from` is the "one resource, several do
 
 SQLite FTS5 with BM25 ranking. Title counts 10x, people/places/subjects 6x, description
 3x. Prefix matching and English stemming are on. Query words are ANDed; a terminology
-group is searched as an OR of its terms. Each result reports which fields, people or
+group is searched as an OR of its terms, with each distinct form counted once ("freedom
+seekers" and "freedom seeker" are the same words to the index). Each result reports which fields, people or
 related terms matched. "Connected records" share people, communities, subjects or places,
-with people and communities weighted most.
+with people and communities weighted most (3), subjects 1.5 and places 1. Someone who wrote
+both records counts 1 and is labelled "Same author", never as a shared subject. Only the
+requested page of results is ranked out, highlighted and explained inside SQLite.
 
 ## Adding a source
 
@@ -124,7 +160,8 @@ backend/
   app/main.py             FastAPI endpoints
   app/search.py           search, filters, facets, record/entity/institution queries
   app/vocab.py            terminology bridge (draft)
+  app/labels.py           display labels for every code (served at /labels)
   app/build.py            builds the database from the sources
   app/ingest/             one adapter per source format
-  tests/                  pytest suite (31 tests)
+  tests/                  pytest suite (51 tests)
 ```
