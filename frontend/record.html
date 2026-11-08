@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Record — Black History Hub</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="js/script.js" defer></script>
+  <script src="js/data.js" defer></script>
+  <script src="js/record.js" defer></script>
+</head>
+<body class="results-page record-page">
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <!-- Hidden SVG Gooey Filter -->
+  <svg xmlns="http://www.w3.org/2000/svg" version="1.1" aria-hidden="true" focusable="false" style="display: block; height: 0; width: 0; position: absolute;">
+    <defs>
+      <filter id="goo">
+        <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur"></feGaussianBlur>
+        <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="goo"></feColorMatrix>
+        <feBlend in="SourceGraphic" in2="goo"></feBlend>
+      </filter>
+    </defs>
+  </svg>
+
+  <!-- Top App Bar -->
+  <header class="top-nav">
+    <button id="sidebar-toggle-btn" class="icon-btn nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="side-nav">☰</button>
+    <a href="index.html" class="brand-title">Black History Hub</a>
+    <nav class="top-nav-links" aria-label="Main">
+      <a href="index.html" class="top-nav-link">Search</a>
+      <a href="institutions.html" class="top-nav-link">Institutions</a>
+      <a href="about.html" class="top-nav-link">About</a>
+    </nav>
+  </header>
+
+  <!-- Slide-Out Side Navigation (mobile) -->
+  <aside id="side-nav" class="side-nav" aria-label="Site menu" inert>
+    <div class="side-nav-header">
+      <span class="brand-title">Menu</span>
+      <button id="sidebar-close-btn" class="icon-btn" aria-label="Close menu">✕</button>
+    </div>
+    <nav class="side-nav-menu" aria-label="Main">
+      <a href="index.html" class="nav-link">Search</a>
+      <a href="institutions.html" class="nav-link">Institutions</a>
+      <a href="about.html" class="nav-link">About</a>
+    </nav>
+  </aside>
+
+  <!-- Background overlay when side menu is active -->
+  <div id="backdrop" class="backdrop"></div>
+
+  <main id="main" class="results-main">
+    <section class="results-hero-section page-hero record-hero" aria-labelledby="page-title">
+      <div class="search-wrapper">
+        <a id="back-link" class="record-back" href="index.html">&larr; Back to search</a>
+        <p id="record-type" class="record-type"></p>
+        <h1 id="page-title" class="hero-title">Loading record…</h1>
+        <p id="record-date" class="hero-tagline"></p>
+        <p id="record-content-note" class="record-content-note" hidden></p>
+        <div id="record-actions" class="record-actions"></div>
+      </div>
+    </section>
+
+    <div class="section-divider" role="separator" aria-hidden="true"></div>
+
+    <section class="lower-pattern-container results-container" aria-label="Record details">
+      <div class="pattern-bg" aria-hidden="true">
+        <svg
+          preserveAspectRatio="xMidYMid slice"
+          height="100%"
+          width="100%"
+          class="cube-svg"
+          viewBox="0 0 120 104"
+          aria-hidden="true"
+          focusable="false"
+        >
+          <defs>
+            <linearGradient y2="100%" x2="100%" y1="0%" x1="0%" id="cube-dark">
+              <stop stop-color="#191512" offset="0%"></stop>
+              <stop stop-color="#342821" offset="100%"></stop>
+            </linearGradient>
+            <linearGradient y2="0%" x2="100%" y1="100%" x1="0%" id="cube-mid">
+              <stop stop-color="#5a4132" offset="0%"></stop>
+              <stop stop-color="#241a14" offset="100%"></stop>
+            </linearGradient>
+            <linearGradient y2="100%" x2="0%" y1="0%" x1="100%" id="cube-light">
+              <stop stop-color="#b87948" offset="0%"></stop>
+              <stop stop-color="#d99f70" offset="100%"></stop>
+            </linearGradient>
+          </defs>
+          <g>
+            <polygon fill="url(#cube-dark)" points="60,0 120,34 60,68 0,34"></polygon>
+            <polygon fill="url(#cube-mid)" points="0,34 60,68 60,104 0,70"></polygon>
+            <polygon fill="url(#cube-light)" points="60,68 120,34 120,70 60,104"></polygon>
+          </g>
+        </svg>
+      </div>
+
+      <div id="record-body" class="results-content-wrapper about-wrapper record-wrapper" aria-live="polite">
+        <noscript><p class="column-section">This page needs JavaScript to show the record.</p></noscript>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p class="site-footer-name">Black History Hub</p>
+    <p>Built for the Black Cultural Centre for Nova Scotia · HubHacks 2026</p>
+    <nav class="site-footer-links" aria-label="Footer">
+      <a href="institutions.html">Institutions</a>
+      <a href="about.html">About</a>
+    </nav>
+  </footer>
+
+</body>
+</html>
