@@ -28,3 +28,13 @@ def dataset_path() -> Path:
 def rebuild_on_start() -> bool:
     """Rebuild the database from the dataset every time the API starts (default on)."""
     return os.environ.get("HUBHACKS_REBUILD_ON_START", "1") != "0"
+
+
+def impact_db_path() -> Path:
+    """SQLite file for the Impact page's anonymous counts. Kept across restarts."""
+    return Path(os.environ.get("HUBHACKS_IMPACT_DB", BACKEND_DIR / "data" / "impact.db"))
+
+
+def impact_key() -> str | None:
+    """If set, GET /impact needs this key (?key= or X-Impact-Key header). Unset: open, for demos."""
+    return os.environ.get("HUBHACKS_IMPACT_KEY") or None

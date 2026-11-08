@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Impact — Black History Hub</title>
+  <meta name="robots" content="noindex">
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="js/script.js" defer></script>
+  <script src="js/impact.js" defer></script>
+</head>
+<body class="results-page about-page impact-page">
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <!-- Hidden SVG Gooey Filter -->
+  <svg xmlns="http://www.w3.org/2000/svg" version="1.1" aria-hidden="true" focusable="false" style="display: block; height: 0; width: 0; position: absolute;">
+    <defs>
+      <filter id="goo">
+        <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur"></feGaussianBlur>
+        <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="goo"></feColorMatrix>
+        <feBlend in="SourceGraphic" in2="goo"></feBlend>
+      </filter>
+    </defs>
+  </svg>
+
+  <!-- Top App Bar -->
+  <header class="top-nav">
+    <button id="sidebar-toggle-btn" class="icon-btn nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="side-nav">☰</button>
+    <a href="index.html" class="brand-title">Black History Hub</a>
+    <nav class="top-nav-links" aria-label="Main">
+      <a href="index.html" class="top-nav-link">Search</a>
+      <a href="institutions.html" class="top-nav-link">Institutions</a>
+      <a href="about.html" class="top-nav-link">About</a>
+    </nav>
+  </header>
+
+  <!-- Slide-Out Side Navigation (mobile) -->
+  <aside id="side-nav" class="side-nav" aria-label="Site menu" inert>
+    <div class="side-nav-header">
+      <span class="brand-title">Menu</span>
+      <button id="sidebar-close-btn" class="icon-btn" aria-label="Close menu">✕</button>
+    </div>
+    <nav class="side-nav-menu" aria-label="Main">
+      <a href="index.html" class="nav-link">Search</a>
+      <a href="institutions.html" class="nav-link">Institutions</a>
+      <a href="about.html" class="nav-link">About</a>
+    </nav>
+  </aside>
+
+  <!-- Background overlay when side menu is active -->
+  <div id="backdrop" class="backdrop"></div>
+
+  <main id="main" class="results-main">
+    <section class="results-hero-section page-hero" aria-labelledby="page-title">
+      <div class="search-wrapper">
+        <h1 id="page-title" class="hero-title">Impact</h1>
+        <p class="hero-tagline">How people use the hub, counted anonymously. For the team and the Black Cultural Centre.</p>
+      </div>
+    </section>
+
+    <div class="section-divider" role="separator" aria-hidden="true"></div>
+
+    <section class="lower-pattern-container results-container" aria-label="Impact">
+      <div class="pattern-bg" aria-hidden="true">
+        <svg
+          preserveAspectRatio="xMidYMid slice"
+          height="100%"
+          width="100%"
+          class="cube-svg"
+          viewBox="0 0 120 104"
+          aria-hidden="true"
+          focusable="false"
+        >
+          <defs>
+            <linearGradient y2="100%" x2="100%" y1="0%" x1="0%" id="cube-dark">
+              <stop stop-color="#191512" offset="0%"></stop>
+              <stop stop-color="#342821" offset="100%"></stop>
+            </linearGradient>
+            <linearGradient y2="0%" x2="100%" y1="100%" x1="0%" id="cube-mid">
+              <stop stop-color="#5a4132" offset="0%"></stop>
+              <stop stop-color="#241a14" offset="100%"></stop>
+            </linearGradient>
+            <linearGradient y2="100%" x2="0%" y1="0%" x1="100%" id="cube-light">
+              <stop stop-color="#b87948" offset="0%"></stop>
+              <stop stop-color="#d99f70" offset="100%"></stop>
+            </linearGradient>
+          </defs>
+          <g>
+            <polygon fill="url(#cube-dark)" points="60,0 120,34 60,68 0,34"></polygon>
+            <polygon fill="url(#cube-mid)" points="0,34 60,68 60,104 0,70"></polygon>
+            <polygon fill="url(#cube-light)" points="60,68 120,34 120,70 60,104"></polygon>
+          </g>
+        </svg>
+      </div>
+
+      <div class="results-content-wrapper about-wrapper">
+        <p id="impact-status" class="impact-status" role="status">Loading…</p>
+
+        <form id="impact-key-form" class="impact-key-form" hidden>
+          <label for="impact-key">This page needs the admin key.</label>
+          <input id="impact-key" type="password" autocomplete="off">
+          <button type="submit" class="record-btn record-btn-primary">Show</button>
+        </form>
+
+        <div id="impact-body" hidden>
+          <section class="column-section about-section" aria-labelledby="impact-totals">
+            <h2 id="impact-totals" class="column-title">At a glance</h2>
+            <dl class="about-stats impact-stats">
+              <div><dt>Visits</dt><dd id="t-visits">0</dd></div>
+              <div><dt>Searches</dt><dd id="t-searches">0</dd></div>
+              <div><dt>Sent to the source</dt><dd id="t-clicks">0</dd></div>
+              <div><dt>Institutions reached</dt><dd id="t-insts">0</dd></div>
+            </dl>
+            <p id="impact-since" class="impact-note"></p>
+          </section>
+
+          <section class="column-section about-section" aria-labelledby="impact-daily">
+            <h2 id="impact-daily" class="column-title">Last 7 days</h2>
+            <div id="impact-chart" class="impact-chart"></div>
+            <p class="impact-legend"><span class="impact-key impact-key-searches"></span>Searches <span class="impact-key impact-key-clicks"></span>Sent to the source</p>
+          </section>
+
+          <section class="column-section about-section" aria-labelledby="impact-sent">
+            <h2 id="impact-sent" class="column-title">Where we sent people</h2>
+            <p class="impact-note">Clicks from a record page to the institution that holds or describes it. This is the hub doing its job: pointing people to the archives.</p>
+            <ol id="impact-sent-list" class="impact-list"></ol>
+          </section>
+
+          <section class="column-section about-section" aria-labelledby="impact-gaps">
+            <h2 id="impact-gaps" class="column-title">Searches that found nothing</h2>
+            <p class="impact-note">What people looked for and we don't have yet. A to-do list for the next records to add, and a signal of what communities want to find.</p>
+            <ol id="impact-gaps-list" class="impact-list"></ol>
+          </section>
+
+          <section class="column-section about-section" aria-labelledby="impact-top">
+            <h2 id="impact-top" class="column-title">Most searched</h2>
+            <ol id="impact-top-list" class="impact-list"></ol>
+          </section>
+
+          <section class="column-section about-section" aria-labelledby="impact-viewed">
+            <h2 id="impact-viewed" class="column-title">Most viewed records</h2>
+            <ol id="impact-viewed-list" class="impact-list"></ol>
+          </section>
+
+          <section class="column-section about-section" aria-labelledby="impact-privacy">
+            <h2 id="impact-privacy" class="column-title">Privacy</h2>
+            <p>We count events, not people. No cookies, IP addresses, browser details, location or visitor IDs are stored. A visit is counted once per browser tab using a flag that never leaves the browser, and each event keeps only the day it happened.</p>
+          </section>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p class="site-footer-name">Black History Hub</p>
+    <p>Built for the <a href="https://bccns.com/" class="site-footer-bccns" target="_blank" rel="noopener noreferrer">Black Cultural Centre for Nova Scotia<span class="visually-hidden"> (opens in a new tab)</span></a> · HubHacks 2026</p>
+    <p class="site-footer-note">Student prototype. Not an official service of the Black Cultural Centre for Nova Scotia.</p>
+    <nav class="site-footer-links" aria-label="Footer">
+      <a href="institutions.html">Institutions</a>
+      <a href="about.html">About</a>
+    </nav>
+  </footer>
+
+</body>
+</html>

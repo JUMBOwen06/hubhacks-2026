@@ -9,11 +9,13 @@ from __future__ import annotations
 from contextlib import asynccontextmanager
 from typing import Literal
 
-from fastapi import Depends, FastAPI, HTTPException, Query
+import json
+
+from fastapi import Depends, FastAPI, Header, HTTPException, Query, Request, Response
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 
-from . import build, config, db, labels, search, vocab
+from . import build, config, db, impact, labels, search, vocab
 
 
 @asynccontextmanager
@@ -36,7 +38,7 @@ app = FastAPI(
     lifespan=lifespan,
 )
 # Open for local frontend development. Restrict origins before any public deployment.
-app.add_middleware(CORSMiddleware, allow_origins=["*"], allow_methods=["GET"], allow_headers=["*"])
+app.add_middleware(CORSMiddleware, allow_origins=["*"], allow_methods=["GET", "POST"], allow_headers=["*"])
 
 
 @app.middleware("http")
@@ -68,7 +70,8 @@ def root():
         "docs": "/docs",
         "frontend": "/app/",
         "endpoints": ["/search", "/records/{id}", "/entities", "/entities/{id}", "/institutions",
-                      "/institutions/{id}", "/suggest", "/stats", "/vocab", "/labels", "/health"],
+                      "/institutions/{id}", "/suggest", "/stats", "/vocab", "/labels", "/health",
+                      "/events (POST)", "/impact"],
     }
 
 
@@ -167,6 +170,48 @@ def display_labels():
     labels[field][code], e.g. labels.resource_type.journal_article.
     """
     return labels.LABELS
+
+
+@app.post("/events", tags=["impact"], status_code=204)
+async def record_event(request: Request):
+    """Count one anonymous event from the website: visit, page_view, search or source_click.
+
+    The body is JSON (sent as text/plain by navigator.sendBeacon). Nothing that identifies
+    a person is accepted or stored; malformed events are ignored.
+    """
+    raw = await request.body()
+    if len(raw) > 2000:
+        return Response(status_code=204)
+    try:
+        payload = json.loads(raw or b"{}")
+    except ValueError:
+        return Response(status_code=204)
+    if isinstance(payload, dict):
+        conn = impact.connect(config.impact_db_path())
+        try:
+            impact.record_event(conn, payload)
+        finally:
+            conn.close()
+    return Response(status_code=204)
+
+
+@app.get("/impact", tags=["impact"])
+def impact_summary(
+    days: int = Query(14, ge=1, le=366),
+    key: str | None = Query(None, description="Required only if HUBHACKS_IMPACT_KEY is set"),
+    x_impact_key: str | None = Header(None),
+    conn=Depends(get_conn),
+):
+    """Anonymous usage totals for the Impact page: visits, searches, searches with no
+    results (gaps in the collection), and how many people were sent on to each institution."""
+    required = config.impact_key()
+    if required and required not in (key, x_impact_key):
+        raise HTTPException(401, "This page needs the admin key.")
+    ic = impact.connect(config.impact_db_path())
+    try:
+        return impact.summary(ic, conn, days=days)
+    finally:
+        ic.close()
 
 
 # Serve the team's frontend (repo folder frontend/) at /app, so one command runs the

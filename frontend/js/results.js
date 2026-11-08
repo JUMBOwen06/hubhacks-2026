@@ -177,6 +177,7 @@
       return;
     }
     if (mine !== requestId) return; // a newer search started while this one was loading
+    if (window.BHHTrack) window.BHHTrack.search(state.q, response.total);
     renderSummary(state, response);
     listEl.replaceChildren(...response.results.map(renderCard));
     emptyEl.hidden = response.results.length > 0;

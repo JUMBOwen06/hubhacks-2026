@@ -36,3 +36,4 @@ def client(built_db):
     from app.main import app
     with TestClient(app) as c:
         yield c
+os.environ["HUBHACKS_IMPACT_DB"] = str(_TMP / "impact.db")
