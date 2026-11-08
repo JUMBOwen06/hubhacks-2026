@@ -7,11 +7,11 @@
     "description": "Metadata and links only, for a discovery layer built for the Black Cultural Centre for Nova Scotia (BCCNS). Each record is one institution's description of a Black history resource. The platform does not copy collections: it holds short curator-written descriptions plus the authoritative source_url, and sends users to the institution that supplies the description (record_source_id) and, where known, the institution that holds the original (holding_institution_id). Reuse scope for every record is metadata_and_link_only.",
     "schema": "schema.sql (SQLite draft derived from database_tables_and_columns.md; adds entity_type 'organization')",
     "counts": {
-      "institution": 21,
-      "record": 41,
-      "record_date": 74,
-      "entity": 191,
-      "record_entity": 369,
+      "institution": 22,
+      "record": 43,
+      "record_date": 78,
+      "entity": 197,
+      "record_entity": 390,
       "record_relation": 20
     },
     "enum_values_used": {
@@ -342,6 +342,16 @@
       "location": "Bonar Law-Bennett Building, 23 Dineen Drive, University of New Brunswick campus, Fredericton, New Brunswick",
       "description": "New Brunswick's provincial archives, which collect, preserve and give access to records of the province's history and people.",
       "rights_policy_url": null
+    },
+    {
+      "id": "inst_dcb",
+      "name": "Dictionary of Canadian Biography (University of Toronto/Université Laval)",
+      "type": "publisher",
+      "website_url": "https://www.biographi.ca/en/",
+      "catalogue_url": "https://www.biographi.ca/en/search.php",
+      "location": null,
+      "description": "A national dictionary of biographies of people who shaped Canada, published by the University of Toronto and Université Laval. Each biography is signed by its author and lists its sources.",
+      "rights_policy_url": "https://www.biographi.ca/en/notices.php"
     }
   ],
   "record": [
@@ -1697,6 +1707,72 @@
       "verification_status": "verified",
       "link_last_checked": "2026-11-06",
       "change_notes": "New record; research ID NEW-ATL-1, renumbered to SRC-021 on 2026-11-06. CONFLICT (kept 1785 as date_display): caption and credit say 1785, the transcription says Feb 25, 1784; both kept as record_date rows. Exhibit home page: https://www.communitystories.ca/v2/black-settlers-york-sunbury_colons-noirs/ (not fetched). The \"Terms and Conditions\" link URL was not captured. Not yet looked up in PANB's catalogue. Fact-check 2026-11-06: all twelve signed the petition, so all twelve are linked as author; Robert Lawson also keeps a subject role because the title singles him out (\"Robert Lawson and 11 Others\"). Replaces the researcher's subject/contributor split."
+    },
+    {
+      "id": "BIO-006",
+      "title_original": "PRESTON, RICHARD",
+      "description": "Dictionary of Canadian Biography entry on Richard Preston (1791 or 1792 to 1861), a Baptist minister and abolitionist. Born enslaved in Virginia, he bought his freedom and came to Nova Scotia to find his mother among the Black refugees of the War of 1812. He was ordained in London in 1832, led the African Chapel on Cornwallis Street in Halifax, formed the African Abolition Society, and founded the African Baptist Association in 1854.",
+      "description_origin": "curator_written",
+      "resource_type": "person_profile",
+      "language": "en",
+      "date_display": "1791 or 1792 to 1861",
+      "content_note": null,
+      "container_title": "Dictionary of Canadian Biography, vol. 8",
+      "notes": "Biography by Frank S. Boyd Jr. First published 1985, revised 2023 (per the page's citation table). The portrait on the page is credited to the History Collection, Nova Scotia Museum (P149.29), via Nova Scotia Archives.",
+      "record_source_id": "inst_dcb",
+      "holding_institution_id": null,
+      "holder_status": "not_applicable",
+      "holder_note": null,
+      "source_url": "https://www.biographi.ca/en/bio/preston_richard_8E.html",
+      "source_reference": "Frank S. Boyd Jr, \"PRESTON, RICHARD,\" in Dictionary of Canadian Biography, vol. 8, University of Toronto/Université Laval",
+      "digital_url": null,
+      "digitized": "not_applicable",
+      "access_mode": "online",
+      "access_instructions": "Read the biography online. Its bibliography lists the archival sources it draws on.",
+      "access_restrictions": null,
+      "rights_statement": "© University of Toronto/Université Laval. Description and link only; the biography text and images are not copied.",
+      "rights_url": "https://www.biographi.ca/en/notices.php",
+      "reuse_scope": "metadata_and_link_only",
+      "collection_method": "manual",
+      "imported_at": "2026-11-08",
+      "added_by": "Om",
+      "last_verified_at": "2026-11-08",
+      "verification_status": "needs_review",
+      "link_last_checked": "2026-11-08",
+      "change_notes": "Added 2026-11-08 from the page itself; page fetched and read the same day. Awaiting research-team review."
+    },
+    {
+      "id": "BIO-007",
+      "title_original": "HALL, WILLIAM (baptized William Neilson) (1829-1904)",
+      "description": "Dictionary of Canadian Biography entry on William Hall (1829 to 1904), a sailor and farmer from the Avon River area of Nova Scotia whose father was one of the Black refugees of the War of 1812. Serving in the Royal Navy, he was honoured for his part at Lucknow in November 1857 and received the Victoria Cross in 1859: the first Black person, the first Nova Scotian and the first Canadian sailor to receive it. The entry also describes memorials to him, several created by Nova Scotia's Black community.",
+      "description_origin": "curator_written",
+      "resource_type": "person_profile",
+      "language": "en",
+      "date_display": "1829-1904",
+      "content_note": "The biography uses the colonial-era name \"Indian Mutiny\" for the 1857 uprising in India.",
+      "container_title": "Dictionary of Canadian Biography, vol. 13",
+      "notes": "Biography by Bridglal Pachai, published 1994. The page notes several suggested birth dates and places, all in Nova Scotia; this record uses the page's own dates. Images on the page are credited to the Maritime Museum of the Atlantic and Canada Post.",
+      "record_source_id": "inst_dcb",
+      "holding_institution_id": null,
+      "holder_status": "not_applicable",
+      "holder_note": null,
+      "source_url": "https://www.biographi.ca/en/bio/hall_william_1829_1904_13E.html",
+      "source_reference": "Bridglal Pachai, \"HALL, WILLIAM (baptized William Neilson) (1829-1904),\" in Dictionary of Canadian Biography, vol. 13, University of Toronto/Université Laval",
+      "digital_url": null,
+      "digitized": "not_applicable",
+      "access_mode": "online",
+      "access_instructions": "Read the biography online. Its bibliography lists the archival sources it draws on.",
+      "access_restrictions": null,
+      "rights_statement": "© University of Toronto/Université Laval. Description and link only; the biography text and images are not copied.",
+      "rights_url": "https://www.biographi.ca/en/notices.php",
+      "reuse_scope": "metadata_and_link_only",
+      "collection_method": "manual",
+      "imported_at": "2026-11-08",
+      "added_by": "Om",
+      "last_verified_at": "2026-11-08",
+      "verification_status": "needs_review",
+      "link_last_checked": "2026-11-08",
+      "change_notes": "Added 2026-11-08 from the page itself; page fetched and read the same day. Awaiting research-team review."
     }
   ],
   "record_date": [
@@ -2437,6 +2513,46 @@
       "label": "Feb 25, 1784",
       "start_year": 1784,
       "end_year": 1784,
+      "approximate": 0,
+      "origin": "source_stated"
+    },
+    {
+      "id": 75,
+      "record_id": "BIO-006",
+      "kind": "life",
+      "label": "1791 or 1792 to 1861",
+      "start_year": 1791,
+      "end_year": 1861,
+      "approximate": 1,
+      "origin": "source_stated"
+    },
+    {
+      "id": 76,
+      "record_id": "BIO-006",
+      "kind": "event",
+      "label": "1854",
+      "start_year": 1854,
+      "end_year": 1854,
+      "approximate": 0,
+      "origin": "source_stated"
+    },
+    {
+      "id": 77,
+      "record_id": "BIO-007",
+      "kind": "life",
+      "label": "1829-1904",
+      "start_year": 1829,
+      "end_year": 1904,
+      "approximate": 0,
+      "origin": "source_stated"
+    },
+    {
+      "id": 78,
+      "record_id": "BIO-007",
+      "kind": "event",
+      "label": "1859",
+      "start_year": 1859,
+      "end_year": 1859,
       "approximate": 0,
       "origin": "source_stated"
     }
@@ -3968,6 +4084,54 @@
       "name_preferred": "Law and the courts",
       "disambiguator": null,
       "description": null,
+      "external_id": null
+    },
+    {
+      "id": "per_richard-preston",
+      "entity_type": "person",
+      "name_preferred": "Richard Preston",
+      "disambiguator": "1791/92–1861",
+      "description": "Baptist minister and abolitionist in Halifax; founder of the African Baptist Association",
+      "external_id": null
+    },
+    {
+      "id": "per_william-hall",
+      "entity_type": "person",
+      "name_preferred": "William Hall",
+      "disambiguator": "1829–1904",
+      "description": "Nova Scotian sailor; first Black recipient of the Victoria Cross",
+      "external_id": null
+    },
+    {
+      "id": "per_frank-s-boyd-jr",
+      "entity_type": "person",
+      "name_preferred": "Frank S. Boyd Jr",
+      "disambiguator": null,
+      "description": "Author of the Dictionary of Canadian Biography entry on Richard Preston",
+      "external_id": null
+    },
+    {
+      "id": "per_bridglal-pachai",
+      "entity_type": "person",
+      "name_preferred": "Bridglal Pachai",
+      "disambiguator": null,
+      "description": "Author of the Dictionary of Canadian Biography entry on William Hall",
+      "external_id": null
+    },
+    {
+      "id": "plc_hantsport",
+      "entity_type": "place",
+      "name_preferred": "Hantsport",
+      "disambiguator": "Nova Scotia",
+      "description": "Town on the Avon River, Nova Scotia",
+      "external_id": null
+    },
+    {
+      "id": "plc_lucknow",
+      "entity_type": "place",
+      "name_preferred": "Lucknow",
+      "disambiguator": "India",
+      "description": "City in northern India",
       "external_id": null
     }
   ],
@@ -6923,6 +7087,174 @@
       "name_as_written": null,
       "origin": "curator_added",
       "link_basis": null
+    },
+    {
+      "record_id": "BIO-006",
+      "entity_id": "per_richard-preston",
+      "role": "subject",
+      "name_as_written": "PRESTON, RICHARD",
+      "origin": "source_stated",
+      "link_basis": null
+    },
+    {
+      "record_id": "BIO-006",
+      "entity_id": "per_frank-s-boyd-jr",
+      "role": "author",
+      "name_as_written": "Frank S. Boyd Jr",
+      "origin": "source_stated",
+      "link_basis": null
+    },
+    {
+      "record_id": "BIO-006",
+      "entity_id": "plc_halifax",
+      "role": "location",
+      "name_as_written": "Halifax",
+      "origin": "source_stated",
+      "link_basis": null
+    },
+    {
+      "record_id": "BIO-006",
+      "entity_id": "plc_nova-scotia",
+      "role": "location",
+      "name_as_written": "Nova Scotia",
+      "origin": "source_stated",
+      "link_basis": null
+    },
+    {
+      "record_id": "BIO-006",
+      "entity_id": "plc_virginia",
+      "role": "mentioned",
+      "name_as_written": "Virginia",
+      "origin": "source_stated",
+      "link_basis": null
+    },
+    {
+      "record_id": "BIO-006",
+      "entity_id": "plc_london",
+      "role": "mentioned",
+      "name_as_written": "London",
+      "origin": "source_stated",
+      "link_basis": null
+    },
+    {
+      "record_id": "BIO-006",
+      "entity_id": "com_preston",
+      "role": "location",
+      "name_as_written": "Preston",
+      "origin": "source_stated",
+      "link_basis": null
+    },
+    {
+      "record_id": "BIO-006",
+      "entity_id": "com_black-refugees-war-of-1812",
+      "role": "subject",
+      "name_as_written": "Black refugees who had left the United States during the War of 1812",
+      "origin": "source_stated",
+      "link_basis": null
+    },
+    {
+      "record_id": "BIO-006",
+      "entity_id": "org_african-baptist-association-of-nova-scotia",
+      "role": "subject",
+      "name_as_written": "African Baptist Association",
+      "origin": "source_stated",
+      "link_basis": null
+    },
+    {
+      "record_id": "BIO-006",
+      "entity_id": "sub_religion-and-churches",
+      "role": "subject",
+      "name_as_written": null,
+      "origin": "curator_added",
+      "link_basis": null
+    },
+    {
+      "record_id": "BIO-006",
+      "entity_id": "sub_abolition",
+      "role": "subject",
+      "name_as_written": null,
+      "origin": "curator_added",
+      "link_basis": null
+    },
+    {
+      "record_id": "BIO-006",
+      "entity_id": "sub_slavery-and-enslavement",
+      "role": "subject",
+      "name_as_written": null,
+      "origin": "curator_added",
+      "link_basis": null
+    },
+    {
+      "record_id": "BIO-007",
+      "entity_id": "per_william-hall",
+      "role": "subject",
+      "name_as_written": "HALL, WILLIAM",
+      "origin": "source_stated",
+      "link_basis": null
+    },
+    {
+      "record_id": "BIO-007",
+      "entity_id": "per_bridglal-pachai",
+      "role": "author",
+      "name_as_written": "Bridglal Pachai",
+      "origin": "source_stated",
+      "link_basis": null
+    },
+    {
+      "record_id": "BIO-007",
+      "entity_id": "plc_hantsport",
+      "role": "location",
+      "name_as_written": "Hantsport",
+      "origin": "source_stated",
+      "link_basis": null
+    },
+    {
+      "record_id": "BIO-007",
+      "entity_id": "plc_nova-scotia",
+      "role": "location",
+      "name_as_written": "Nova Scotia",
+      "origin": "source_stated",
+      "link_basis": null
+    },
+    {
+      "record_id": "BIO-007",
+      "entity_id": "plc_halifax",
+      "role": "mentioned",
+      "name_as_written": "Halifax",
+      "origin": "source_stated",
+      "link_basis": null
+    },
+    {
+      "record_id": "BIO-007",
+      "entity_id": "plc_lucknow",
+      "role": "mentioned",
+      "name_as_written": "Lucknow",
+      "origin": "source_stated",
+      "link_basis": null
+    },
+    {
+      "record_id": "BIO-007",
+      "entity_id": "com_black-refugees-war-of-1812",
+      "role": "subject",
+      "name_as_written": "black refugees brought to Nova Scotia during the War of 1812",
+      "origin": "source_stated",
+      "link_basis": null
+    },
+    {
+      "record_id": "BIO-007",
+      "entity_id": "sub_military-service",
+      "role": "subject",
+      "name_as_written": null,
+      "origin": "curator_added",
+      "link_basis": null
+    },
+    {
+      "record_id": "BIO-007",
+      "entity_id": "sub_public-history-and-commemoration",
+      "role": "subject",
+      "name_as_written": null,
+      "origin": "curator_added",
+      "link_basis": "The page describes the 1947 cairn and other memorials to Hall."
     }
   ],
   "record_relation": [

@@ -17,7 +17,7 @@ def test_loads_every_row_without_warnings(v2):
     summary, _ = v2
     src = summary["sources"][0]
     assert src["format"] == "tables" and src["warnings"] == []
-    assert (src["record_rows"], summary["institutions"], summary["entities"]) == (41, 21, 191)
+    assert (src["record_rows"], summary["institutions"], summary["entities"]) == (43, 22, 197)
 
 
 def test_same_resource_kept_separate_and_linked(v2):

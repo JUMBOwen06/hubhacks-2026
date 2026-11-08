@@ -57,7 +57,7 @@ def test_frontend_pages_and_their_data_file_are_served(client):
     # The pages at /app/ load the seed dataset as ../data/seed/..., i.e. /data/seed/...
     assert client.get("/app/results.html").status_code == 200
     r = client.get("/data/seed/black_history_dataset_v2_2026-11-06.json")
-    assert r.status_code == 200 and len(r.json()["record"]) == 41
+    assert r.status_code == 200 and len(r.json()["record"]) == 43
 
 
 def test_frontend_files_are_never_served_stale(client):
