@@ -112,6 +112,53 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // 3c. Featured columns (Recently Searched / Recommended / Popular): when the columns stack
+  //     (narrow screens, see .card-stack.is-collapsed in styles.css) show the first
+  //     COLUMN_PREVIEW cards and a "Show N more" button. On wide screens CSS hides the button
+  //     and shows every card.
+  const COLUMN_PREVIEW = 2;
+  document.querySelectorAll('.column-section .card-stack').forEach((stack, i) => {
+    const extra = stack.querySelectorAll(':scope > .card').length - COLUMN_PREVIEW;
+    if (extra <= 0) return;
+    const section = stack.closest('.column-section');
+    const title = section.querySelector('.column-title');
+    const name = title ? title.textContent.trim() : 'records';
+    if (!stack.id) stack.id = `card-stack-${i + 1}`;
+
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'column-more';
+    btn.setAttribute('aria-controls', stack.id);
+
+    const setOpen = (open) => {
+      stack.classList.toggle('is-collapsed', !open);
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      btn.innerHTML = '';
+      btn.append(open ? 'Show fewer' : `Show ${extra} more`);
+      const hidden = document.createElement('span');
+      hidden.className = 'visually-hidden';
+      hidden.textContent = ` ${name}`;
+      btn.append(hidden);
+    };
+
+    btn.addEventListener('click', () => {
+      const opening = stack.classList.contains('is-collapsed');
+      setOpen(opening);
+      if (opening) {
+        // Move focus to the first newly shown card so keyboard users land on it
+        const firstNew = stack.querySelectorAll(':scope > .card')[COLUMN_PREVIEW];
+        const link = firstNew && firstNew.querySelector('a');
+        if (link) link.focus({ preventScroll: true });
+      } else {
+        // Cards above the button disappear; bring the column back into view
+        section.scrollIntoView({ block: 'start', behavior: reduceMotion ? 'auto' : 'smooth' });
+      }
+    });
+
+    setOpen(false);
+    stack.after(btn);
+  });
+
   // 4. Search form submit -> results.html?q=…&type=… (type values match record.resource_type)
   if (searchForm) {
     searchForm.addEventListener('submit', (e) => {

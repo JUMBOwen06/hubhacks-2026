@@ -58,3 +58,11 @@ def test_frontend_pages_and_their_data_file_are_served(client):
     assert client.get("/app/results.html").status_code == 200
     r = client.get("/data/seed/black_history_dataset_v2_2026-11-06.json")
     assert r.status_code == 200 and len(r.json()["record"]) == 41
+
+
+def test_frontend_files_are_never_served_stale(client):
+    # Browsers must re-check edited JS/CSS instead of reusing a cached copy.
+    for path in ("/app/js/script.js", "/app/css/styles.css",
+                 "/data/seed/black_history_dataset_v2_2026-11-06.json"):
+        assert client.get(path).headers["cache-control"] == "no-cache", path
+    assert "cache-control" not in client.get("/health").headers

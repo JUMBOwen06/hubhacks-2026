@@ -39,6 +39,20 @@ app = FastAPI(
 app.add_middleware(CORSMiddleware, allow_origins=["*"], allow_methods=["GET"], allow_headers=["*"])
 
 
+@app.middleware("http")
+async def no_stale_static_files(request, call_next):
+    """Make browsers re-check /app and /data files on every load.
+
+    StaticFiles sends no Cache-Control header, so browsers may reuse an old copy of the
+    frontend's JS/CSS after it is edited. "no-cache" still allows a cheap 304 reply when
+    the file hasn't changed.
+    """
+    response = await call_next(request)
+    if request.url.path.startswith(("/app", "/data")):
+        response.headers["Cache-Control"] = "no-cache"
+    return response
+
+
 def get_conn():
     conn = db.connect(config.db_path())
     try:
