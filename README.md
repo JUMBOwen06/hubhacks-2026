@@ -4,7 +4,7 @@ A discovery platform for African Canadian history records held across Canadian i
 
 Records of Black history in Canada are spread across museums, archives, libraries, universities, governments and community organizations, each with its own catalogue. Black History Hub lets people search descriptions of those records in one place, then sends them to the institution that holds or describes the original. It does **not** host, copy or replace any collection.
 
-> **Status:** Working prototype. Search, filtering, record pages, the institutions page and the about page run on a manually verified dataset of 41 records from 21 institutions. A SQLite + FastAPI backend is in progress.
+> **Status:** Working prototype. Search, filtering, record pages, the institutions page and the about page run on a manually verified dataset of 41 records from 21 institutions. Search runs on a SQLite + FastAPI backend, with a basic in-browser search as an offline fallback.
 
 ## Features
 
@@ -19,17 +19,22 @@ Records of Black history in Canada are spread across museums, archives, librarie
 
 ## Running it locally
 
-The pages read the dataset from `data/`, so they must be served by a web server from the **repository root**. Opening `index.html` directly from disk works for the static pages, but search and record pages can't load their data that way.
+The backend (FastAPI + SQLite) builds the search database from `data/seed/` and serves the website at `/app/`. Needs Python 3.10+.
 
-From the repository root:
+**Windows:** double-click `start.bat` in the repository root. The first run creates `backend\.venv` and installs the requirements; then it opens <http://127.0.0.1:8000/app/>. Close the window to stop the server.
+
+**Any system**, from the repository root:
 
 ```bash
-python -m http.server 8000
+python -m venv backend/.venv
+# Windows: backend\.venv\Scripts\activate    macOS/Linux: source backend/.venv/bin/activate
+pip install -r backend/requirements.txt
+uvicorn app.main:app --app-dir backend --port 8000
 ```
 
-Then open <http://localhost:8000/frontend/>.
+Then open <http://127.0.0.1:8000/app/>. API docs are at <http://127.0.0.1:8000/docs>; see `backend/README.md` for tests and settings.
 
-Alternatively, open the repository root folder in VS Code and use **Live Server** (or **Live Preview**) on `frontend/index.html`. Opening only the `frontend` folder won't work, because the server then can't reach `data/`.
+**Offline fallback:** if the pages can't reach the API (for example when the repository root is served by a plain static server or VS Code Live Server), search, record and institution pages fall back to a basic in-browser search of the bundled JSON and show "Offline mode". That mode has no related-term matching, spelling suggestions, "why matched" lines or connected records, so use the backend for demos.
 
 If a page looks out of date after you change files, hard-refresh with **Ctrl+Shift+R**.
 

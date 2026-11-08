@@ -35,11 +35,13 @@
 
   // ---- API ----------------------------------------------------------------
   // GET an API path. Array params repeat the key (resource_type=book&resource_type=map),
-  // which is what FastAPI expects. Resolves to parsed JSON, or null for a 404.
-  // Throws ApiUnavailable if the server can't be reached or errors.
+  // which is what FastAPI expects. Resolves to parsed JSON, or null for a 404 when
+  // notFoundIsNull is set (only /records/{id}: "no such record").
+  // Throws ApiUnavailable if the server can't be reached, errors, or doesn't answer with
+  // JSON (e.g. a plain static server such as `python -m http.server` returns an HTML 404).
   class ApiUnavailable extends Error {}
 
-  async function api(path, params) {
+  async function api(path, params, notFoundIsNull) {
     const qs = new URLSearchParams();
     for (const [key, value] of Object.entries(params || {})) {
       if (value === null || value === undefined || value === '') continue;
@@ -53,9 +55,15 @@
     } catch (err) {
       throw new ApiUnavailable(err.message);
     }
-    if (res.status === 404) return null;
+    const isJson = (res.headers.get('Content-Type') || '').includes('application/json');
+    if (!isJson) throw new ApiUnavailable('HTTP ' + res.status + ' non-JSON response from ' + path);
+    if (res.status === 404 && notFoundIsNull) return null;
     if (!res.ok) throw new ApiUnavailable('HTTP ' + res.status + ' from ' + path);
-    return res.json();
+    try {
+      return await res.json();
+    } catch (err) {
+      throw new ApiUnavailable('Invalid JSON from ' + path);
+    }
   }
 
   // Try the API; on ApiUnavailable run the local fallback. Tags the result with .source.
@@ -288,7 +296,7 @@
   }
 
   function getRecord(id) {
-    return withFallback(() => api('/records/' + encodeURIComponent(id)), () => getRecordLocal(id));
+    return withFallback(() => api('/records/' + encodeURIComponent(id), null, true), () => getRecordLocal(id));
   }
 
   async function listInstitutions() {
