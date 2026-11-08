@@ -5,7 +5,7 @@ __pycache__/
 venv/
 .pytest_cache/
 
-# Built database (rebuilt from data-sets/ on every API start)
+# Built database (rebuilt from data/seed/ on every API start)
 backend/data/
 *.db
 *.db-wal

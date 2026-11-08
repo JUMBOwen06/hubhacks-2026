@@ -3,8 +3,8 @@
 Python + SQLite + FastAPI. It indexes descriptions of records held by other
 institutions and links to the authoritative source. It never copies collections.
 
-The team's dataset `data/seed/black_history_dataset_v2_2026-11-06.json` (Owen, 41 records,
-21 institutions, one list per table) is the master copy. The SQLite database is a build
+The team's dataset `data/seed/black_history_dataset_v2_2026-11-06.json` (Owen, 43 records,
+22 institutions, one list per table) is the master copy. The SQLite database is a build
 artifact: the API rebuilds it from the dataset every time it starts. The tests use the
 older 27-record verified file, kept in `tests/fixtures/`.
 
