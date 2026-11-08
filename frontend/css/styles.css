@@ -2196,3 +2196,36 @@ a.card-tag:hover {
   border-color: var(--accent);
   color: var(--accent);
 }
+
+/* ---- Backend integration (search highlights, why-matched, API notes) ---- */
+/* Matched words in titles and snippets, from the API's highlight field */
+.card mark {
+  background: rgba(184, 121, 72, 0.28);
+  color: var(--text-primary);
+  border-radius: 2px;
+  padding: 0 1px;
+}
+
+/* "Matched: Title; Africville (subject)" line under each result */
+.card-why {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  font-style: italic;
+  margin-top: 0.35rem;
+}
+
+.results-related,
+.results-offline {
+  color: var(--text-secondary);
+  font-size: 0.9em;
+}
+
+/* Spelling suggestions and the API's honest no-results message */
+.results-api-note {
+  color: var(--text-secondary);
+  margin: 0.5rem 0;
+}
+
+.results-api-note a {
+  color: var(--accent-hover);
+}

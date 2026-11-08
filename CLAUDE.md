@@ -224,6 +224,11 @@ python -m app.build                       # build the DB without the server
   `data/` at `/data/` so those pages work at `/app/`. Their search has no terminology bridge or
   typo help ("freedom seekers" 0 results vs 1 from `/search`); switching results.js to `/search`
   is the frontend team's call.
+- 2026-11-08: branch `fullstack-integration` merges `main` (latest frontend) and `backend`.
+  `frontend/js/data.js` now calls the API (`/search`, `/records/{id}`, `/institutions`) and
+  falls back to the in-browser JSON search only when the API is unreachable ("Offline mode").
+  Results show API highlights, "why matched", terminology-bridge terms and spelling
+  suggestions; record pages show connected records and "also available from".
 
 ---
 

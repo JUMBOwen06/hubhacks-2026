@@ -31,8 +31,14 @@ uvicorn app.main:app --reload
 
 Open http://127.0.0.1:8000/docs to try every endpoint in the browser.
 Open http://127.0.0.1:8000/app/ for the team's pages: the API also serves the repo's
-`frontend/` folder there, so the pages can call the API on the same origin. It serves the
-repo's `data/` folder at `/data/` too, because the pages read the seed dataset directly.
+`frontend/` folder there, so the pages can call the API on the same origin.
+
+The search, record and institutions pages get their data from `/search`, `/records/{id}`
+and `/institutions` (see `frontend/js/data.js`). If the API can't be reached (for example the
+pages are opened from another static server with the backend stopped), they fall back to
+searching the seed JSON in the browser and say "Offline mode" on the results page. That is
+why the API also serves the repo's `data/` folder at `/data/`. Opened from another local
+server, the pages call `http://127.0.0.1:8000`; set `window.BHH_API_BASE` to change that.
 
 Check whether your Python's SQLite has full-text search (FTS5). If it doesn't, search
 still works, using simpler text matching:
