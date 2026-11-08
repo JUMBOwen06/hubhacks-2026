@@ -1,135 +1,102 @@
-# African Canadian History Discovery Platform
+# Black History Hub
 
-A planned discovery platform intended to help people find information about African Canadian history across different Canadian institutions from one place.
+A discovery platform for African Canadian history records held across Canadian institutions, built as a proof of concept for the **Black Cultural Centre for Nova Scotia (BCCNS)** at HubHacks 2026 by team **Fivefold**.
 
-The project is being developed as a proof of concept for the **Black Cultural Centre for Nova Scotia (BCCNS)**. Rather than replacing institutional archives or hosting entire collections, the platform aims to organize selected record information, make it searchable, and direct users to the institutions that provide or hold the original materials.
+Records of Black history in Canada are spread across museums, archives, libraries, universities, governments and community organizations, each with its own catalogue. Black History Hub lets people search descriptions of those records in one place, then sends them to the institution that holds or describes the original. It does **not** host, copy or replace any collection.
 
-> **Project status:** Planning and prototyping. The features and pages below describe the proposed scope; they should not be interpreted as already implemented.
+> **Status:** Working prototype. Search, filtering, record pages, the institutions page and the about page run on a manually verified dataset of 41 records from 21 institutions. A SQLite + FastAPI backend is in progress.
 
-## Project goals
+## Features
 
-- Make it easier to discover relevant historical records across multiple institutions.
-- Bring records from different sources into a consistent, searchable format.
-- Clearly identify where original material is held and which institution supplies the record description or contextual information.
-- Help users understand how to access the original material.
-- Preserve source attribution and respect copyright and institutional access restrictions.
+- **Unified search** across titles, descriptions, people, places, communities, subjects and institutions. Matching ignores capitals and accents, and title matches rank first.
+- **Filters** by resource type (applied instantly) and by institution. Every search and filter is in the URL, so results can be shared as a link.
+- **Record pages** showing the description, dates, people, places and subjects, where to find the original, how to access it, rights and reuse terms, related records and provenance.
+- **Holder vs. source:** every record says which institution wrote the description and which holds the original. These are often different, and the platform never implies otherwise.
+- **Provenance on every record:** verification status, when the details and link were last checked, who added it and how.
+- **Content notes** on records whose titles use historical terminology now considered offensive; titles are kept as the source wrote them.
+- **Institutions page** listing all 21 partner institutions, with links to their websites, catalogues and rights policies, and to their records here.
+- **Accessible and responsive:** skip link, keyboard-friendly menu, descriptive alt text, a pausable carousel that respects reduced-motion settings, and layouts tested on phone and desktop.
 
-## Core functionality
+## Running it locally
 
-The proposed platform will prioritize the following functions:
+The pages read the dataset from `data/`, so they must be served by a web server from the **repository root**. Opening `index.html` directly from disk works for the static pages, but search and record pages can't load their data that way.
 
-1. **Unified search** — Search records from multiple institutions through one search interface. Search terms may include people, places, subjects, titles, dates, and institutions.
-2. **Filtering and sorting** — Narrow results by institution, date or date range, resource type, person, place, and subject. Sort results where useful, such as by date or relevance.
-3. **Standardized search results** — Display records from different institutions in a consistent format so users can understand and compare them.
-4. **Record details and provenance** — Show information about an individual resource, including its title, description, dates, people, places, resource type, source, and provenance.
-5. **Direct links and access information** — Link to the authoritative institutional record and explain how the original material can be accessed, where that information is available.
-6. **Related records** *(recommended enhancement)* — Help users discover records connected by a person, place, community, event, or subject when those connections are supported by the source information.
-7. **AI-assisted or natural-language search** *(stretch goal)* — Allow users to search in everyday language. Any generated answers must be grounded in indexed records and provide links or citations to their sources.
+From the repository root:
 
-### Important metadata distinction
+```bash
+python -m http.server 8000
+```
 
-Each record should distinguish between:
+Then open <http://localhost:8000/frontend/>.
 
-- **Holding institution:** The institution that holds the original material.
-- **Record source:** The institution that provides the description, database entry, or contextual information displayed by the platform.
+Alternatively, open the repository root folder in VS Code and use **Live Server** (or **Live Preview**) on `frontend/index.html`. Opening only the `frontend` folder won't work, because the server then can't reach `data/`.
 
-These may be different institutions. The platform should not imply that the record source necessarily holds the original material.
+If a page looks out of date after you change files, hard-refresh with **Ctrl+Shift+R**.
 
-## Planned website pages
+## Project structure
 
-### 1. Home / Search
+```
+frontend/
+  index.html          Home: search, image carousel, featured records
+  results.html        Search results (rendered by js/results.js)
+  record.html         Single record page, e.g. record.html?id=SRC-001a (rendered by js/record.js)
+  institutions.html   Partner institutions
+  about.html          The problem, how it works, principles, coverage
+  css/styles.css      All styles
+  js/script.js        Shared page behaviour: mobile menu, carousel, search form
+  js/data.js          Loads the dataset; shared labels and helpers
+  js/results.js       Search, filtering and result cards
+  js/record.js        Record page rendering
+  Resources/          Carousel images
+data/
+  seed/black_history_dataset_v2_2026-11-06.json   The dataset (source of truth)
+  exports/csv/        The same tables as CSV
+  load_dataset.py     Loads the dataset into SQLite (backend work in progress)
+```
 
-The main page and primary entry point to the platform.
+### URL parameters
 
-- Prominent search bar.
-- Brief explanation of the platform.
-- Search filters for people, places, subjects, dates, resource types, and institutions.
-- Consistent search-result cards.
-- Links from results to individual record pages.
-- Featured records or collections.
+| Page | Parameter | Example |
+| --- | --- | --- |
+| `results.html` | `q`: search text | `results.html?q=africville` |
+| | `type`: comma-separated resource types | `results.html?type=book,map` |
+| | `institution`: institution ID | `results.html?institution=inst_nsa` |
+| `record.html` | `id`: record ID | `record.html?id=BOOK-002` |
 
-### 2. Record Details
+## Data
 
-Opened when a user selects a search result.
+The dataset holds **metadata and links only**: short curator-written descriptions plus the authoritative URL at each institution. Tables:
 
-- Original title and description.
-- Relevant dates, people, places, and subjects.
-- Resource type.
-- Holding institution and record source.
-- Provenance and relevant rights information.
-- Access instructions and a direct link to the institutional record.
-- Related records, when supported by verified information.
+| Table | Rows | Contents |
+| --- | --- | --- |
+| `record` | 41 | One institution's description of one resource, with access, rights and provenance fields |
+| `institution` | 21 | Archives, libraries, museums, publishers and government sources |
+| `entity` | 191 | People, places, communities, organizations, events and subjects |
+| `record_entity` | 369 | Links records to entities, with a role (subject, author, location, …) |
+| `record_date` | 74 | Dates by kind (published, document date, event, lifetime, …) |
+| `record_relation` | 20 | Evidence-based links between related records |
 
-### 3. Sources / Institutions
-
-Explains which institutions and collections are represented in the platform.
-
-- Institution name and description.
-- Types of records represented.
-- Number of indexed records, if known.
-- Link to the institution's website or catalogue.
-- Last verified or updated date, where available.
-
-### 4. About / How It Works
-
-Explains the purpose and approach of the project.
-
-- The problem the platform is intended to address.
-- Its connection to BCCNS.
-- Who the platform is intended to serve.
-- How records are collected, organized, and searched.
-- How attribution, provenance, copyright, and access restrictions are handled.
-- Current coverage and limitations.
-
-### Possible future pages
-
-These are outside the initial page scope unless time and project needs allow:
-
-- **Browse / Explore** — Explore records by community, location, time period, or subject without entering a search query.
-- **Saved Records** — Save records for later reference; would likely require user accounts or local browser storage.
-- **Admin / Data Management** — Add, edit, verify, and remove records.
-
-## Suggested workstreams
-
-The work can be divided into five areas. Team members may cover more than one area depending on team size.
-
-1. **Research and data collection** — Identify useful source records, collect relevant metadata, verify links and access details, and review reuse restrictions.
-2. **Metadata and system architecture** — Define the shared metadata structure, map source fields into it, and plan how records will be stored and connected.
-3. **Backend and search development** — Set up data storage and implement search, filtering, sorting, and the interface used by the frontend to retrieve records.
-4. **Frontend and user experience** — Design and build the search page, results, record details, sources page, and About page.
-5. **Product direction, testing, and presentation** — Define the MVP, coordinate the work, test realistic searches and links, and prepare the demonstration.
-
-## Initial prototype target
-
-A realistic first version should demonstrate this user journey:
-
-1. A user searches for a historical person, place, or subject.
-2. The platform returns relevant records from at least two institutions.
-3. The user filters the results.
-4. The user opens a record and sees consistent metadata, provenance, the holding institution, and the record source.
-5. The user follows a link or access instructions to find the original institutional resource.
-
-A small, accurate, manually verified dataset (for example, approximately 10–20 records) is a reasonable starting target. The final number should depend on the time available and the quality of the records.
-
-## Data, attribution, and accuracy principles
-
-- Prefer information that is permitted to be reused; public availability does not automatically grant permission to copy descriptions, images, or full documents.
-- Do not copy entire collections or conduct bulk harvesting without confirming permission and applicable terms.
-- Keep institutional titles and source information identifiable; use independently written descriptions where appropriate.
-- Link back to the authoritative institutional record whenever possible.
-- Keep separate records separate, even when they relate to the same person or event. Connections should be evidence-based.
-- Track where information came from and when it was added or last verified.
-- Be transparent about which collections are included and what the platform does not cover.
-- If information cannot be verified, do not present it as fact.
+35 of the 41 records are verified; 6 are marked as needing review. Just over half relate to Nova Scotia; others cover Quebec, Ontario, New Brunswick, Manitoba, Saskatchewan, Alberta and British Columbia.
 
 ## Technology
 
-**Technology stack: To be determined.**
+- **Frontend:** plain HTML, CSS and JavaScript with no build step and no dependencies.
+- **Backend (in progress):** SQLite and FastAPI.
 
-## Current next steps
+## Data, attribution and accuracy principles
 
-- Confirm the intended users and MVP scope with the mentor.
-- Select a small set of records from two or more institutions and verify their source links and access details.
-- Agree on the common metadata structure.
-- Sketch the search and record-details interfaces.
-- Build the basic search-to-record user journey before attempting stretch features such as related records
+- Store descriptions and links, not copies of images or documents. Public availability does not grant permission to copy.
+- Always link back to the authoritative institutional record.
+- Keep the holding institution and the record source separate.
+- Keep separate records separate, even when they relate to the same person or event. Connections must be evidence-based.
+- Track where information came from, and when it was added and last verified.
+- Be transparent about what is and isn't covered.
+- If information can't be verified, don't present it as fact. Any future AI-assisted search must only cite real records in the hub.
+
+## Roadmap
+
+- **Backend:** serve search and records from FastAPI and SQLite.
+- **Dashboard:** dataset health (records needing review, stale links, unconfirmed holders, coverage gaps) and usage (top searches, searches with no results, clicks through to institutions).
+- **Easier intake:** a template for new records that matches people, places and subjects to existing entries automatically, plus metadata harvesting from institutions that publish structured data.
+- **Better search:** alternate and historical names (for example, Port Roseway = Shelburne), typo tolerance and date-range filters.
+- **Coverage:** add records from Prince Edward Island, Newfoundland and Labrador, and the territories.
