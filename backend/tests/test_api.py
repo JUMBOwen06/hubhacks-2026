@@ -51,3 +51,10 @@ def test_search_highlights_and_undated_filter(client):
                for x in r["results"])
     undated = client.get("/search", params={"undated_only": "true", "limit": 100}).json()
     assert undated["total"] == 7
+
+
+def test_frontend_pages_and_their_data_file_are_served(client):
+    # The pages at /app/ load the seed dataset as ../data/seed/..., i.e. /data/seed/...
+    assert client.get("/app/results.html").status_code == 200
+    r = client.get("/data/seed/black_history_dataset_v2_2026-11-06.json")
+    assert r.status_code == 200 and len(r.json()["record"]) == 41

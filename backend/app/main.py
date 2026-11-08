@@ -159,3 +159,7 @@ def display_labels():
 # whole demo and the pages can call the API on the same origin. The API stays at /.
 if config.FRONTEND_DIR.is_dir():
     app.mount("/app", StaticFiles(directory=config.FRONTEND_DIR, html=True), name="frontend")
+# The pages also read the seed dataset directly (../data/seed/... from /app/), so serve
+# the repo's data/ folder read-only at /data.
+if config.DATA_DIR.is_dir():
+    app.mount("/data", StaticFiles(directory=config.DATA_DIR), name="data")

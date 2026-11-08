@@ -31,7 +31,8 @@ uvicorn app.main:app --reload
 
 Open http://127.0.0.1:8000/docs to try every endpoint in the browser.
 Open http://127.0.0.1:8000/app/ for the team's pages: the API also serves the repo's
-`frontend/` folder there, so the pages can call the API on the same origin.
+`frontend/` folder there, so the pages can call the API on the same origin. It serves the
+repo's `data/` folder at `/data/` too, because the pages read the seed dataset directly.
 
 Check whether your Python's SQLite has full-text search (FTS5). If it doesn't, search
 still works, using simpler text matching:
@@ -172,5 +173,5 @@ backend/
   app/labels.py           display labels for every code (served at /labels)
   app/build.py            builds the database from the sources
   app/ingest/             one adapter per source format
-  tests/                  pytest suite (55 tests); fixtures/ holds the 27-record test dataset
+  tests/                  pytest suite (56 tests); fixtures/ holds the 27-record test dataset
 ```

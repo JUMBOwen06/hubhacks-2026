@@ -4,7 +4,7 @@ Claude Code reads this file at the start of every session. It holds everything n
 continue the project: who you are, the brief, decisions already made, the data, the
 schema, the backend as built, what's next, and the rules that keep the work trustworthy.
 
-Last updated: Saturday 2026-11-07, 19:20 Atlantic (America/Halifax).
+Last updated: Saturday 2026-11-07, 21:00 Atlantic (America/Halifax).
 
 ---
 
@@ -202,7 +202,7 @@ py -m venv .venv
 .venv\Scripts\Activate.ps1
 pip install -r requirements.txt          # add requirements-dev.txt for tests
 uvicorn app.main:app --reload            # http://127.0.0.1:8000/docs
-pytest                                    # 55 tests
+pytest                                    # 56 tests
 python -m app.build                       # build the DB without the server
 ```
 - Env vars: `HUBHACKS_DB` (SQLite path, default `backend/data/hubhacks.db`),
@@ -219,6 +219,11 @@ python -m app.build                       # build the DB without the server
   allows entity_type `organization`); the old 27-record file is the test fixture
   `backend/tests/fixtures/verified_v1_27_records.json`; the API serves `frontend/` at `/app/`.
   v2 ids differ from v1: `SRC-001a`/`SRC-001b`, entity ids like `com_africville`, `per_tina-loo`.
+- 2026-11-07 night: `main` e89b78a (Owen) made results.html and record.html search the seed
+  JSON in the browser (`frontend/js/data.js` loads `../data/seed/...`). The API now also serves
+  `data/` at `/data/` so those pages work at `/app/`. Their search has no terminology bridge or
+  typo help ("freedom seekers" 0 results vs 1 from `/search`); switching results.js to `/search`
+  is the frontend team's call.
 
 ---
 

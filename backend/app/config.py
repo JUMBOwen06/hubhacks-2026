@@ -8,6 +8,7 @@ BACKEND_DIR = Path(__file__).resolve().parent.parent
 REPO_DIR = BACKEND_DIR.parent
 SCHEMA_PATH = BACKEND_DIR / "schema.sql"
 FRONTEND_DIR = REPO_DIR / "frontend"
+DATA_DIR = REPO_DIR / "data"
 
 # Owen's v2 dataset on main (41 records, table-shaped). The older 27-record verified JSON
 # is kept as backend/tests/fixtures/verified_v1_27_records.json for the tests.
