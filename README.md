@@ -4,7 +4,7 @@ A discovery platform for African Canadian history records held across Canadian i
 
 Records of Black history in Canada are spread across museums, archives, libraries, universities, governments and community organizations, each with its own catalogue. Black History Hub lets people search descriptions of those records in one place, then sends them to the institution that holds or describes the original. It does **not** host, copy or replace any collection.
 
-> **Status:** Working prototype. Search, filtering, record pages, the institutions page and the about page run on a manually verified dataset of 41 records from 21 institutions. Search runs on a SQLite + FastAPI backend, with a basic in-browser search as an offline fallback.
+> **Status:** Working prototype. Search, filtering, record pages, the institutions page and the about page run on a manually verified dataset of 43 records from 22 institutions. Search runs on a SQLite + FastAPI backend, with a basic in-browser search as an offline fallback.
 
 ## Features
 
@@ -14,7 +14,7 @@ Records of Black history in Canada are spread across museums, archives, librarie
 - **Holder vs. source:** every record says which institution wrote the description and which holds the original. These are often different, and the platform never implies otherwise.
 - **Provenance on every record:** verification status, when the details and link were last checked, who added it and how.
 - **Content notes** on records whose titles use historical terminology now considered offensive; titles are kept as the source wrote them.
-- **Institutions page** listing all 21 partner institutions, with links to their websites, catalogues and rights policies, and to their records here.
+- **Institutions page** listing all 22 partner institutions, with links to their websites, catalogues and rights policies, and to their records here.
 - **Accessible and responsive:** skip link, keyboard-friendly menu, descriptive alt text, a pausable carousel that respects reduced-motion settings, and layouts tested on phone and desktop.
 
 ## Running it locally
@@ -47,6 +47,7 @@ frontend/
   record.html         Single record page, e.g. record.html?id=SRC-001a (rendered by js/record.js)
   institutions.html   Partner institutions
   about.html          The problem, how it works, principles, coverage
+  impact.html         Anonymous usage counts (visits, searches, clicks to sources)
   css/styles.css      All styles
   js/script.js        Shared page behaviour: mobile menu, carousel, search form
   js/data.js          Loads the dataset; shared labels and helpers
@@ -74,14 +75,14 @@ The dataset holds **metadata and links only**: short curator-written description
 
 | Table | Rows | Contents |
 | --- | --- | --- |
-| `record` | 41 | One institution's description of one resource, with access, rights and provenance fields |
-| `institution` | 21 | Archives, libraries, museums, publishers and government sources |
-| `entity` | 191 | People, places, communities, organizations, events and subjects |
-| `record_entity` | 369 | Links records to entities, with a role (subject, author, location, …) |
-| `record_date` | 74 | Dates by kind (published, document date, event, lifetime, …) |
+| `record` | 43 | One institution's description of one resource, with access, rights and provenance fields |
+| `institution` | 22 | Archives, libraries, museums, publishers and government sources |
+| `entity` | 197 | People, places, communities, organizations, events and subjects |
+| `record_entity` | 390 | Links records to entities, with a role (subject, author, location, …) |
+| `record_date` | 78 | Dates by kind (published, document date, event, lifetime, …) |
 | `record_relation` | 20 | Evidence-based links between related records |
 
-35 of the 41 records are verified; 6 are marked as needing review. Just over half relate to Nova Scotia; others cover Quebec, Ontario, New Brunswick, Manitoba, Saskatchewan, Alberta and British Columbia.
+35 of the 43 records are verified; 8 are marked as needing review. Just over half relate to Nova Scotia; others cover Quebec, Ontario, New Brunswick, Manitoba, Saskatchewan, Alberta and British Columbia.
 
 ## Technology
 
