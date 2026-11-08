@@ -100,20 +100,20 @@ document.addEventListener('DOMContentLoaded', () => {
       const params = new URLSearchParams();
       params.set('q', query);
       if (selectedTypes.length > 0) params.set('type', selectedTypes.join(','));
+      // Set by results.js when the results are limited to one institution
+      if (searchForm.dataset.institution) params.set('institution', searchForm.dataset.institution);
       window.location.href = `results.html?${params.toString()}`;
     });
   }
 
-  // 5. Results page: remember this results URL so record.html can link "Back to results"
-  if (document.body.classList.contains('results-page')) {
-    document.querySelectorAll('.card-link').forEach((link) => {
-      link.addEventListener('click', () => {
-        try {
-          sessionStorage.setItem('lastResults', window.location.href);
-        } catch (err) {
-          // sessionStorage unavailable (private mode etc.); back link falls back to index.html
-        }
-      });
-    });
-  }
+  // 5. Remember the page a record was opened from so record.html can link back to it.
+  //    Delegated, because results.js renders the cards after this runs.
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.card-link')) return;
+    try {
+      sessionStorage.setItem('lastResults', window.location.href);
+    } catch (err) {
+      // sessionStorage unavailable (private mode etc.); back link falls back to index.html
+    }
+  });
 });

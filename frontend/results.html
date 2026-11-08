@@ -3,9 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>"Africville" — Black History Hub Search</title>
+  <title>Search — Black History Hub</title>
   <link rel="stylesheet" href="css/styles.css">
   <script src="js/script.js" defer></script>
+  <script src="js/data.js" defer></script>
+  <script src="js/results.js" defer></script>
 </head>
 <body class="results-page">
   <a class="skip-link" href="#main">Skip to main content</a>
@@ -50,7 +52,7 @@
 
   <!-- Main Search Results View -->
   <main id="main" class="results-main">
-    <h1 class="visually-hidden">Search results for "Africville"</h1>
+    <h1 id="results-heading" class="visually-hidden">Search results</h1>
 
     <!-- Top Hero Search Section with Radial Pattern Background -->
     <section class="results-hero-section" aria-label="Search">
@@ -63,7 +65,6 @@
             name="q"
             class="search-input"
             placeholder="Search records by person, place, community or subject..."
-            value="Africville"
             autocomplete="off"
           >
           <!-- Gooey Uiverse Button -->
@@ -229,15 +230,13 @@
       <div class="results-content-wrapper">
         <!-- Results Summary Bar -->
         <div class="results-meta-bar">
-          <p class="results-count-text">
-            Showing results for <span class="highlight-query">"Africville"</span>
-          </p>
-          <span id="results-count" class="results-badge" aria-live="polite">4 records from 3 institutions</span>
+          <p id="results-summary" class="results-count-text">Loading records…</p>
+          <span id="results-count" class="results-badge" aria-live="polite"></span>
         </div>
 
         <!-- Empty state (shown by JS when a search has no matches) -->
         <div id="results-empty" class="results-empty" hidden>
-          <h2 class="results-empty-title">No records found for "<span class="results-empty-query">Africville</span>"</h2>
+          <h2 class="results-empty-title">No records found for "<span class="results-empty-query"></span>"</h2>
           <ul class="results-empty-tips">
             <li>Check the spelling.</li>
             <li>Try a broader term, such as a place or community name.</li>
@@ -247,97 +246,7 @@
 
         <!-- Horizontal List Container -->
         <div id="search-results-list" class="horizontal-results-list card-stack">
-          <article class="card horizontal-card">
-            <svg class="card-type-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z"/><path d="M4 19V5M19 19v2H6"/></svg>
-            <div class="card-content">
-              <div class="card-top">
-                <span class="card-title">Book</span>
-                <span class="card-category">Online &amp; in person</span>
-              </div>
-              <div class="card-body">
-                <h3 class="card-heading"><a class="card-link" href="record.html?id=BOOK-002">A Love Letter to Africville</a></h3>
-                <p class="card-date">February 2021</p>
-                <p class="card-snippet">A 96-page book by Amanda Carvery-Taylor, whose father grew up in Africville. It gathers former residents&#x27; memories and photographs to show the community&#x27;s family life, childhood, nightlife and Elders&#x27; lessons, not only its hardships.</p>
-                <ul class="card-tags" aria-label="People and places">
-                  <li><a class="card-tag" href="results.html?q=Amanda+Carvery-Taylor">Amanda Carvery-Taylor</a></li>
-                  <li><a class="card-tag" href="results.html?q=Africville">Africville</a></li>
-                  <li><a class="card-tag" href="results.html?q=Halifax">Halifax</a></li>
-                </ul>
-              </div>
-              <div class="card-bottom">
-                <span class="card-holder">Published by <strong>Fernwood Publishing</strong></span>
-                <span class="card-action" aria-hidden="true">View record &rarr;</span>
-              </div>
-            </div>
-          </article>
-          <article class="card horizontal-card">
-            <svg class="card-type-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 4h14v16H5z"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>
-            <div class="card-content">
-              <div class="card-top">
-                <span class="card-title">Journal article</span>
-                <span class="card-category">Online</span>
-              </div>
-              <div class="card-body">
-                <h3 class="card-heading"><a class="card-link" href="record.html?id=JRN-007">Africville and the Dynamics of State Power in Postwar Canada</a></h3>
-                <p class="card-date">2010-06-06</p>
-                <p class="card-snippet">Uses the relocation of Africville&#x27;s residents during Halifax&#x27;s mid-1960s urban renewal program to examine how postwar state power actually worked. Argues that the case reveals more than racism alone, including the ideas of the good life built into the welfare state.</p>
-                <ul class="card-tags" aria-label="People and places">
-                  <li><a class="card-tag" href="results.html?q=Tina+Loo">Tina Loo</a></li>
-                  <li><a class="card-tag" href="results.html?q=Africville">Africville</a></li>
-                  <li><a class="card-tag" href="results.html?q=Halifax">Halifax</a></li>
-                </ul>
-              </div>
-              <div class="card-bottom">
-                <span class="card-holder">Published by <strong>Acadiensis (journal, UNB Libraries)</strong></span>
-                <span class="card-action" aria-hidden="true">View record &rarr;</span>
-              </div>
-            </div>
-          </article>
-          <article class="card horizontal-card">
-            <svg class="card-type-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 4h14v16H5z"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>
-            <div class="card-content">
-              <div class="card-top">
-                <span class="card-title">Journal article</span>
-                <span class="card-category">Online</span>
-              </div>
-              <div class="card-body">
-                <h3 class="card-heading"><a class="card-link" href="record.html?id=JRN-008">The View from Jacob Street: Reframing Urban Renewal in Postwar Halifax</a></h3>
-                <p class="card-date">2019-12-20</p>
-                <p class="card-snippet">Looks at Halifax redevelopment between Gordon Stephenson&#x27;s 1957 study and the 1964 start of the Africville relocation, focusing on the scale of displacement and how race and class shaped who was moved. Places Africville within the city&#x27;s wider urban-renewal program.</p>
-                <ul class="card-tags" aria-label="People and places">
-                  <li><a class="card-tag" href="results.html?q=Tina+Loo">Tina Loo</a></li>
-                  <li><a class="card-tag" href="results.html?q=Gordon+Stephenson">Gordon Stephenson</a></li>
-                  <li><a class="card-tag" href="results.html?q=Jacob+Street">Jacob Street</a></li>
-                </ul>
-              </div>
-              <div class="card-bottom">
-                <span class="card-holder">Published by <strong>Acadiensis (journal, UNB Libraries)</strong></span>
-                <span class="card-action" aria-hidden="true">View record &rarr;</span>
-              </div>
-            </div>
-          </article>
-          <article class="card horizontal-card">
-            <svg class="card-type-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>
-            <div class="card-content">
-              <div class="card-top">
-                <span class="card-title">Research guide</span>
-                <span class="card-category">Online &amp; in person</span>
-              </div>
-              <div class="card-body">
-                <h3 class="card-heading"><a class="card-link" href="record.html?id=SRC-009">Remembering Africville: Source Guide</a></h3>
-                <p class="card-snippet">A Halifax Municipal Archives guide to city records about Africville, such as council minutes, relocation compensation case files, building permits, photographs and maps, with archival reference numbers. Many of the listed records are digitized; some can be seen only in person or once personal information has been redacted.</p>
-                <ul class="card-tags" aria-label="People and places">
-                  <li><a class="card-tag" href="results.html?q=Africville">Africville</a></li>
-                  <li><a class="card-tag" href="results.html?q=Halifax">Halifax</a></li>
-                  <li><a class="card-tag" href="results.html?q=Irvine+Carvery">Irvine Carvery</a></li>
-                </ul>
-              </div>
-              <div class="card-bottom">
-                <span class="card-holder">Published by <strong>Halifax Municipal Archives</strong></span>
-                <span class="card-action" aria-hidden="true">View record &rarr;</span>
-              </div>
-            </div>
-          </article>
+          <!-- Cards are rendered by js/results.js -->
         </div>
       </div>
     </section>
