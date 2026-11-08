@@ -6,6 +6,7 @@
   <title>Institutions — Black History Hub</title>
   <link rel="stylesheet" href="css/styles.css">
   <script src="js/script.js" defer></script>
+  <script src="js/institutions.js" defer></script>
 </head>
 <body class="results-page institutions-page">
   <a class="skip-link" href="#main">Skip to main content</a>
@@ -97,9 +98,58 @@
       <div class="lower-content-wrapper">
         <div class="results-meta-bar">
           <p class="results-count-text">21 institutions · 41 records</p>
-          <span class="results-badge">Sorted by number of records</span>
+          <!-- Sort menu: same look as the Filter by Type menu on the search page -->
+          <div class="menu sort-menu" id="institution-sort">
+            <div class="item">
+              <div class="link" tabindex="0" role="button" aria-haspopup="true">
+                <span>Sort: <span id="sort-label">Most records</span></span>
+                <svg viewBox="0 0 360 360" xml:space="preserve" aria-hidden="true" focusable="false">
+                  <path d="M325.607,79.393c-5.857-5.857-15.355-5.858-21.213,0.001l-139.39,139.393L25.607,79.393 c-5.857-5.857-15.355-5.858-21.213,0.001c-5.858,5.858-5.858,15.355,0,21.213l150.004,150c2.813,2.813,6.628,4.393,10.606,4.393 s7.794-1.581,10.606-4.394l149.996-150C331.465,94.749,331.465,85.251,325.607,79.393z"></path>
+                </svg>
+              </div>
+
+              <div class="submenu" role="radiogroup" aria-label="Sort institutions">
+                <div class="submenu-item">
+                  <label class="tag-label">
+                    <span class="checkBox">
+                      <input type="radio" name="institution-sort" value="records-desc" checked>
+                      <span class="transition fill-box"></span>
+                    </span>
+                    <span>Most records</span>
+                  </label>
+                </div>
+                <div class="submenu-item">
+                  <label class="tag-label">
+                    <span class="checkBox">
+                      <input type="radio" name="institution-sort" value="records-asc">
+                      <span class="transition fill-box"></span>
+                    </span>
+                    <span>Fewest records</span>
+                  </label>
+                </div>
+                <div class="submenu-item">
+                  <label class="tag-label">
+                    <span class="checkBox">
+                      <input type="radio" name="institution-sort" value="name-asc">
+                      <span class="transition fill-box"></span>
+                    </span>
+                    <span>Name (A–Z)</span>
+                  </label>
+                </div>
+                <div class="submenu-item">
+                  <label class="tag-label">
+                    <span class="checkBox">
+                      <input type="radio" name="institution-sort" value="name-desc">
+                      <span class="transition fill-box"></span>
+                    </span>
+                    <span>Name (Z–A)</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="content-grid institution-grid">
+        <div class="content-grid institution-grid" id="institution-grid">
             <article class="card institution-card">
               <svg class="card-type-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 21h18"/><path d="M5 21V10l7-5 7 5v11"/><path d="M9 21v-6h6v6"/></svg>
               <div class="card-content">

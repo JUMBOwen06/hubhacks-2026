@@ -88,6 +88,30 @@ document.addEventListener('DOMContentLoaded', () => {
     carouselToggle.hidden = true;
   }
 
+  // 3b. "About these photos" toggle (only visible on mobile; shows the image credits)
+  const citationToggle = document.getElementById('hero-citation-toggle');
+  const citationBar = document.getElementById('hero-citation-bar');
+  if (citationToggle && citationBar) {
+    const setCitationOpen = (open) => {
+      citationBar.classList.toggle('is-open', open);
+      citationToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    };
+    citationToggle.addEventListener('click', () => {
+      setCitationOpen(!citationBar.classList.contains('is-open'));
+    });
+    document.addEventListener('click', (e) => {
+      if (!citationBar.classList.contains('is-open')) return;
+      if (e.target.closest('#hero-citation-bar, #hero-citation-toggle')) return;
+      setCitationOpen(false);
+    });
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && citationBar.classList.contains('is-open')) {
+        setCitationOpen(false);
+        citationToggle.focus();
+      }
+    });
+  }
+
   // 4. Search form submit -> results.html?q=…&type=… (type values match record.resource_type)
   if (searchForm) {
     searchForm.addEventListener('submit', (e) => {

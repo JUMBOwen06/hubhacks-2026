@@ -1414,16 +1414,95 @@ a.card-tag:hover {
   flex-shrink: 0;
 }
 
-@media (max-width: 480px) {
+/* "About these photos" button: only used on mobile */
+.hero-citation-toggle {
+  display: none;
+}
+
+@media (max-width: 640px) {
+  /* Search bar spans the width; Search button drops below it */
+  .search-box {
+    flex-direction: column;
+    box-shadow: none;
+  }
+
+  .search-input {
+    width: 100%;
+    padding: 1rem;
+    font-size: 1rem;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.65);
+  }
+
   .search-box .c-button--gooey {
-    padding: 0.85em 1em;
-    letter-spacing: 1px;
+    width: 100%;
+    background: rgba(22, 18, 15, 0.85);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.65);
+  }
+
+  /* Image credits collapse behind a small button */
+  .hero-citation-toggle {
+    display: inline-block;
+    position: absolute;
+    bottom: 12px;
+    right: 0.75rem;
+    z-index: 5;
+    font: inherit;
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    background: rgba(22, 18, 15, 0.75);
+    border: 1px solid var(--border-subtle);
+    border-radius: 4px;
+    padding: 0.35rem 0.6rem;
+    cursor: pointer;
+    backdrop-filter: blur(4px);
+  }
+
+  .hero-citation-toggle[aria-expanded="true"] {
+    color: var(--accent);
+    border-color: var(--accent);
   }
 
   .hero-citation-bar {
-    left: 4rem;
+    display: none;
+    left: 0.75rem;
     right: 0.75rem;
+    bottom: 52px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    padding: 0.6rem 0.8rem;
+    font-size: 0.8rem;
+    background: rgba(22, 18, 15, 0.92);
+  }
+
+  .hero-citation-bar.is-open {
+    display: flex;
+    z-index: 7; /* above the search controls while open */
+  }
+
+  /* Bullet separator isn't needed when the links stack */
+  .hero-citation-bar > span[aria-hidden="true"] {
+    display: none;
+  }
+
+  .hero-citation-bar a {
+    padding: 0.2rem 0;
+  }
+
+  /* Featured record columns: never wider than the screen */
+  .content-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .column-section {
+    min-width: 0;
+    padding: 1rem;
+  }
+
+  /* Type label and "Online & in person" can stack on narrow cards */
+  .card-top {
     flex-wrap: wrap;
+    row-gap: 0.25rem;
   }
 }
 
@@ -1523,6 +1602,68 @@ a.card-tag:hover {
 }
 
 /* Institution cards: not one big link, so no pointer/press effect */
+/* Institutions sort menu: reuses the Filter by Type menu (.menu) styles */
+.sort-menu {
+  align-self: center;
+}
+
+/* Sits at the right of the meta bar, so open the panel right-aligned */
+.sort-menu .item .submenu {
+  left: auto;
+  right: 0;
+  width: 200px;
+  max-height: none;
+}
+
+/* Radio options get the same diagonal fill as the filter checkboxes */
+.checkBox input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+
+.checkBox input[type="radio"]:checked + .fill-box {
+  left: -8px;
+  top: -8px;
+}
+
+.checkBox:has(input[type="radio"]:checked) {
+  box-shadow: 0 0 0 1.5px var(--accent);
+}
+
+.tag-label:has(input[type="radio"]:checked) {
+  color: var(--text-primary);
+}
+
+.tag-label:has(input:focus-visible) {
+  outline: 2px solid var(--accent-hover);
+  outline-offset: -2px;
+}
+
+/* Closed right after a pick, even while still hovered/focused */
+.menu .item.is-closed .submenu {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px);
+}
+
+.menu .item.is-closed .link svg {
+  transform: none;
+}
+
+@media (max-width: 640px) {
+  .sort-menu {
+    align-self: flex-start;
+  }
+
+  .sort-menu .item .submenu {
+    left: 0;
+    right: auto;
+  }
+}
+
 .institution-grid {
   align-items: start;
   margin-top: 1.5rem;

@@ -200,8 +200,9 @@
       <!-- Carousel pause/play -->
       <button id="carousel-toggle" class="icon-btn carousel-toggle" aria-pressed="false" aria-label="Pause slideshow">❚❚</button>
 
-      <!-- Image Citations -->
-      <footer class="hero-citation-bar">
+      <!-- Image Citations (collapsed behind a button on mobile) -->
+      <button type="button" id="hero-citation-toggle" class="hero-citation-toggle" aria-expanded="false" aria-controls="hero-citation-bar">About these photos</button>
+      <footer id="hero-citation-bar" class="hero-citation-bar">
         <span>Image Archives:</span>
         <a href="https://archives.novascotia.ca/african-heritage/archival/" target="_blank" rel="noopener noreferrer">Nova Scotia Archives<span class="visually-hidden"> (opens in a new tab)</span></a>
         <span aria-hidden="true">•</span>
