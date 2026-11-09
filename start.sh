@@ -1,14 +1,19 @@
 #!/usr/bin/env bash
 # Run the Black History Hub on macOS or Linux: starts the backend and opens the app.
 # First run creates backend/.venv and installs requirements (needs Python 3.10+).
+# Uses port 8000, or the next free port if 8000 is busy: PORT=8001 ./start.sh to prefer another.
 # Press Ctrl+C to stop the server.
 set -e
 cd "$(dirname "$0")"
 
-PORT="${PORT:-8000}"
 VENV="backend/.venv"
 PY="$VENV/bin/python"
-URL="http://127.0.0.1:$PORT/app/"
+
+# Recreate the virtual environment if it exists but its Python no longer runs.
+if [ -e "$PY" ] && ! "$PY" -c 'import sys' >/dev/null 2>&1; then
+  echo "The virtual environment in $VENV is broken. Recreating it..."
+  rm -rf "$VENV"
+fi
 
 if [ ! -x "$PY" ]; then
   echo "Setting up $VENV for the first time..."
@@ -28,11 +33,5 @@ if ! "$PY" -c 'import fastapi, uvicorn' >/dev/null 2>&1; then
     || { echo "Could not install the requirements. Check your internet connection and run ./start.sh again."; exit 1; }
 fi
 
-# Open the browser a few seconds after the server starts building the database.
-( sleep 4
-  if command -v open >/dev/null 2>&1; then open "$URL"
-  elif command -v xdg-open >/dev/null 2>&1; then xdg-open "$URL" >/dev/null 2>&1
-  fi ) &
-
-echo "Starting the server at $URL  (press Ctrl+C to stop)"
-exec "$PY" -m uvicorn app.main:app --app-dir backend --port "$PORT"
+# launch.py picks a free port, starts the server and opens the browser once it answers.
+exec "$PY" backend/launch.py

@@ -47,7 +47,9 @@ The backend (FastAPI + SQLite) builds the search database from `data/seed/` ever
 | **Windows** | Double-click `start.bat` in the repository root. | Close the window. |
 | **macOS / Linux** | In a terminal, from the repository root: `./start.sh` (or `bash start.sh`). | Press **Ctrl+C**. |
 
-The first run creates `backend/.venv` and installs the requirements, which takes a minute. Then the app opens at <http://127.0.0.1:8000/app/>. To use another port, run `PORT=8001 ./start.sh` on macOS/Linux.
+The first run creates `backend/.venv` and installs the requirements, which takes a minute. The browser opens at <http://127.0.0.1:8000/app/> once the server is ready. If port 8000 is already in use, the launcher picks the next free port (8001, 8002, …) and prints the address it used. To prefer another port, run `PORT=8001 ./start.sh` on macOS/Linux or `set PORT=8001` before `start.bat` in Command Prompt.
+
+If an earlier setup was interrupted, just run the launcher again: it checks that the requirements are installed and finishes installing them if not.
 
 If macOS says the script isn't executable, run `chmod +x start.sh` once.
 
@@ -80,7 +82,9 @@ Then open <http://127.0.0.1:8000/app/>. Interactive API docs are at <http://127.
 - **"Offline mode" on the results page:** the pages couldn't reach the API (for example the repository was opened with a plain static server or VS Code Live Server), so search, record and institution pages fall back to a basic in-browser search of the bundled JSON. That mode has no related-term matching, spelling suggestions, "why matched" lines or connected records, so start the backend for demos.
 - **A page looks out of date** after you change files: hard-refresh with **Ctrl+Shift+R** (**Cmd+Shift+R** on macOS).
 - **"database is locked"** when the repository is in OneDrive or another synced folder: point the database at a local folder, for example `HUBHACKS_DB=/tmp/hubhacks.db ./start.sh`, or `$env:HUBHACKS_DB="$env:TEMP\hubhacks.db"` in PowerShell before `uvicorn`.
-- **Port 8000 already in use:** stop the other server, or use another port as shown above.
+- **Port 8000 already in use:** `start.bat` and `start.sh` move to the next free port automatically and print the address; open that one. With the manual setup, pass another port, for example `--port 8001`.
+- **"No module named uvicorn"** or another missing module: the requirements didn't finish installing (often a dropped connection on the first run). Run `start.bat` or `./start.sh` again and it reinstalls them, or run `backend\.venv\Scripts\python.exe -m pip install -r backend\requirements.txt` (Windows) / `backend/.venv/bin/python -m pip install -r backend/requirements.txt` (macOS/Linux).
+- **The launcher says the virtual environment is broken** (for example after Python was reinstalled or upgraded): it deletes and recreates `backend/.venv` itself. If that fails, delete the `backend/.venv` folder and run the launcher again.
 
 ## Running the tests
 
@@ -92,7 +96,7 @@ cd backend
 pytest
 ```
 
-All 59 tests should pass.
+All 61 tests should pass.
 
 ## Project structure
 
@@ -120,6 +124,7 @@ backend/
   app/search.py       Search, ranking, filters and "why matched" explanations
   app/build.py        Builds the SQLite database from the dataset
   app/impact.py       Anonymous usage counts
+  launch.py           Used by start.bat/start.sh: picks a free port, opens the browser when the server is ready
   app/ingest/         Dataset importers
   schema.sql          Database schema
   tests/              Test suite (pytest)
