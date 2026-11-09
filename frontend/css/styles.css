@@ -8,9 +8,9 @@
 
   --text-primary: #f0ebe6;        /* High-contrast off-white */
   --text-secondary: #a6988d;      /* Muted warm grey */
-  --text-muted: #7d6f64;          /* Placeholder text */
+  --text-muted: #9a8b7e;          /* Placeholder and small print (4.5:1 on cards) */
 
-  --accent: #b87948;              /* Primary brown/amber accent */
+  --accent: #be7e4d;              /* Primary brown/amber accent (4.5:1 for small text on cards) */
   --accent-hover: #cf8d59;        /* Button hover */
 
   --sidebar-width: 260px;
@@ -2424,4 +2424,20 @@ a.brand-title {
 
 .impact-key-form[hidden] {
   display: none;
+}
+
+/* ==========================================================================
+   Touch screens: tap targets at least 24px tall (WCAG 2.2 target size)
+   ========================================================================== */
+@media (pointer: coarse), (max-width: 640px) {
+  a.card-tag {
+    min-height: 24px;
+    line-height: 18px;
+  }
+
+  .site-footer-links a,
+  .record-back {
+    display: inline-block;
+    padding: 4px 0;
+  }
 }

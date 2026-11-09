@@ -159,6 +159,39 @@ document.addEventListener('DOMContentLoaded', () => {
     stack.after(btn);
   });
 
+  // Dropdown menus (Filter by Type, Sort) open on hover/focus through CSS. Keep the
+  // trigger's aria-expanded in step so screen readers hear whether the menu is open.
+  document.querySelectorAll('.menu .item').forEach((item) => {
+    const trigger = item.querySelector('.link[aria-haspopup]');
+    if (!trigger) return;
+    const sync = () => {
+      const open = (item.matches(':hover') || item.matches(':focus-within')) && !item.classList.contains('is-closed');
+      trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    };
+    ['mouseenter', 'mouseleave', 'focusin', 'focusout', 'keydown', 'click'].forEach((type) =>
+      item.addEventListener(type, () => setTimeout(sync, 0))
+    );
+
+    // Escape closes the menu and returns focus to its trigger. The Sort menu on the
+    // Institutions page does this itself in institutions.js.
+    if (item.closest('.sort-menu')) return;
+    item.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        trigger.focus();
+        item.classList.add('is-closed');
+      } else if ((e.key === 'Enter' || e.key === ' ') && e.target === trigger) {
+        e.preventDefault();
+        item.classList.remove('is-closed');
+      }
+    });
+    item.addEventListener('mouseleave', () => item.classList.remove('is-closed'));
+    item.addEventListener('focusin', (e) => {
+      if (e.target === trigger) return;
+      item.classList.remove('is-closed');
+    });
+    trigger.addEventListener('click', () => item.classList.remove('is-closed'));
+  });
+
   // 4. Search form submit -> results.html?q=…&type=… (type values match record.resource_type)
   if (searchForm) {
     searchForm.addEventListener('submit', (e) => {

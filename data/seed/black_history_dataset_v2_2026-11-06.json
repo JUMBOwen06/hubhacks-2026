@@ -318,7 +318,7 @@
       "name": "Government of Saskatchewan – Heritage Property Search",
       "type": "government",
       "website_url": null,
-      "catalogue_url": "https://gisappl.saskatchewan.ca/WebDocs/HeritagePropertySearch/",
+      "catalogue_url": "https://www.saskatchewan.ca/residents/parks-culture-heritage-and-sport/heritage-conservation-and-commemoration/search-for-a-heritage-property",
       "location": "Regina, Saskatchewan",
       "description": "The Saskatchewan government's online documents for designated heritage properties in the province.",
       "rights_policy_url": null
@@ -871,7 +871,7 @@
       "digitized": "yes",
       "access_mode": "online",
       "access_instructions": "Open the article page and choose the HTML or PDF galley.",
-      "access_restrictions": "Galleys are listed on the page. They were not opened in this run, so free access without a subscription is not confirmed.",
+      "access_restrictions": "We haven't confirmed whether the full text is free to read or needs a subscription. Open the article page to check.",
       "rights_statement": "\"Copyright for articles published in this journal is retained by the author(s)\". Acadiensis holds a non-exclusive licence. Reprint requests go to the journal (statement on the article page).",
       "rights_url": "https://journals.lib.unb.ca/index.php/Acadiensis/article/view/10801",
       "reuse_scope": "metadata_and_link_only",
@@ -881,7 +881,7 @@
       "last_verified_at": "2026-11-06",
       "verification_status": "verified",
       "link_last_checked": "2026-11-06",
-      "change_notes": "Re-verified 2026-11-06. resource_type mapped from \"journal forum\" to journal_article. Added p. 76 from the landing page. HTML galley: https://journals.lib.unb.ca/index.php/Acadiensis/article/view/10801/11587. Dropped v1 places/subjects not supported by the title, apart from Atlantic Canada and Black Loyalists. Description no longer says the versions are free (not confirmed)."
+      "change_notes": "Re-verified 2026-11-06. resource_type mapped from \"journal forum\" to journal_article. Added p. 76 from the landing page. HTML galley: https://journals.lib.unb.ca/index.php/Acadiensis/article/view/10801/11587. Dropped v1 places/subjects not supported by the title, apart from Atlantic Canada and Black Loyalists. Description no longer says the versions are free (not confirmed). 2026-11-08: reworded for public display; original working notes kept here. access_restrictions was: \"Galleys are listed on the page. They were not opened in this run, so free access without a subscription is not confirmed.\""
     },
     {
       "id": "JRN-002",
@@ -904,7 +904,7 @@
       "digitized": "yes",
       "access_mode": "online",
       "access_instructions": "Open the article page and choose the PDF or HTML galley.",
-      "access_restrictions": "Galleys are listed on the page. They were not opened in this run, so free access without a subscription is not confirmed.",
+      "access_restrictions": "We haven't confirmed whether the full text is free to read or needs a subscription. Open the article page to check.",
       "rights_statement": "\"Copyright for articles published in this journal is retained by the author(s)\". Acadiensis holds a non-exclusive licence (statement on the article page).",
       "rights_url": "https://journals.lib.unb.ca/index.php/Acadiensis/article/view/33634",
       "reuse_scope": "metadata_and_link_only",
@@ -914,7 +914,7 @@
       "last_verified_at": "2026-11-06",
       "verification_status": "verified",
       "link_last_checked": "2026-11-06",
-      "change_notes": "Re-verified 2026-11-06. Title, author, issue, pages and date match v1. Author affiliation on the page is Concordia University. HTML galley: https://journals.lib.unb.ca/index.php/Acadiensis/article/view/33634/1882530272. Mapped v1 free-text subjects to the controlled vocabulary."
+      "change_notes": "Re-verified 2026-11-06. Title, author, issue, pages and date match v1. Author affiliation on the page is Concordia University. HTML galley: https://journals.lib.unb.ca/index.php/Acadiensis/article/view/33634/1882530272. Mapped v1 free-text subjects to the controlled vocabulary. 2026-11-08: reworded for public display; original working notes kept here. access_restrictions was: \"Galleys are listed on the page. They were not opened in this run, so free access without a subscription is not confirmed.\""
     },
     {
       "id": "JRN-003",
@@ -937,8 +937,8 @@
       "digitized": "yes",
       "access_mode": "online",
       "access_instructions": "Open the article page and choose the HTML galley. An Érudit PDF copy also exists (https://releve.erudit.org/en/journals/acadiensis/2022-v51-n2-acadiensis08011/1099591ar.pdf).",
-      "access_restrictions": "The HTML galley loaded in this run without login. The 34621 page was not checked.",
-      "rights_statement": "Not seen on a loaded landing page. The standard Acadiensis author-copyright statement appears on every other Acadiensis landing page checked; confirm on this record's page.",
+      "access_restrictions": "The full text (HTML version) opened without a login when we checked.",
+      "rights_statement": "Not yet confirmed for this article. Other Acadiensis articles state that copyright is retained by the author(s); check the article page before reusing anything.",
       "rights_url": null,
       "reuse_scope": "metadata_and_link_only",
       "collection_method": "manual",
@@ -947,7 +947,7 @@
       "last_verified_at": null,
       "verification_status": "needs_review",
       "link_last_checked": null,
-      "change_notes": "2026-11-06. CONFLICT (kept 33332): the v1 source_url https://journals.lib.unb.ca/index.php/Acadiensis/article/view/34621 could not be loaded; search engines index this article at article/view/33332, whose galley confirms title, author (Sarah Elizabeth Chute, University of Toronto), 51(2) Autumn 2022 and pp. 34–59. A human should open both URLs and choose the canonical one, and check whether 34621 shows \"Published 2025-03-04\" (removed from fields because not re-confirmed). CONFLICT (kept double quotes): title quote style differs between page header and galley citation."
+      "change_notes": "2026-11-06. CONFLICT (kept 33332): the v1 source_url https://journals.lib.unb.ca/index.php/Acadiensis/article/view/34621 could not be loaded; search engines index this article at article/view/33332, whose galley confirms title, author (Sarah Elizabeth Chute, University of Toronto), 51(2) Autumn 2022 and pp. 34–59. A human should open both URLs and choose the canonical one, and check whether 34621 shows \"Published 2025-03-04\" (removed from fields because not re-confirmed). CONFLICT (kept double quotes): title quote style differs between page header and galley citation. 2026-11-08: reworded for public display; original working notes kept here. access_restrictions was: \"The HTML galley loaded in this run without login. The 34621 page was not checked.\" rights_statement was: \"Not seen on a loaded landing page. The standard Acadiensis author-copyright statement appears on every other Acadiensis landing page checked; confirm on this record's page.\""
     },
     {
       "id": "JRN-004",
@@ -970,7 +970,7 @@
       "digitized": "yes",
       "access_mode": "online",
       "access_instructions": "Open the article page and choose the HTML or PDF galley.",
-      "access_restrictions": "Galleys are listed on the page. They were not opened in this run, so free access without a subscription is not confirmed.",
+      "access_restrictions": "We haven't confirmed whether the full text is free to read or needs a subscription. Open the article page to check.",
       "rights_statement": "\"Copyright for articles published in this journal is retained by the author(s)\". Acadiensis holds a non-exclusive licence (statement on the article page).",
       "rights_url": "https://journals.lib.unb.ca/index.php/Acadiensis/article/view/25748",
       "reuse_scope": "metadata_and_link_only",
@@ -980,7 +980,7 @@
       "last_verified_at": "2026-11-06",
       "verification_status": "verified",
       "link_last_checked": "2026-11-06",
-      "change_notes": "Re-verified 2026-11-06. Matches v1. Author affiliation on the page is San Jose State University. HTML galley: https://journals.lib.unb.ca/index.php/Acadiensis/article/view/25748/29846. The abstract writes \"Trelawney Town\". Fact-check 2026-11-06: description now follows the abstract's wording (\"Aboriginal\"); Jamaica name_as_written corrected."
+      "change_notes": "Re-verified 2026-11-06. Matches v1. Author affiliation on the page is San Jose State University. HTML galley: https://journals.lib.unb.ca/index.php/Acadiensis/article/view/25748/29846. The abstract writes \"Trelawney Town\". Fact-check 2026-11-06: description now follows the abstract's wording (\"Aboriginal\"); Jamaica name_as_written corrected. 2026-11-08: reworded for public display; original working notes kept here. access_restrictions was: \"Galleys are listed on the page. They were not opened in this run, so free access without a subscription is not confirmed.\""
     },
     {
       "id": "JRN-005",
@@ -1003,8 +1003,8 @@
       "digitized": "yes",
       "access_mode": "online",
       "access_instructions": "Open the article page and choose the HTML or PDF galley.",
-      "access_restrictions": "The HTML galley loaded in this run without login.",
-      "rights_statement": "Not seen, because the landing page was not loaded. The standard Acadiensis author-copyright statement is expected; confirm on the page.",
+      "access_restrictions": "The full text (HTML version) opened without a login when we checked.",
+      "rights_statement": "Not yet confirmed for this article. Other Acadiensis articles state that copyright is retained by the author(s); check the article page before reusing anything.",
       "rights_url": null,
       "reuse_scope": "metadata_and_link_only",
       "collection_method": "manual",
@@ -1013,7 +1013,7 @@
       "last_verified_at": null,
       "verification_status": "needs_review",
       "link_last_checked": null,
-      "change_notes": "2026-11-06. The landing page article/view/11149 could not be loaded (fetch tool allowlist). The HTML galley 11149/11872 loaded and confirms the exact title and author. The v1 date 2008-10-10 is not re-confirmed and was moved out of date_display; the record_date year 2008 is curator_added from v1 and the Érudit URL path. Mapped v1 free-text subjects to the controlled vocabulary."
+      "change_notes": "2026-11-06. The landing page article/view/11149 could not be loaded (fetch tool allowlist). The HTML galley 11149/11872 loaded and confirms the exact title and author. The v1 date 2008-10-10 is not re-confirmed and was moved out of date_display; the record_date year 2008 is curator_added from v1 and the Érudit URL path. Mapped v1 free-text subjects to the controlled vocabulary. 2026-11-08: reworded for public display; original working notes kept here. access_restrictions was: \"The HTML galley loaded in this run without login.\" rights_statement was: \"Not seen, because the landing page was not loaded. The standard Acadiensis author-copyright statement is expected; confirm on the page.\""
     },
     {
       "id": "JRN-006",
@@ -1036,8 +1036,8 @@
       "digitized": "yes",
       "access_mode": "online",
       "access_instructions": "Open the article page and choose the HTML or PDF galley.",
-      "access_restrictions": "The HTML galley loaded in this run without login.",
-      "rights_statement": "Not seen, because the landing page was not loaded. The standard Acadiensis author-copyright statement is expected; confirm on the page.",
+      "access_restrictions": "The full text (HTML version) opened without a login when we checked.",
+      "rights_statement": "Not yet confirmed for this article. Other Acadiensis articles state that copyright is retained by the author(s); check the article page before reusing anything.",
       "rights_url": null,
       "reuse_scope": "metadata_and_link_only",
       "collection_method": "manual",
@@ -1046,7 +1046,7 @@
       "last_verified_at": null,
       "verification_status": "needs_review",
       "link_last_checked": null,
-      "change_notes": "2026-11-06. The landing page article/view/10708 could not be loaded (fetch tool allowlist). The HTML galley loaded and confirms the author (Harvey Amani Whitfield, Dalhousie University) and title wording. CONFLICT (kept v1 curly-quote form): the galley prints \"We Can Do As We Like Here\": - An Analysis ... with straight quotes. Check the landing page. date_display changed to the issue label seen in search results."
+      "change_notes": "2026-11-06. The landing page article/view/10708 could not be loaded (fetch tool allowlist). The HTML galley loaded and confirms the author (Harvey Amani Whitfield, Dalhousie University) and title wording. CONFLICT (kept v1 curly-quote form): the galley prints \"We Can Do As We Like Here\": - An Analysis ... with straight quotes. Check the landing page. date_display changed to the issue label seen in search results. 2026-11-08: reworded for public display; original working notes kept here. access_restrictions was: \"The HTML galley loaded in this run without login.\" rights_statement was: \"Not seen, because the landing page was not loaded. The standard Acadiensis author-copyright statement is expected; confirm on the page.\""
     },
     {
       "id": "JRN-007",
@@ -1069,7 +1069,7 @@
       "digitized": "yes",
       "access_mode": "online",
       "access_instructions": "Open the article page and choose the HTML or PDF galley.",
-      "access_restrictions": "Galleys are listed on the page. They were not opened in this run, so free access without a subscription is not confirmed.",
+      "access_restrictions": "We haven't confirmed whether the full text is free to read or needs a subscription. Open the article page to check.",
       "rights_statement": "\"Copyright for articles published in this journal is retained by the author(s)\". Acadiensis holds a non-exclusive licence (statement on the article page).",
       "rights_url": "https://journals.lib.unb.ca/index.php/Acadiensis/article/view/18419",
       "reuse_scope": "metadata_and_link_only",
@@ -1079,7 +1079,7 @@
       "last_verified_at": "2026-11-06",
       "verification_status": "verified",
       "link_last_checked": "2026-11-06",
-      "change_notes": "Re-verified 2026-11-06. Matches v1. Author affiliation on the page is University of British Columbia. HTML galley: https://journals.lib.unb.ca/index.php/Acadiensis/article/view/18419/19899. The period label \"mid-1960s\" is kept with empty years, as the spec requires."
+      "change_notes": "Re-verified 2026-11-06. Matches v1. Author affiliation on the page is University of British Columbia. HTML galley: https://journals.lib.unb.ca/index.php/Acadiensis/article/view/18419/19899. The period label \"mid-1960s\" is kept with empty years, as the spec requires. 2026-11-08: reworded for public display; original working notes kept here. access_restrictions was: \"Galleys are listed on the page. They were not opened in this run, so free access without a subscription is not confirmed.\""
     },
     {
       "id": "JRN-008",
@@ -1102,7 +1102,7 @@
       "digitized": "yes",
       "access_mode": "online",
       "access_instructions": "Open the article page and choose the PDF or HTML galley.",
-      "access_restrictions": "The PDF loaded in this run without login.",
+      "access_restrictions": "The PDF opened without a login when we checked.",
       "rights_statement": "\"Copyright for articles published in this journal is retained by the author(s)\". Acadiensis holds a non-exclusive licence (statement on the article page).",
       "rights_url": "https://journals.lib.unb.ca/index.php/Acadiensis/article/view/30447",
       "reuse_scope": "metadata_and_link_only",
@@ -1112,7 +1112,7 @@
       "last_verified_at": "2026-11-06",
       "verification_status": "verified",
       "link_last_checked": "2026-11-06",
-      "change_notes": "Re-verified 2026-11-06. Matches v1. Added pp. 5–42 from the PDF. Replaced the v1 period label \"1957–1964 context\" with a curator-built 1957–1964 span from the two years the abstract states (record_date origin curator_added). HTML galley: https://journals.lib.unb.ca/index.php/Acadiensis/article/view/30447/1882525799."
+      "change_notes": "Re-verified 2026-11-06. Matches v1. Added pp. 5–42 from the PDF. Replaced the v1 period label \"1957–1964 context\" with a curator-built 1957–1964 span from the two years the abstract states (record_date origin curator_added). HTML galley: https://journals.lib.unb.ca/index.php/Acadiensis/article/view/30447/1882525799. 2026-11-08: reworded for public display; original working notes kept here. access_restrictions was: \"The PDF loaded in this run without login.\""
     },
     {
       "id": "JRN-009",
@@ -1135,7 +1135,7 @@
       "digitized": "yes",
       "access_mode": "online",
       "access_instructions": "Open the article page and choose the PDF galley.",
-      "access_restrictions": "The PDF galley is listed on the page. It was not opened in this run, so free access without a subscription is not confirmed.",
+      "access_restrictions": "We haven't confirmed whether the full text is free to read or needs a subscription. Open the article page to check.",
       "rights_statement": "\"Copyright for articles published in this journal is retained by the author(s)\". Acadiensis holds a non-exclusive licence (statement on the article page).",
       "rights_url": "https://journals.lib.unb.ca/index.php/Acadiensis/article/view/33643",
       "reuse_scope": "metadata_and_link_only",
@@ -1145,7 +1145,7 @@
       "last_verified_at": "2026-11-06",
       "verification_status": "verified",
       "link_last_checked": "2026-11-06",
-      "change_notes": "Re-verified 2026-11-06. Matches v1. Author affiliation on the page is University of New Brunswick. The issue TOC confirms pp. 126–146."
+      "change_notes": "Re-verified 2026-11-06. Matches v1. Author affiliation on the page is University of New Brunswick. The issue TOC confirms pp. 126–146. 2026-11-08: reworded for public display; original working notes kept here. access_restrictions was: \"The PDF galley is listed on the page. It was not opened in this run, so free access without a subscription is not confirmed.\""
     },
     {
       "id": "JRN-010",
@@ -1168,7 +1168,7 @@
       "digitized": "yes",
       "access_mode": "online",
       "access_instructions": "Open the Érudit article page (or https://doi.org/10.7202/1065793ar) and download the PDF. Érudit shows a JavaScript bot check before the page loads.",
-      "access_restrictions": "Open access per the OHS (Autumn 2005 onward, excluding the latest 12 months). The PDF loaded in this run without login.",
+      "access_restrictions": "Open access, according to the Ontario Historical Society (issues from Autumn 2005 on, except the most recent 12 months). The PDF opened without a login when we checked.",
       "rights_statement": "\"Copyright © The Ontario Historical Society, 2007\". Use is subject to Érudit's policy on use (from the Érudit PDF cover page).",
       "rights_url": "https://apropos.erudit.org/en/users/policy-on-use/",
       "reuse_scope": "metadata_and_link_only",
@@ -1178,7 +1178,7 @@
       "last_verified_at": null,
       "verification_status": "needs_review",
       "link_last_checked": null,
-      "change_notes": "2026-11-06. The Érudit landing page returned an Anubis bot challenge and was not fetchable. Title, author, issue, pages, DOI, abstract and copyright were confirmed from the official Érudit PDF cover page. DOI resolver not fetched. Removed v1 place \"Ontario\" (not in the title or abstract); \"New York\" appears only in the description."
+      "change_notes": "2026-11-06. The Érudit landing page returned an Anubis bot challenge and was not fetchable. Title, author, issue, pages, DOI, abstract and copyright were confirmed from the official Érudit PDF cover page. DOI resolver not fetched. Removed v1 place \"Ontario\" (not in the title or abstract); \"New York\" appears only in the description. 2026-11-08: reworded for public display; original working notes kept here. access_restrictions was: \"Open access per the OHS (Autumn 2005 onward, excluding the latest 12 months). The PDF loaded in this run without login.\""
     },
     {
       "id": "JRN-011",
@@ -1201,7 +1201,7 @@
       "digitized": "yes",
       "access_mode": "online",
       "access_instructions": "Open the Érudit article page (or https://doi.org/10.7202/1065794ar) and download the PDF. Érudit shows a JavaScript bot check first.",
-      "access_restrictions": "Open access per the OHS (Autumn 2005 onward, excluding the latest 12 months). The PDF loaded in this run without login.",
+      "access_restrictions": "Open access, according to the Ontario Historical Society (issues from Autumn 2005 on, except the most recent 12 months). The PDF opened without a login when we checked.",
       "rights_statement": "\"Copyright © The Ontario Historical Society, 2007\". Use is subject to Érudit's policy on use (from the Érudit PDF cover page).",
       "rights_url": "https://apropos.erudit.org/en/users/policy-on-use/",
       "reuse_scope": "metadata_and_link_only",
@@ -1211,7 +1211,7 @@
       "last_verified_at": null,
       "verification_status": "needs_review",
       "link_last_checked": null,
-      "change_notes": "2026-11-06. The Érudit landing page returned an Anubis bot challenge (French and English paths). Facts were confirmed from the official Érudit PDF cover page. Removed v1 place \"Ontario\" and subject \"family reunification\", which are not in the title or abstract."
+      "change_notes": "2026-11-06. The Érudit landing page returned an Anubis bot challenge (French and English paths). Facts were confirmed from the official Érudit PDF cover page. Removed v1 place \"Ontario\" and subject \"family reunification\", which are not in the title or abstract. 2026-11-08: reworded for public display; original working notes kept here. access_restrictions was: \"Open access per the OHS (Autumn 2005 onward, excluding the latest 12 months). The PDF loaded in this run without login.\""
     },
     {
       "id": "JRN-012",
@@ -1234,7 +1234,7 @@
       "digitized": "yes",
       "access_mode": "online",
       "access_instructions": "Open the Érudit article page (or https://doi.org/10.7202/1065798ar) and download the PDF. Érudit shows a JavaScript bot check first.",
-      "access_restrictions": "Open access per the OHS (Autumn 2005 onward, excluding the latest 12 months). The PDF loaded in this run without login.",
+      "access_restrictions": "Open access, according to the Ontario Historical Society (issues from Autumn 2005 on, except the most recent 12 months). The PDF opened without a login when we checked.",
       "rights_statement": "\"Copyright © The Ontario Historical Society, 2007\". Use is subject to Érudit's policy on use (from the Érudit PDF cover page).",
       "rights_url": "https://apropos.erudit.org/en/users/policy-on-use/",
       "reuse_scope": "metadata_and_link_only",
@@ -1244,7 +1244,7 @@
       "last_verified_at": null,
       "verification_status": "needs_review",
       "link_last_checked": null,
-      "change_notes": "2026-11-06. The Érudit landing page was not fetchable (not surfaced by search; other Érudit pages return an Anubis challenge). Facts were confirmed from the official Érudit PDF cover page. Removed v1 community \"Black community of Chatham\" (a descriptive phrase, not a named community). Added Kent County as a place. Kent County Civil Rights League re-typed as organization (Owen, 2026-11-06)."
+      "change_notes": "2026-11-06. The Érudit landing page was not fetchable (not surfaced by search; other Érudit pages return an Anubis challenge). Facts were confirmed from the official Érudit PDF cover page. Removed v1 community \"Black community of Chatham\" (a descriptive phrase, not a named community). Added Kent County as a place. Kent County Civil Rights League re-typed as organization (Owen, 2026-11-06). 2026-11-08: reworded for public display; original working notes kept here. access_restrictions was: \"Open access per the OHS (Autumn 2005 onward, excluding the latest 12 months). The PDF loaded in this run without login.\""
     },
     {
       "id": "SRC-008",

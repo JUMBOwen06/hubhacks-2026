@@ -99,6 +99,13 @@
       note.replaceChildren(el('strong', null, 'Content note: '), rec.content_note);
       note.hidden = false;
     }
+    if (prov.verification_status && prov.verification_status !== 'verified') {
+      // Say it up front, not only in Provenance at the bottom of the page
+      const review = el('p', { class: 'record-content-note record-review-note' },
+        el('strong', null, 'Needs review: '),
+        "some details of this record haven't been fully checked yet. Confirm them on the institution's page.");
+      document.getElementById('record-content-note').after(review);
+    }
     const actions = document.getElementById('record-actions');
     if (access.source_url) {
       actions.append(extLink(access.source_url, 'View at ' + (source ? source.name : 'source'), 'record-btn record-btn-primary'));

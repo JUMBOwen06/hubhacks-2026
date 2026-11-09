@@ -95,7 +95,7 @@
           el('span', { class: 'card-title' }, RESOURCE_TYPES[card.resource_type] || card.resource_type),
           el('span', { class: 'card-category' }, ACCESS_MODES[card.access_mode] || card.access_mode)),
         el('div', { class: 'card-body' },
-          el('h3', { class: 'card-heading' },
+          el('h2', { class: 'card-heading' },
             el('a', { class: 'card-link', href }, hl.title ? marked(hl.title) : card.title)),
           card.date_display ? el('p', { class: 'card-date' }, card.date_display) : null,
           el('p', { class: 'card-snippet' }, hl.description ? marked(hl.description) : card.description),
