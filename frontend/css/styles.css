@@ -2312,6 +2312,17 @@ a.brand-title {
   min-width: 140px;
 }
 
+/* Same spacing between cards as the About page (the cards sit inside #impact-body) */
+#impact-body {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+#impact-body[hidden] {
+  display: none;
+}
+
 .impact-note,
 .impact-status {
   color: var(--text-secondary);
@@ -2330,7 +2341,7 @@ a.brand-title {
 
 .impact-tick {
   fill: var(--text-secondary);
-  font-size: 11px;
+  font-size: 12px;
 }
 
 .impact-bar-searches,
@@ -2377,11 +2388,17 @@ a.brand-title {
 }
 
 .impact-list a {
-  color: var(--text-primary);
+  color: var(--accent-hover);
+  text-decoration: none;
+}
+
+.impact-list a:hover,
+.impact-list a:focus-visible {
+  text-decoration: underline;
 }
 
 .impact-count {
-  color: var(--accent-hover);
+  color: var(--text-primary);
   font-weight: 600;
   font-variant-numeric: tabular-nums;
 }

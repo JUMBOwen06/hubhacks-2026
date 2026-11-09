@@ -23,8 +23,14 @@
     return el('li', null, name, el('span', { class: 'impact-count' }, value));
   }
 
+  // Draw at the container's real width so the axis labels stay readable on phones
+  // (a fixed 700-wide viewBox scaled down to a phone shrinks 12px text to about 5px).
+  let lastDaily = null;
   function chart(daily) {
-    const w = 700, h = 200, pad = 28, n = daily.length;
+    lastDaily = daily;
+    const box = $('impact-chart');
+    const w = Math.round(Math.min(700, Math.max(280, box.clientWidth || 700)));
+    const h = w < 480 ? 160 : 200, pad = 28, n = daily.length;
     const max = Math.max(1, ...daily.map((d) => Math.max(d.searches, d.source_clicks)));
     const slot = (w - pad) / n, bar = Math.max(4, slot / 3);
     const ns = 'http://www.w3.org/2000/svg';
@@ -68,13 +74,13 @@
       ? `Counting since ${new Date(s.since + 'T12:00:00').toLocaleDateString('en-CA', { year: 'numeric', month: 'long', day: 'numeric' })}. `
         + `${fmt(s.totals.searches_no_results)} of ${fmt(s.totals.searches)} searches found nothing.`
       : 'Nothing counted yet. Use the search and this page fills in.';
-    chart(s.daily);
     fillList('impact-sent-list', s.sent_to_institutions, (x) => row(x.name, fmt(x.count)), 'No one has opened a source yet.');
     fillList('impact-gaps-list', s.searches_no_results, (x) => row(x.query, fmt(x.count), 'results.html?q=' + encodeURIComponent(x.query)), 'Every search so far found something.');
     fillList('impact-top-list', s.top_searches, (x) => row(x.query, fmt(x.count), 'results.html?q=' + encodeURIComponent(x.query)), 'No searches yet.');
     fillList('impact-viewed-list', s.most_viewed_records, (x) => row(x.title, fmt(x.count), 'record.html?id=' + encodeURIComponent(x.id)), 'No record pages viewed yet.');
     $('impact-status').hidden = true;
     $('impact-body').hidden = false;
+    chart(s.daily); // after unhiding, so the chart can measure its width
   }
 
   async function load(key) {
@@ -100,6 +106,12 @@
     $('impact-key-form').hidden = true;
     render(await res.json());
   }
+
+  let resizeTimer;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => { if (lastDaily) chart(lastDaily); }, 150);
+  });
 
   $('impact-key-form').addEventListener('submit', (e) => {
     e.preventDefault();
